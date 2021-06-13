@@ -1,0 +1,57 @@
+\setlength\columnsep{0.8cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\def\statindentlength{0.66cm}
+\def\statindent{\hskip\statindentlength}
+
+\raggedright
+
+\newcommand{\divider}[1]{
+    \vspace{-0.75\baselineskip}
+
+    \leavevmode\leaders\hrule height 0.8pt\hfill\kern0pt
+    
+    \vspace{-0.25\baselineskip}
+    
+    \textbf{#1}
+    
+    \vspace{-0.75\baselineskip}
+    
+    \leavevmode\leaders\hrule height 0.8pt\hfill\kern0pt
+    
+    \vspace{-0.25\baselineskip}   
+}
+
+\newcommand{\name}[1]{\textbf{#1}}
+\newcommand{\initsense}[2]{\textbf{Init} #1; \textbf{Senses:} #2}
+\newcommand{\ac}[3]{\textbf{AC} #1, Touch #2, Flat-Footed #3}
+\newcommand{\vpwp}[2]{\textbf{vp} #1; \textbf{wp} #2}
+\newcommand{\vpwpdr}[3]{\textbf{vp} #1; \textbf{wp} #2 \statindent\textbf{DR} #3}
+\newcommand{\vpwpfhdr}[4]{\textbf{vp} #1; \textbf{wp} #2 \statindent\textbf{Fast Healing} #3, \textbf{DR} #4}
+\newcommand{\fhdr}[4]{\textbf{Fast Healing} #1, \textbf{DR} #2}
+\newcommand{\saves}[3]{\textbf{Fort} #1 \textbf{Ref} #2 \textbf{Will} #3}
+\newcommand{\resistimmune}[2]{\textbf{Resist} #1; \textbf{Immune} #2}
+\newcommand{\stat}[2]{\textbf{#1} #2}
+\newcommand{\spellsknown}[3]{{\footnotesize\hangindent=\statindentlength\textbf{#1} (#2) -- #3 \par}}
+\newcommand{\spellsready}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1} -- #2 \par}}
+\newcommand{\abilityscores}[6]{\textbf{Str} #1, \textbf{Dex} #2, \textbf{Con} #3, \textbf{Int} #4, \textbf{Wis} #5, \textbf{Cha} #6}
+\newcommand{\babs}[3]{\textbf{Base Attack} #1; \textbf{CMB} #2; \textbf{CMD} #3}
+\newcommand{\basicability}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1}: #2\par}}
+\newcommand{\ability}[4]{\basicability{#1 [#2]}{\emph{#3} -- #4}}
+\newcommand{\continuousability}[3]{\basicability{#1 [#2]}{#3}}
+\newcommand{\listing}[2]{{\footnotesize\textbf{#1}: #2\par}}
+\newcommand{\plain}[1]{#1\par}
+\newcommand{\indentplain}[1]{\statindent#1\par}
+\newcommand{\remark}[1]{{\footnotesize #1\par}}
+\newcommand{\indentremark}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
+
+\newenvironment{attackgroup}[2]
+{
+    \textbf{#1} #2
+    
+    \begin{tabular}{@{\statindent}l@{\hskip 12pt}r@{\hskip 12pt}l}
+}
+{
+    \end{tabular}
+}

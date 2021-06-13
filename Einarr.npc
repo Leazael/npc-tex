@@ -1,0 +1,45 @@
+!Name Einarr Rasmussen
+:Human Slayer 6
+:NG Medium Humanoid [Human]
+!Init +5; !Senses Perception +13
+===Defence==================================================
+!AC 19 (20), !Touch 15, !FlatFooted 14 (15)
+  ~(+5 Dex, +4 Armour, [+1 Shield])
+!hp 43 (6d10+0)
+!Fort +7     !Ref +2      !Will +9
+===Offence==================================================
+!Speed 30 ft.
+!Melee mwk Battle A×e
+> Normal     | +9/+4       | (1d8+2 / ×3)
+> Two-Handed | +8/+3       | (1d8+3 / ×3 [-1 AC])
+!Ranged +1 Composite [+2 Str] Shortbow (70 ft.)
+> Normal                | +12/+7      | (1d6+3 / ×3)
+> Rapid Shot            | +10/+10/+5  | (1d6+3 / ×3)
+> Deadly Aim            | +10/+5      | (1d6+7 / ×3)
+> Rapid Shot Deadly Aim | +8/+8/+3    | (1d6+3 / ×3)
+#Special Attacks: Point Blank Shot, Sneak Attack (+2d6), 
+  Improved Precise Shot, Studied Target (2 targets; ...
+  +2 attack/damage, +2 to Slayer DCs)
+===Statistics===============================================
+!Str 14, !Dex 20, !Con 10, !Int 15, !Wis 14, !Cha 10
+!BAB +6; !CMB +8; !CMD 23
+!Feats: Deadly Aim, Alertness, Precise Shit, 
+  Point Blank Shot, Rapid Shot, Improved Precise Shit
+!Skills Acrobatics +12, Bluff* +9, Climb +11, 
+  Craft [Fletching] +6, Heal +6, Know [Loc]* +9, 
+  Know [Geo]* +11, Know [Nob]* +7, Perception* +13, 
+  Ride +10, Sense Motive* +13, Stealth +19, 
+  Survival* +11 (+14 when tracking), Swim +7
+  ~(* +2 on studied targets.)
+%Languages: Rhaens, Dvargs, Aquintains
+===Class Abilities==========================================
+@Studied Target [Ex] (2 targets / +2) Study opponent as...
+  a move action (or immediate action after sneak...
+  attack). Gain +2 [untyped] bonus on Bluff, Knowledge, 
+  Perception, Sense Motive, Survival, Weapon Attack and...
+  Damage rolls against it. Lasts until target is dead...
+  or a new target is selected. Max 2 targets.
+@Fast Stealth [Ex] Move at full speed when using stealth.
+===Possesions===============================================
+~Mithril Shirt, Mwk Buckler, Cloak of Elvenkind, 
+  Efficient Quiver, Boots of the Cat, Quick Runner's Shirt.
