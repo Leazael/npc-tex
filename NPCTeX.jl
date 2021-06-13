@@ -56,13 +56,13 @@ parse_listing(ss::String) = "\\listing" * enbracket(match(r"%([\sa-zA-Z]*):(.*)"
 # ss = "%Languages: Ilms II, Angels II, Sosulkan II, Draconic II"
 
 # @ability [su] (how often) Description
-is_ability(ss::String) = occursin(r"@[\s\w]*\[[\s\w]*\]\s*\([\s\w/]*\)",ss)
-parse_ability(ss) = "\\ability" * enbracket(match(r"@([\s\w]*)\[([\s\w]*)\]\s*\(([\s\w/]*)\)(.*)", ss).captures...)
+is_ability(ss::String) = occursin(r"@[\s\w\']*\[[\s\w]*\]\s*\([\s\w/]*\)",ss)
+parse_ability(ss) = "\\ability" * enbracket(match(r"@([\s\w\']*)\[([\s\w]*)\]\s*\(([\s\w/]*)\)(.*)", ss).captures...)
 # ss = "@Powerful bond [Su] (7/day) Create a telepathic link with an ally within 60 ft. Must share language."
 
 # @continuous ability [su] Description
-is_continuous_ability(ss::String) = occursin(r"@[\s\w]*\[[\s\w]*\]",ss) && !is_ability(ss)
-parse_continuous_ability(ss::String) = "\\continuousability" * enbracket(match(r"@([\s\w]*)\[([\s\w]*)\](.*)",ss).captures...)
+is_continuous_ability(ss::String) = occursin(r"@[\s\w\']*\[[\s\w]*\]",ss) && !is_ability(ss)
+parse_continuous_ability(ss::String) = "\\continuousability" * enbracket(match(r"@([\s\w\']*)\[([\s\w]*)\](.*)",ss).captures...)
 # ss = "@Detect Alignment[Sp] Detect Alignment at will"
 
 # $Spell Known (iets) -- Lijst
