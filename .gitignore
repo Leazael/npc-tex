@@ -4,3 +4,5 @@ tex_files/npc.fls
 tex_files/npc.log
 tex_files/npc.synctex.gz
 tex_files/npc.xdv
+npc.log
+npc.aux

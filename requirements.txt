@@ -1,0 +1,90 @@
+Requirements
+
+npc-tex may make use of the following individual mark up  symbols:
+    %, !, #, $, ^, ~, :, _, |, @, >, <
+    
+
+npc-tex may make use of the following mark up symbols, depending on context
+    ..., …, ===, --, ,, 
+
+
+npc-tex will distinguish between:
+    keywords: single words (containing no whitespace), prefaced by an individual '!'.
+        The chosen latex commando will depend of the sequence of keywords used
+        in a single line.    
+
+    environments: 
+        Any text marked by the inclusion of one or more mark-characters present in a line.
+        The chosen latex commando only depends on the chosen environment.
+
+    tables: 
+        Tables are indicted by predefined keywords.
+        Each table may have a header (with separate parsing)
+        Each row will be indicated by a '>'
+        The beaviour of the table is dependenty on the associated keyword(s)
+        Each table will have one or more predefined associated separators. Any separators ysed after the final separator will be used as "plain text".
+        The contaent of the line after the keyword, but before the first '>' will be defined as the "header"        
+
+Parsing requirements:
+    Before parsing all leading and trailing whitespace will be removed. 
+    Any empty lines will be removed.
+    Before parsing, but after whitespace removal, lines ending with "...", "…", ",", ";", "-", as well as lines beginning with ">" will be concatentated.
+    If the concatentation was triggered by an "...", "…" or "-", the symbol(s) and any preceding whitespace will be removed.
+    If the concatentation was triggered by a "...", "…", "," or ";", an extra space " " will be (re-)inserted. 
+    non-whitespace symbols used directly after a !keyword will be ignored.
+
+Mapping Requirements
+    The sequence of keywords used in a single line directly determines the used tex command.
+
+    If a keyword sequence is part of a table (indicated by the presence of ">"), separators must be predefined. These separators indicate the positions of the tex '&' symbols denoting columns. How the separators are dealt with may depend on the chosen keyword(s).
+
+    Each line not containing one or more keywords will describe an environment.
+
+    A line may be preceded by a starting character indicating the type of environment.
+
+    An environment may have a header. Such an environment must contain a starting character, and must contain a separating secondary character which separates the header from the body. The header and body will be given separately to the tex command such that different styles may be applied to each.
+
+    The indictating / separating symbols wil be pruned before passing the header/body to the tex command.
+
+    Possible environments:
+
+        -Comment  
+            ^at the start of a line.
+
+        -Category 
+            '=' at the start of the line. Leading/Trailing '=' signs and whitespace are removed.
+            e.g. "===Offence=============="
+            e.g. "= Offence =============="
+
+        -Primary text.  (e.g. class and race)
+            '~' at the start of a line or when no symbol is present 
+
+        -Secondary text. (e.g. small descriptive text)
+            '_' at the start of a line
+
+        -Primary Text with header (e.g. special attacks, feats)
+            '#' at the start of a line and a ':' or '--' to separate header from body.
+
+        -Secondary Text with header (e.g. languages, rogue talents)
+            '%' at the start of a line and a ':' or '--' to separate header from body.
+
+        -daily Spells and Spell-like abilities.
+            '$' at the start of a line, followed by a frequency in brackets, followed by either ':' or "--" as a separator.
+            e.g. "$2nd (3/day) -- Aap, Noot, Mies"
+            e.g. "$2nd (3/day): Aap, Noot, Mies"
+
+        -prepared/at-will spells and spell-like abilities.
+            '$'  at the start of a line, followed by either ':' or "--" as a separator, with no brackets allowed inbetween. 
+            e.g. "$2nd -- Aap, Noot, Mies"
+            e.g. "$3/day -- Aap, Noot, Mies".
+
+        -Special Abilities that can be used a certain nr. of times per day.
+            '@' at the start of a line, followed by a type in square brackets [] and directly followed (with only whitespace in between) by a frequency in round brackets ().
+            e.g. "@Studied Target [Ex] (3/day) Study opponent as..."
+
+        -Special Abilities 
+            '@' at the start of a line, followd by a type in square brackets followed followed by, after some possible whitespace, a non-bracket character.
+            e.g. "@Studied Target [Ex] Study opponent as..."
+
+    Special:
+        ```\latexlitaral{aap}{noot}{mies}'''

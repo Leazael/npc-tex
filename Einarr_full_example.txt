@@ -1,0 +1,23 @@
+!Saves: > Fort     +5 =  +5 (base)     +0      +3(resistance)
+        > Sanity   +5 =  +5 (base)     +0                    
+        > Will     +5 =  +5 (base)     +0                     
+        > Gumption +5 =  +5 (base)     +0
+        > Moxy     +5 =  +5 (base)     +0
+
+===Inventory=========================================
+!Inventory: 
+> Daggers (5)      |  50lb   |     70gp   |  LG
+> Bag of Holding   |  15lb   |  7,000gp   |  NG
+> Bag of Holding   |  15lb   |  7,000gp   |  
+
+!Ranged +1 Composite [+2 Str] Shortbow (70 ft.)
+ >  Normal                 | +12/+7      |  (1d6+3 / ×3)
+ >  Rapid Shot             | +10/+10/+5  |  (1d6+3 / ×3)
+ >  Deadly Aim             | +10/+5      |  (1d6+7 / ×3)
+ >  Rapid Shot Deadly Aim  | +8/+8/+3    |  (1d6+3 / ×3)
+
+!Skills              rnk     cs      abl     misc
+>Acrobatics   +12 =    4     +3      +5      +6
+>Cooking      +12 =    4     +3      +5      
+>Blackjack    +12 =    4     +3      +5      +2(in the forest)/+6(in the milky way || koekjesfabrieken)
+
