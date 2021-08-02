@@ -32,6 +32,9 @@ Parsing requirements:
     If the concatentation was triggered by an "...", "…" or "-", the symbol(s) and any preceding whitespace will be removed.
     If the concatentation was triggered by a "...", "…", "," or ";", an extra space " " will be (re-)inserted. 
     non-whitespace symbols used directly after a !keyword will be ignored.
+    
+    How the keywords and environments are mapped will be defined in a JSON file.
+    The order of environments in the JSON matters. The first matching environment will be the one used. This means that more "specific" environments bust be defined before generic ones.
 
 Mapping Requirements
     The sequence of keywords used in a single line directly determines the used tex command.
