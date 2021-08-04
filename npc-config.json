@@ -68,7 +68,7 @@
     },
     {
       "matchList": ["bab", "cmb", "cmd"],
-      "latex": {"command": "abilityscores", "nInputs": 3}
+      "latex": {"command": "baseattack", "nInputs": 3}
     },
     {
       "matchList": ["Feats"],
@@ -121,10 +121,10 @@
     {
       "description": "Constant or at-will Special Abilities",
       "matchList": ["@", "[", "]"],
-      "latex": { "command": "specialabilityfreq", "nInputs": 3}
+      "latex": { "command": "specialability", "nInputs": 3}
     },
     {
-      "description": "Primary text (lowest prio!)",
+      "description": "Primary text",
       "matchList": [ "~" ],
       "latex": { "command": "primarytext"}
     },
