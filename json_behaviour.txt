@@ -19,16 +19,22 @@
   The "matchList" array is used to determine wether a given line matches the mapping.
   Each match of the array can be either a string, or an array of strings. 
   In the case that a match in the matchList is itself an array, such a match is interpreted as a logical "OR", meaning that either of the strings listed may be used. 
-  Mathcin is done case-insensitive.
+  Mathcing is done case-insensitively.
+  
+  In order for a line to match, it must start (after removing any leadin whitespace) with the first match provided in the matchList. (Possibly augmented by the keywordChar.)
   
   If the mapping is in the "keywords" array, then the line matches if the line contains all exactly those matches specified in the "matchList" array, in the order specified. 
+  If the line contains the "tableRowChar", the mapping matches only if "isTable" is set to true. (see optional items below).
+  If the line does not contain the "tableRowChar", the mapping matches only if "isTable" is set to false, or if it is absent. (see optional items below).
   Only one such matching can occur.
   
-  If the mapping isin the "environments" array, then the line matches if all the entries occur in the line in the order specified. 
+  If the mapping is in the "environments" array, then the line matches if all the entries occur in the line in the order specified. 
   If mulitple mappings match, then the first one is chosen. (i.e., more specific environment-mappings, if placed first, will always supercede more generic environment-mappings placed later in the mappings array)
   
+  
+  
   A line matching a mapping with N matches is parsed as follows:
-    The line is split into N+1 segments, as defined by the matchList array, starting left of the first match and ending on the right of the last match.
+    The line is split into N segments, as defined by the matchList array, starting right of the first match and ending on the right of the last match.
     These segments are then cleaned (meaning any trailing/leading whitespace is removed).
     By default the first segment is discarded (but see includeAsInput below)
     The remaining segments are then passed along as input to the LaTeX command. 
@@ -45,22 +51,24 @@ OPTIONAL ITEMS:
 
 "includeInputs": (Array of Booleans)
   If the latex command takes fewer inputs than the number of matches, or if the text preceding the first match must be counted as input, one must define an "includeInputs" array of booleans. 
-  The length of this array must be equal to the number of matches + 1.
+  The length of this array must be equal to the number of matches. in the matchList
   The inputs corresponding to a true entry will be passed to the latex command, hence the number of trues must match the "nInputs" in the "latex" object.
   
 "isPadding" (Array of Strings)
   For the purpose of cleaning the input obtained from this mapping, characters, or strings defined in the "isPadding" array are treated as whitespace.
   
+"isTable" 
+  Wether the match is interpreted as a table. Everything starting at the "tableRowChar" is considered a separate input.
+  
+  
 "separators"
-  If the corresponding environment or keywords defines a table, onbe can define an array of separators, of a length equal to the number of columns - 1.
+  If the corresponding environment or keywords defines a table, one can define an array of separators, of a length equal to the number of columns - 1.
   Each separator can be either a string or an array of strings. In the latter case, we interpret this as a logical "OR" similarly to matchLists
   The first occurence of the first defined separator will be replaced with an "&". The first occurence of the second separtator after the first separator will be also be replaced with an "&". And so on. This process is then repeated for each row of the table. Note that the entire table is to be treated as a single input to the latex command.
   
 "Description"
   For the purpose of documentation, each mapping object may carry a "description".
   
-"Example"
-  For the purpose of documentation, each mapping object may carry a "description".  
   
   
     
