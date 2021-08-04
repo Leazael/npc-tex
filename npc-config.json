@@ -1,40 +1,131 @@
 {
-  "commentChar": "^",
+  "commentChar":  "^",
   "tableRowChar": ">",
-  "keywordChar" :"!",
-  "mappings": [
+  "keywordChar" : "!",
+  "keywords": [
     {
-      "keywords": ["name"],
-      "latex": {
-        "command": "name"
-      }
+      "matchList": ["name"],
+      "latex": {"command": "name"}
     },
     {
-      "keywords": ["wim"],
-      "separators": ["|", ":", "|", "|"],
-      "latex": {
-        "command": "table"
-      }
+      "matchList": ["init", "senses"],
+      "latex": {"command": "initsense", "nInputs": 2}
+    },
+    {
+      "matchList": ["AC", "touch", "FlatFooted"],
+      "latex": {"command": "ac", "nInputs": 3}
+    },
+    {
+      "matchList": ["hp"],
+      "latex": {"command": "hp"}
+    },
+    {
+      "matchList": ["vp", "wp"],
+      "latex": {"command": "vpwp", "nInputs": 2}
+    },
+    {
+      "matchList": ["vp", "wp", "dr"],
+      "latex": {"command": "vpwpdr", "nInputs": 3}
+    },
+    {
+      "matchList": ["vp", "wp", "dr", "sr"],
+      "latex": {"command": "vpwpdrsr", "nInputs": 4}
+    },
+    {
+      "matchList": ["fort", "ref", "will"],
+      "latex": {"command": "saves", "nInputs": 3}
+    },
+    {
+      "matchList": ["speed"],
+      "latex": {"command": "speed"}
+    },
+    {
+      "matchList": ["Melee"],
+      "isTable": true,
+      "separators": ["|", "|"],
+      "latex": {"command": "meleetable", "nInputs": 2}
+    },
+    {
+      "matchList": ["Ranged"],
+      "isTable": true,
+      "separators": ["|", "|"],
+      "latex": {"command": "rangedtable", "nInputs": 2}
+    },
+    {
+      "matchList": ["Melee"],
+      "isTable": false,
+      "latex": {"command": "melee"}
+    },
+    {
+      "matchList": ["Ranged"],
+      "isTable": false,
+      "latex": {"command": "ranged"}
+    },
+    {
+      "matchList": ["str", "dex", "con", "int", "wis", "cha"],
+      "latex": {"command": "abilityscores", "nInputs": 6}
+    },
+    {
+      "matchList": ["bab", "cmb", "cmd"],
+      "latex": {"command": "abilityscores", "nInputs": 3}
+    },
+    {
+      "matchList": ["Feats"],
+      "latex": {"command": "feats"}
+    },
+    {
+      "matchList": ["Skills"],
+      "latex": {"command": "skills"}
     }
   ],
   "environments": [
     {
-      "environment": "Category",
-      "chars": ["="],
+      "description": "Category",
+      "matchList": ["="],
       "paddingChars": ["="],
-      "latex": {
-        "command": "category",
-        "nInputs": 1
-      }
+      "latex": { "command": "category"}
     },
     {
-      "environment": "Daily Spells and Spell-like abilities.",
-      "chars": ["$", ["[","("], ["]",")"], [":", "--"]],
+      "description": "Primary Text + Header.",
+      "matchList": ["#", [":","--"]],
+      "latex": { "command": "primaryheader", "nInputs": 2}
+    },
+    {
+      "description": "Secondary Text + Header.",
+      "matchList": ["%", [":","--"]],
+      "latex": { "command": "secondaryheader", "nInputs": 2}
+    },
+    {
+      "description": "Secondary text.",
+      "matchList": ["_"],
+      "latex": { "command": "secondarytext"}
+    },
+    {
+      "description": "Daily Spells and Spell-like abilities.",
+      "matchList": ["$", ["[","("], ["]",")"], [":", "--"]],
       "includeInputs": [true, true, false, true],
-      "latex": {
-        "command": "dailyspells",
-        "nInputs": 3
-      }
+      "latex": { "command": "dailyspells", "nInputs": 3}
+    },
+    {
+      "description": "Prepared/at-will spells and spell-like abilities.",
+      "matchList": ["$", [":", "--"]],
+      "latex": { "command": "dailyspells", "nInputs": 2}
+    },
+    {
+      "description": "Special Abilities that can be used a certain nr. of times per day.",
+      "matchList": ["@", "[", "]", "(", ")"],
+      "includeInputs": [true, true, false, true, true],
+      "latex": { "command": "specialabilityfreq", "nInputs": 4}
+    },
+    {
+      "description": "Constant or at-will Special Abilities",
+      "matchList": ["@", "[", "]"],
+      "latex": { "command": "specialabilityfreq", "nInputs": 3}
+    },
+    {
+      "description": "Primary text (lowest prio!)",
+      "matchList": ["~", ""],
+      "latex": { "command": "primarytext"}
     }
   ]
 }
