@@ -22,6 +22,7 @@
   The "matchList" array is used to determine wether a given line matches the mapping.
   Each match of the array can be either a string, or an array of strings. 
   In the case that a match in the matchList is itself an array, such a match is interpreted as a logical "OR", meaning that either of the strings listed may be used. 
+  Mathcin is done case-insensitive.
   
   If the mapping is of "type":"keyword", then the line matches if the line contains all exactly those matches specified in the "matchList" array, in the order specified. 
   Only one such matching can occur.
