@@ -9,14 +9,11 @@
   The character used to indicate a keyword.
   The keyword is defined as the string of lapha-numerical characters immediately following this character, until the first non-alpha--numerical character.
 
-"mappings":
-  The mappings define the behaviour of the parser. It consists of an array of objects, each of which must contain 
-    -a "type" string, 
+"keywords" and "environments":
+  The "keywords" and "environments" each contain an array of mappings.
+  The mappings define the behaviour of the parser. Each mapping must contain 
     -a "match" array that may contain strings and arrays.
     -a "latex" object.
-    
-"type":
-  A string that must be set to either "keyword" or "environment".
     
 "matchList":
   The "matchList" array is used to determine wether a given line matches the mapping.
@@ -24,10 +21,10 @@
   In the case that a match in the matchList is itself an array, such a match is interpreted as a logical "OR", meaning that either of the strings listed may be used. 
   Mathcin is done case-insensitive.
   
-  If the mapping is of "type":"keyword", then the line matches if the line contains all exactly those matches specified in the "matchList" array, in the order specified. 
+  If the mapping is in the "keywords" array, then the line matches if the line contains all exactly those matches specified in the "matchList" array, in the order specified. 
   Only one such matching can occur.
   
-  If the mapping is of "type":"environment", then the line matches if all the entries occur in the line in the order specified. 
+  If the mapping isin the "environments" array, then the line matches if all the entries occur in the line in the order specified. 
   If mulitple mappings match, then the first one is chosen. (i.e., more specific environment-mappings, if placed first, will always supercede more generic environment-mappings placed later in the mappings array)
   
   A line matching a mapping with N matches is parsed as follows:
