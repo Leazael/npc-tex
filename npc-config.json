@@ -1,7 +1,8 @@
 {
-  "commentChar":  "^",
-  "tableRowChar": ">",
-  "keywordChar" : "!",
+  "commentChar":  [ "^" ],
+  "tableRowChar": [ ">" ],
+  "keywordChar" : [ "!" ],
+  "concatenators": [ "...", "…", "-", ",", ";" ],
   "keywords": [
     {
       "matchList": ["name"],
@@ -83,7 +84,7 @@
       "description": "Category",
       "matchList": ["="],
       "paddingChars": ["="],
-      "latex": { "command": "category"}
+      "latex": { "command": "category" }
     },
     {
       "description": "Primary Text + Header.",
@@ -124,7 +125,12 @@
     },
     {
       "description": "Primary text (lowest prio!)",
-      "matchList": ["~", ""],
+      "matchList": [ "~" ],
+      "latex": { "command": "primarytext"}
+    },
+    {
+      "description": "Primary text (lowest prio!)",
+      "matchList": null,
       "latex": { "command": "primarytext"}
     }
   ]
