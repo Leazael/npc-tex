@@ -1,43 +1,67 @@
-The first matching environment from the JSON file will be the one used. This means that more "specific" environments bust be defined before generic ones.
+"tableRowChar":
+  The tableRowChar object tells us which character will be used to define the rows of the table.
+  All occurences of this character (except the first) will be replaced by "\\" during parsing.
+  
+"commentChar":
+  All lines that start with this character, (after the removal of any leading whitespace), are not parsed.
+  
+"keywordChar":
+  The character used to indicate a keyword.
+  The keyword is defined as the string of lapha-numerical characters immediately following this character, until the first non-alpha--numerical character.
 
-table:
-  The table object tells us which character will be used to define the rows of the table.
-  All occurences of this character (except the first) will be replaced by "\\". 
-
-latex:
+"mappings":
+  The mappings define the behaviour of the parser. It consists of an array of objects, each of which must contain 
+    -a "type" string, 
+    -a "match" array that may contain strings and arrays.
+    -a "latex" object.
+    
+"type":
+  A string that must be set to either "keyword" or "environment".
+    
+"matchList":
+  The "matchList" array is used to determine wether a given line matches the mapping.
+  Each match of the array can be either a string, or an array of strings. 
+  In the case that a match in the matchList is itself an array, such a match is interpreted as a logical "OR", meaning that either of the strings listed may be used. 
+  
+  If the mapping is of "type":"keyword", then the line matches if the line contains all exactly those matches specified in the "matchList" array, in the order specified. 
+  Only one such matching can occur.
+  
+  If the mapping is of "type":"environment", then the line matches if all the entries occur in the line in the order specified. 
+  If mulitple mappings match, then the first one is chosen. (i.e., more specific environment-mappings, if placed first, will always supercede more generic environment-mappings placed later in the mappings array)
+  
+  A line matching a mapping with N matches is parsed as follows:
+    The line is split into N+1 segments, as defined by the matchList array, starting left of the first match and ending on the right of the last match.
+    These segments are then cleaned (meaning any trailing/leading whitespace is removed).
+    By default the first segment is discarded (but see includeAsInput below)
+    The remaining segments are then passed along as input to the LaTeX command. 
+    
+"latex":
   each "latex" object in the JSON file must contain at least a "command", specifying which latex command will be used in the mapping.
   
-  By default, we assume that a latex command has only a single input.
+  By default, we assume that a latex command has only a single input. 
   
   If the latex command has more than one input, the number must be specified in "nInputs" in the latex object.
- 
+  Note that by default the nInputs must equal the number of entries in the mappings match. (Unless "includeInputs" is used, see below)
+  
+OPTIONAL ITEMS: 
 
-Keywords:
-  Each "keyword" object defines one set of keywords and their mapping.
+"includeInputs": (Array of Booleans)
+  If the latex command takes fewer inputs than the number of matches, or if the text preceding the first match must be counted as input, one must define an "includeInputs" array of booleans. 
+  The length of this array must be equal to the number of matches + 1.
+  The inputs corresponding to a true entry will be passed to the latex command, hence the number of trues must match the "nInputs" in the "latex" object.
   
-  Each "keyword" object must contain a "latex" object, as specified above.
+"isPadding" (Array of Strings)
+  For the purpose of cleaning the input obtained from this mapping, characters, or strings defined in the "isPadding" array are treated as whitespace.
   
-  Each "keyword" object must contain a "keywords" array, which is an array containing the keywords related to the mapping.
-  A parsed line must contain exactlty the keywords defined in the "keywords" array, in that order.
+"separators"
+  If the corresponding environment or keywords defines a table, onbe can define an array of separators, of a length equal to the number of columns - 1.
+  The first occurence of the first defined separator will be replaced with an "&". The first occurence of the second separtator after the first separator will be also be replaced with an "&". And so on. This process is then repeated for each row of the table. Note that the entire table is to be treated as a single input to the latex command.
   
-  By default the text following each keyword, but preceding the next keyword (if any) will be cleaned (see below) and used as one of the inputs for the latex command. Hence the number of keywords must match the "nInputs" in the "latex" object.
+"Description"
+  For the purpose of documentation, each mapping object may carry a "description".
   
-  If the latex command takes fewer inputs than the number of keywords, one must define an "includeInputs" array of booleans. The inputs corresponding to a true entry will be passed to the latex command, hence the number of trues must match the "nInputs" in the "latex" object.
-  
-  Before passing an input to a latexCommand will be cleaned by removing all leading and trailing whitespace.
-  Optionally, one can specify an "paddingChars" array, containing characters that will bne treated as whitespace for the purpose of the cleaning.
-  
-  If the corresponding keyword defines a table, one can define an array of separators, of a length equal to the number of columns - 1.
-  The first occurence of the first defined separator will be replaced with an "&". The first occurence of the second separtator after the first separator will be also be replaced with an "&". And so on.
-  
-  
-  
-  
-  
-  
-  
-  
-  
+"Example"
+  For the purpose of documentation, each mapping object may carry a "description".  
   
   
     
