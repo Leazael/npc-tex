@@ -1,5 +1,6 @@
 {
   "commentChar": "^",
+  "tableRowCHar": "&",
   "keywords": [
     {
       "keywords": ["name"],
