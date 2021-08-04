@@ -1,0 +1,41 @@
+{
+  "commentChar": "^",
+  "keywords": [
+    {
+      "keywordSet": ["name"],
+      "latex": {
+        "command": "name",
+        "nInputs": 1
+      }
+    },
+    {
+      "keywordSet": ["wim"],
+      "separators": ["|", ":", "|", "|"],
+      "latex": {
+        "command": "table",
+        "nInputs": 1,
+        "bLatexTable": "true"
+      }
+    }
+  ],
+  "environments": [
+    {
+      "environment": "Category",
+      "chars": ["="],
+      "ignoreChars": "=",
+      "latex": {
+        "command": "category",
+        "nInputs": 1
+      }
+    },
+    {
+      "environment": "Daily Spells and Spell-like abilities.",
+      "chars": ["$", ["[","("], ["]",")"], [":", "--"]],
+      "includeInputs": [true, true, false, true],
+      "latex": {
+        "command": "dailyspells",
+        "nInputs": 3
+      }
+    }
+  ]
+}
