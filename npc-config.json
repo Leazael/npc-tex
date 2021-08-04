@@ -1,7 +1,8 @@
 {
   "commentChar": "^",
-  "tableRowCHar": ">",
-  "keywords": [
+  "tableRowChar": ">",
+  "keywordChar" :"!",
+  "mappings": [
     {
       "keywords": ["name"],
       "latex": {

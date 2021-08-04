@@ -55,6 +55,7 @@ OPTIONAL ITEMS:
   
 "separators"
   If the corresponding environment or keywords defines a table, onbe can define an array of separators, of a length equal to the number of columns - 1.
+  Each separator can be either a string or an array of strings. In the latter case, we interpret this as a logical "OR" similarly to matchLists
   The first occurence of the first defined separator will be replaced with an "&". The first occurence of the second separtator after the first separator will be also be replaced with an "&". And so on. This process is then repeated for each row of the table. Note that the entire table is to be treated as a single input to the latex command.
   
 "Description"
