@@ -19,7 +19,7 @@
     {
       "environment": "Category",
       "chars": ["="],
-      "ignoreChars": "=",
+      "paddingChars": ["="],
       "latex": {
         "command": "category",
         "nInputs": 1
