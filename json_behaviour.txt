@@ -1,0 +1,44 @@
+The first matching environment from the JSON file will be the one used. This means that more "specific" environments bust be defined before generic ones.
+
+table:
+  The table object tells us which character will be used to define the rows of the table.
+  All occurences of this character (except the first) will be replaced by "\\". 
+
+latex:
+  each "latex" object in the JSON file must contain at least a "command", specifying which latex command will be used in the mapping.
+  
+  By default, we assume that a latex command has only a single input.
+  
+  If the latex command has more than one input, the number must be specified in "nInputs" in the latex object.
+ 
+
+Keywords:
+  Each "keyword" object defines one set of keywords and their mapping.
+  
+  Each "keyword" object must contain a "latex" object, as specified above.
+  
+  Each "keyword" object must contain a "keywords" array, which is an array containing the keywords related to the mapping.
+  A parsed line must contain exactlty the keywords defined in the "keywords" array, in that order.
+  
+  By default the text following each keyword, but preceding the next keyword (if any) will be cleaned (see below) and used as one of the inputs for the latex command. Hence the number of keywords must match the "nInputs" in the "latex" object.
+  
+  If the latex command takes fewer inputs than the number of keywords, one must define an "includeInputs" array of booleans. The inputs corresponding to a true entry will be passed to the latex command, hence the number of trues must match the "nInputs" in the "latex" object.
+  
+  Before passing an input to a latexCommand will be cleaned by removing all leading and trailing whitespace.
+  Optionally, one can specify an "paddingChars" array, containing characters that will bne treated as whitespace for the purpose of the cleaning.
+  
+  If the corresponding keyword defines a table, one can define an array of separators, of a length equal to the number of columns - 1.
+  The first occurence of the first defined separator will be replaced with an "&". The first occurence of the second separtator after the first separator will be also be replaced with an "&". And so on.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
