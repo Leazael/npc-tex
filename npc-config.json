@@ -2,19 +2,16 @@
   "commentChar": "^",
   "keywords": [
     {
-      "keywordSet": ["name"],
+      "keywords": ["name"],
       "latex": {
-        "command": "name",
-        "nInputs": 1
+        "command": "name"
       }
     },
     {
-      "keywordSet": ["wim"],
+      "keywords": ["wim"],
       "separators": ["|", ":", "|", "|"],
       "latex": {
-        "command": "table",
-        "nInputs": 1,
-        "bLatexTable": "true"
+        "command": "table"
       }
     }
   ],
