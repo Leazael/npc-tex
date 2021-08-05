@@ -1,33 +1,45 @@
 using JSON3
-using StructTypes
 
-mutable struct LatexCommand
+const Match = Union{String, Vector{String}}
+
+struct LatexCommand
     command::String
     nInputs::Int64
-    LatexCommand() = new("", 1)
+    LatexCommand(command, nInputs) = 
+        new(command, isnothing(nInputs) ? 1 : nInputs )
 end
 
-mutable struct Keyword
-    matchList::Vector{Any}
+struct Mapping
+    description::String
+    matchList::Union{Vector{Match},Nothing}
     latex::LatexCommand
+    includeInputs:: Vector{Bool}    
+    paddingChars::Vector{String}
     isTable::Bool
     separators::Vector{String}
-    Keyword() = new(Any[], LatexCommand(), false, String[])
+    Mapping(description, matchList, latex, includeInputs, paddingChars, isTable, separators) = new(
+        isnothing(description) ? "1" : description,
+        matchList, 
+        latex,
+        isnothing(includeInputs) ? String[] : includeInputs, 
+        isnothing(paddingChars) ? Bool[] : paddingChars, 
+        isnothing(isTable) ? false : isTable, 
+        isnothing(separators) ? String[] : separators)
 end
 
-mutable struct NpcConfig
+
+struct NpcConfig
     commentChar::Vector{String}
     tableRowChar::Vector{String}
     keywordChar::Vector{String}
     concatenators::Vector{String}
-    keywords::Vector{Keyword}
-    environments::Any
-    NpcConfig() = new()
+    keywords::Vector{Mapping}
+    environments::Vector{Mapping}
 end
 
-JSON3.StructType(::Type{<:NpcConfig}) = StructTypes.Mutable()
-JSON3.StructType(::Type{<:Keyword}) = StructTypes.Mutable()
-JSON3.StructType(::Type{<:LatexCommand}) = StructTypes.Mutable()
+JSON3.StructType(::Type{<:NpcConfig}) = JSON3.Struct()
+JSON3.StructType(::Type{<:Mapping}) = JSON3.Struct()
+JSON3.StructType(::Type{<:LatexCommand}) = JSON3.Struct()
 
 aap = JSON3.read(read("./npc-config.json", String), NpcConfig)
 aap.concatenators
