@@ -39,10 +39,12 @@ mutable struct Atom
     value::String
 end
 
+
 mutable struct Element
     atoms::Vector{Atom}
     mapping::Mapping
 end
+
 
 mutable struct Document
     elements::Vector{Element}
