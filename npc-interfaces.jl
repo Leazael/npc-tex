@@ -1,5 +1,11 @@
 const Match = Union{String, Vector{String}}
 
+struct Concatenator
+    match::String 
+    remove::Bool
+    addWhitespace::Bool
+end
+
 struct LatexCommand
     command::String
     nInputs::Int64
@@ -29,7 +35,7 @@ end
 struct NpcConfig
     commentChar::Vector{String}
     tableRowChar::Vector{String}
-    concatenators::Vector{String}
+    concatenators::Vector{Concatenator}
     mappings::Vector{Mapping}
 end
 
