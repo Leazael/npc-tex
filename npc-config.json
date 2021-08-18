@@ -1,85 +1,82 @@
 {
   "commentChar":  [ "^" ],
   "tableRowChar": [ ">" ],
-  "keywordChar" : [ "!" ],
   "concatenators": [ "...", "…", "-", ",", ";" ],
-  "keywords": [
+  "mappings": [
     {
-      "matchList": ["name"],
+      "matchList": ["!name"],
       "latex": {"command": "name"}
     },
     {
-      "matchList": ["init", "senses"],
+      "matchList": ["!init", "!senses"],
       "latex": {"command": "initsense", "nInputs": 2}
     },
     {
-      "matchList": ["AC", "touch", "FlatFooted"],
+      "matchList": ["!AC", "!touch", "!FlatFooted"],
       "latex": {"command": "ac", "nInputs": 3}
     },
     {
-      "matchList": ["hp"],
+      "matchList": ["!hp"],
       "latex": {"command": "hp"}
     },
     {
-      "matchList": ["vp", "wp"],
+      "matchList": ["!vp", "!wp"],
       "latex": {"command": "vpwp", "nInputs": 2}
     },
     {
-      "matchList": ["vp", "wp", "dr"],
+      "matchList": ["!vp", "!wp", "!dr"],
       "latex": {"command": "vpwpdr", "nInputs": 3}
     },
     {
-      "matchList": ["vp", "wp", "dr", "sr"],
+      "matchList": ["!vp", "!wp", "!dr", "!sr"],
       "latex": {"command": "vpwpdrsr", "nInputs": 4}
     },
     {
-      "matchList": ["fort", "ref", "will"],
+      "matchList": ["!fort", "!ref", "!will"],
       "latex": {"command": "saves", "nInputs": 3}
     },
     {
-      "matchList": ["speed"],
+      "matchList": ["!speed"],
       "latex": {"command": "speed"}
     },
     {
-      "matchList": ["Melee"],
+      "matchList": ["!Melee"],
       "isTable": true,
       "separators": ["|", "|"],
       "latex": {"command": "meleetable", "nInputs": 2}
     },
     {
-      "matchList": ["Ranged"],
+      "matchList": ["!Ranged"],
       "isTable": true,
       "separators": ["|", "|"],
       "latex": {"command": "rangedtable", "nInputs": 2}
     },
     {
-      "matchList": ["Melee"],
+      "matchList": ["!Melee"],
       "isTable": false,
       "latex": {"command": "melee"}
     },
     {
-      "matchList": ["Ranged"],
+      "matchList": ["!Ranged"],
       "isTable": false,
       "latex": {"command": "ranged"}
     },
     {
-      "matchList": ["str", "dex", "con", "int", "wis", "cha"],
+      "matchList": ["!str", "!dex", "!con", "!int", "!wis", "!cha"],
       "latex": {"command": "abilityscores", "nInputs": 6}
     },
     {
-      "matchList": ["bab", "cmb", "cmd"],
+      "matchList": ["!bab", "!cmb", "!cmd"],
       "latex": {"command": "baseattack", "nInputs": 3}
     },
     {
-      "matchList": ["Feats"],
+      "matchList": ["!Feats"],
       "latex": {"command": "feats"}
     },
     {
-      "matchList": ["Skills"],
+      "matchList": ["!Skills"],
       "latex": {"command": "skills"}
-    }
-  ],
-  "environments": [
+    },
     {
       "description": "Category",
       "matchList": ["="],

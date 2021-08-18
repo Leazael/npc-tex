@@ -1,5 +1,19 @@
 using JSON3
 
+mutable struct Atom
+    key::String
+    value::String
+end
+
+mutable struct Element
+    atoms::Vector{Atom}
+    mapping::Mapping
+end
+
+mutable struct Document
+    elements::Vector{Element}
+end
+
 const Match = Union{String, Vector{String}}
 
 struct LatexCommand
@@ -31,10 +45,8 @@ end
 struct NpcConfig
     commentChar::Vector{String}
     tableRowChar::Vector{String}
-    keywordChar::Vector{String}
     concatenators::Vector{String}
-    keywords::Vector{Mapping}
-    environments::Vector{Mapping}
+    mappings::Vector{Mapping}
 end
 
 JSON3.StructType(::Type{<:NpcConfig}) = JSON3.Struct()
@@ -43,4 +55,4 @@ JSON3.StructType(::Type{<:LatexCommand}) = JSON3.Struct()
 
 aap = JSON3.read(read("./npc-config.json", String), NpcConfig)
 aap.concatenators
-aap.keywords
+aap.mappings[25]
