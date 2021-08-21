@@ -20,24 +20,21 @@ function peekuntil(io, f; startAt = 0)
 end
 
 
-function tryparse_concatenator(io, c::Char, concatenators::Vector{Concatenator})
-    buffer = ""
-    if any([startswith(con.match, c) for con in concatenators])
-        for con in concatenators
-            if con.match == c * peekahead(io, length(con.match) - 1)
-                tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(con.match) - 1);
-                if !isempty(tail) && last(tail) == '\n'
-                    skip(io, length(con.match) + length(tail))
+function tryparse_concatenator(io, c::Char, buffer::String, concatenators::Vector{Concatenator})
+    for con in concatenators
+        if con.match == c * peekahead(io, length(con.match) - 1)
+            tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(con.match) - 1);
+            if !isempty(tail) && last(tail) == '\n'
+                skip(io, length(con.match) + length(tail))
+                c = read(io, Char)
+                while !eof(io) && isspace(c)
                     c = read(io, Char)
-                    while !eof(io) && isspace(c)
-                        c = read(io, Char)
-                    end
-                    if !con.remove
-                        buffer = con.match;
-                    end
-                    if con.addWhitespace
-                        buffer = " "
-                    end
+                end
+                if !con.remove
+                    buffer = buffer * con.match;
+                end
+                if con.addWhitespace
+                    buffer = buffer * " "
                 end
             end
         end
@@ -47,18 +44,24 @@ end
 
 function parse(io::Union{IOStream, IOBuffer}, config::NpcConfig)::Document
     
-    state = [Element([Atom("","")], m) for m in config.mappings];
-    # s = state[3]
+    state = [Element([Atom("","")], m) for m in config.mappings]; # create an empty element for each possible mapping.
     result = Element[];
     newline = true;
         
-    # for jj=1:783
     while !eof(io)
-        c = read(io, Char) 
-        (c, buffer) = tryparse_concatenator(io, c, config.concatenators)    
+        c = read(io, Char)
+        buffer = ""
+        
+        if any([startswith(con.match, c) for con in config.concatenators])
+            (c, buffer) = tryparse_concatenator(io, c, buffer, config.concatenators)
+        else 
+            buffer = ""
+        end
         
         if c == '\r' || c == '\n'
             if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
+                # new line is followed by a tableRowChar
+                state = [el for el in state if el.mapping.isTable]
                 c = ' '
             else
                 newline = true;
@@ -123,6 +126,6 @@ end
 function parsefile(path::AbstractString, config::NpcConfig)::Document
     
     io = open(path)
-    return NPCTeX.parse(io,config)
+    return parse(io,config)
 end
 

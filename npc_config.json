@@ -66,6 +66,16 @@
       "matchList": ["!speed"],
       "latex": {"command": "speed"}
     },
+        {
+      "matchList": ["!Melee"],
+      "isTable": false,
+      "latex": {"command": "melee"}
+    },
+    {
+      "matchList": ["!Ranged"],
+      "isTable": false,
+      "latex": {"command": "ranged"}
+    },
     {
       "matchList": ["!Melee"],
       "isTable": true,
@@ -77,16 +87,6 @@
       "isTable": true,
       "separators": ["|", "|"],
       "latex": {"command": "rangedtable", "nInputs": 2}
-    },
-    {
-      "matchList": ["!Melee"],
-      "isTable": false,
-      "latex": {"command": "melee"}
-    },
-    {
-      "matchList": ["!Ranged"],
-      "isTable": false,
-      "latex": {"command": "ranged"}
     },
     {
       "matchList": ["!str", "!dex", "!con", "!int", "!wis", "!cha"],
