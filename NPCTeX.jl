@@ -1,8 +1,10 @@
 module NPCTeX
 
-export NpcConfig, Mapping, LatexCommand, Concatenator, Element, Atom, Document
+using Revise
 
-include("npc-interfaces.jl")
-include("npc-parse.jl")
+export NpcConfig, Mapping, LatexCommand, Concatenator, Element, Atom, Document, parsefile
+
+includet("npc-interfaces.jl")
+includet("npc-parse.jl")
 
 end

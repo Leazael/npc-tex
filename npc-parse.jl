@@ -20,7 +20,7 @@ function peekuntil(io, f; startAt = 0)
 end
 
 
-function tryparse_concatenator(io, c::Char, buffer::String, concatenators::Vector{Concatenator})
+function parse_concatenator(io, c::Char, buffer::String, concatenators::Vector{Concatenator})
     for con in concatenators
         if con.match == c * peekahead(io, length(con.match) - 1)
             tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(con.match) - 1);
@@ -42,81 +42,84 @@ function tryparse_concatenator(io, c::Char, buffer::String, concatenators::Vecto
     return (c, buffer)
 end
 
+function parse_newline(io, c::Char, buffer::String, possibleElements::Vector{Element}, result::Vector{Element}, config::NpcConfig)
+    if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
+        possibleElements = [el for el in possibleElements if el.mapping.isTable]
+        c = ' '
+    else
+        if !isempty(possibleElements) && !all(isempty.(possibleElements[1].atoms))
+            push!(result, possibleElements[1])
+        end
+        possibleElements = [Element([Atom("","")], m) for m in config.mappings];
+        while !eof(io) && isspace(peek(io, Char))
+            c = read(io, Char) 
+        end
+    end
+    return (c, buffer, possibleElements, result)
+end
+
+function jump_to_eol(io, c)
+    while peek(io,Char) != '\n'
+        c = read(io, Char) 
+    end
+    return c
+end
+
+append_key(elem::Element, c::Char)
+
+function parse_element(io, c::Char, elem::Element, buffer::String)
+    
+    mList, key, value, i = elem.mapping.matchList, elem.atoms[end].key, elem.atoms[end].value, length(elem.atoms)
+    keep = true
+
+    if i > length(mList) # we have run out of matches, so just append it to the current value.
+        append_value!(elem.atoms[i], buffer, c)
+    elseif length(mList[i][1]) == length(key) # current key is full, so look for new key or append value
+        if length(mList) > i && any([startswith(lowercase(m), lowercase("" * c)) for m in mList[i + 1] ]) # new match, 
+            push!(elem.atoms, Atom(""*c,""))
+        else
+            append_value!(elem.atoms[i], buffer, c)
+        end
+    elseif length(mList[i][1]) > length(key) && any([startswith(lowercase(m), lowercase(key * c)) for m in mList[i] ]) # key is incomplete
+        append_key!(elem.atoms[i], buffer, c)
+    else 
+        keep = false
+    end
+
+    return (elem, keep)
+end
+
+
 function parse(io::Union{IOStream, IOBuffer}, config::NpcConfig)::Document
     
-    state = [Element([Atom("","")], m) for m in config.mappings]; # create an empty element for each possible mapping.
+    possibleElements = [Element([Atom("","")], m) for m in config.mappings]; # create an empty element for each possible mapping.
     result = Element[];
-    newline = true;
         
     while !eof(io)
         c = read(io, Char)
         buffer = ""
         
         if any([startswith(con.match, c) for con in config.concatenators])
-            (c, buffer) = tryparse_concatenator(io, c, buffer, config.concatenators)
-        else 
-            buffer = ""
+            (c, buffer) = parse_concatenator(io, c, buffer, config.concatenators)
         end
-        
-        if c == '\r' || c == '\n'
-            if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
-                # new line is followed by a tableRowChar
-                state = [el for el in state if el.mapping.isTable]
-                c = ' '
-            else
-                newline = true;
-                if !isempty(state) && !all(isempty.(state[1].atoms))
-                    push!(result, state[1])
-                end
-                state = [Element([Atom("","")], m) for m in config.mappings];
-                while !eof(io) && isspace(peek(io, Char))
-                    c = read(io, Char) 
-                end
-            end
-        elseif newline && ""*c in config.commentChar
-            while peek(io,Char) != '\n'
-                c = read(io, Char) 
-            end
+            
+        if c == '\r' || c == '\n' # end of line reached
+            c, buffer, possibleElements, result = parse_newline(io, c, buffer, possibleElements, result, config)
+        elseif all(istrivial.(possibleElements)) && ""*c in config.commentChar # line starts with comment
+            c = jump_to_eol(io, c)
         else
-            newline = false
-            for kk=1:length(state)
-                s = popfirst!(state);
-                mList, key, value, i = s.mapping.matchList, s.atoms[end].key, s.atoms[end].value, length(s.atoms)
-                keep, append2value, append2key = true, false, false
-    
-                if i > length(mList) # we have run out of matches, so just append it to the current value.
-                    append2value = true
-                elseif length(mList[i][1]) == length(key) # current key is full
-                    if length(mList) > i && any([startswith(lowercase(m), lowercase("" * c)) for m in mList[i + 1] ]) # new match, 
-                        push!(s.atoms, Atom(""*c,""))
-                    else
-                        append2value = true
-                    end
-                elseif length(mList[i][1]) > length(key) && any([startswith(lowercase(m), lowercase(key * c)) for m in mList[i] ])
-                    append2key = true
-                else 
-                    keep = false
-                end
-                
+            for kk=1:length(possibleElements)  # cycle through all possible elements
+                elem = popfirst!(possibleElements);
+                elem, keep = parse_element(io, c, elem, buffer)
+
                 if keep 
-                    if append2value
-                        if isempty(value) || (isspace(last(value)) && isspace(first(buffer * c)))
-                            s.atoms[i].value = value * lstrip(buffer * c)
-                        else
-                            s.atoms[i].value = value * buffer * c
-                        end
-                    elseif append2key
-                        if !isspace(c)
-                            s.atoms[i].key = key * buffer * c
-                        end
-                    end
-                    push!(state,s)
+                    push!(possibleElements,elem)
                 end
             end
         end
     
-        if eof(io) && !isempty(state) && !all(isempty.(state[1].atoms))
-            push!(result, state[1])
+        if eof(io) && !isempty(possibleElements) && !all(isempty.(possibleElements[1].atoms))
+            push!(result, possibleElements[1])
         end
     end
 

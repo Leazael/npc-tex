@@ -45,13 +45,27 @@ mutable struct Atom
     value::String
 end
 Base.isempty(a::Atom) = isempty(a.key * a.value)
+function append_value!(a::Atom, buffer::String, c::Char)
+    if isempty(a.value) || (isspace(last(a.value)) && isspace(first(buffer * c)))
+        a.value = a.value * lstrip(buffer * c)
+    else
+        a.value = a.value * buffer * c
+    end
+end
+
+function append_key!(a::Atom, buffer::String, c::Char)
+    if !isspace(c)
+        a.key = a.key * buffer * c
+    end
+end
+
 
 mutable struct Element
     atoms::Vector{Atom}
     mapping::Union{Mapping, Nothing}
 end
 Element() = Element(Atom[], nothing)
-
+istrivial(el::Element) = all(isempty.(el.atoms))
 
 mutable struct Document
     elements::Vector{Element}
