@@ -1,0 +1,804 @@
+{
+    "elements": [
+        {
+            "atoms": [
+                {
+                    "key": "!Name",
+                    "value": "ᚠEinarr Rasmussen ^ 3 and let's try an early concantenator (or 2)"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!name"
+                    ]
+                ],
+                "latex": {
+                    "command": "name",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "~",
+                    "value": "Human Slayer 6"
+                }
+            ],
+            "mapping": {
+                "description": "Primary text",
+                "matchList": [
+                    [
+                        "~"
+                    ]
+                ],
+                "latex": {
+                    "command": "primarytext",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "~",
+                    "value": "NG Medium Humanoid [Human]"
+                }
+            ],
+            "mapping": {
+                "description": "Primary text",
+                "matchList": [
+                    [
+                        "~"
+                    ]
+                ],
+                "latex": {
+                    "command": "primarytext",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Init",
+                    "value": "+5; "
+                },
+                {
+                    "key": "!Senses",
+                    "value": "Perception +13"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!init"
+                    ],
+                    [
+                        "!senses"
+                    ]
+                ],
+                "latex": {
+                    "command": "initsense",
+                    "nInputs": 2
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "=",
+                    "value": "==Defence=================================================="
+                }
+            ],
+            "mapping": {
+                "description": "Category",
+                "matchList": [
+                    [
+                        "="
+                    ]
+                ],
+                "latex": {
+                    "command": "category",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [
+                    "="
+                ],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!AC",
+                    "value": "19 (20), "
+                },
+                {
+                    "key": "!Touch",
+                    "value": "15, "
+                },
+                {
+                    "key": "!FlatFooted",
+                    "value": "14 (15)"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!AC"
+                    ],
+                    [
+                        "!touch"
+                    ],
+                    [
+                        "!FlatFooted"
+                    ]
+                ],
+                "latex": {
+                    "command": "ac",
+                    "nInputs": 3
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "~",
+                    "value": "(+5 Dex, +4 Armour, [+1 Shield])"
+                }
+            ],
+            "mapping": {
+                "description": "Primary text",
+                "matchList": [
+                    [
+                        "~"
+                    ]
+                ],
+                "latex": {
+                    "command": "primarytext",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!hp",
+                    "value": "43 (6d10 + 0)"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!hp"
+                    ]
+                ],
+                "latex": {
+                    "command": "hp",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Fort",
+                    "value": "+7 "
+                },
+                {
+                    "key": "!Ref",
+                    "value": "+2 "
+                },
+                {
+                    "key": "!Will",
+                    "value": "+9"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!fort"
+                    ],
+                    [
+                        "!ref"
+                    ],
+                    [
+                        "!will"
+                    ]
+                ],
+                "latex": {
+                    "command": "saves",
+                    "nInputs": 3
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "=",
+                    "value": "==Offence=================================================="
+                }
+            ],
+            "mapping": {
+                "description": "Category",
+                "matchList": [
+                    [
+                        "="
+                    ]
+                ],
+                "latex": {
+                    "command": "category",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [
+                    "="
+                ],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Speed",
+                    "value": "30 ft."
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!speed"
+                    ]
+                ],
+                "latex": {
+                    "command": "speed",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Melee",
+                    "value": "mwk Battle A×e > Normal | +9/+4 | (1d8+2 / ×3) > Two-Handed | +8/+3 | (1d8+3 / ×3 [-1 AC])"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!Melee"
+                    ]
+                ],
+                "latex": {
+                    "command": "meleetable",
+                    "nInputs": 2
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": true,
+                "separators": [
+                    "|",
+                    "|"
+                ]
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Ranged",
+                    "value": "+1 Composite [+2 Str] Shortbow (70 ft.)> Normal | +12/+7 | (1d6+3 / ×3)> Rapid Shot | +10/+10/+5 | (1d6+3 / ×3)> Deadly Aim | +10/+5 | (1d6+7 / ×3)> Rapid Shot Deadly Aim | +8/+8/+3 | (1d6+3 / ×3)"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!Ranged"
+                    ]
+                ],
+                "latex": {
+                    "command": "rangedtable",
+                    "nInputs": 2
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": true,
+                "separators": [
+                    "|",
+                    "|"
+                ]
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "#",
+                    "value": "Special Attacks"
+                },
+                {
+                    "key": ":",
+                    "value": "Point Blank Shot, Sneak Attack (+2d6) Improved Precise Shot, Studied Target (2 targets; +2 attack/damage, +2 to Slayer DCs)"
+                }
+            ],
+            "mapping": {
+                "description": "Primary Text + Header.",
+                "matchList": [
+                    [
+                        "#"
+                    ],
+                    [
+                        ":",
+                        "--"
+                    ]
+                ],
+                "latex": {
+                    "command": "primaryheader",
+                    "nInputs": 2
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "=",
+                    "value": "==Statistics==============================================="
+                }
+            ],
+            "mapping": {
+                "description": "Category",
+                "matchList": [
+                    [
+                        "="
+                    ]
+                ],
+                "latex": {
+                    "command": "category",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [
+                    "="
+                ],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Str",
+                    "value": "14, "
+                },
+                {
+                    "key": "!Dex",
+                    "value": "20, "
+                },
+                {
+                    "key": "!Con",
+                    "value": "10, "
+                },
+                {
+                    "key": "!Int",
+                    "value": "15, "
+                },
+                {
+                    "key": "!Wis",
+                    "value": "14, "
+                },
+                {
+                    "key": "!Cha",
+                    "value": "10"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!str"
+                    ],
+                    [
+                        "!dex"
+                    ],
+                    [
+                        "!con"
+                    ],
+                    [
+                        "!int"
+                    ],
+                    [
+                        "!wis"
+                    ],
+                    [
+                        "!cha"
+                    ]
+                ],
+                "latex": {
+                    "command": "abilityscores",
+                    "nInputs": 6
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!BAB",
+                    "value": "+6; "
+                },
+                {
+                    "key": "!CMB",
+                    "value": "+8; "
+                },
+                {
+                    "key": "!CMD",
+                    "value": "23"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!bab"
+                    ],
+                    [
+                        "!cmb"
+                    ],
+                    [
+                        "!cmd"
+                    ]
+                ],
+                "latex": {
+                    "command": "baseattack",
+                    "nInputs": 3
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Feats",
+                    "value": ": Deadly Aim, Alertness, Precise Shit Point Blank Shot, Rapid Shot, Improved Precise Shit"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!Feats"
+                    ]
+                ],
+                "latex": {
+                    "command": "feats",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "!Skills",
+                    "value": "Acrobatics +12, Bluff* +9, Climb +11 Craft [Fletching] +6, Heal +6, Know [Loc]* +9 Know [Geo]* +11, Know [Nob]* +7, Perception* +13 Ride +10, Sense Motive* +13, Stealth +19 Survival* +11 (+14 when tracking), Swim +7"
+                }
+            ],
+            "mapping": {
+                "description": "",
+                "matchList": [
+                    [
+                        "!Skills"
+                    ]
+                ],
+                "latex": {
+                    "command": "skills",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "_",
+                    "value": "(* +2 on studied targets.)"
+                }
+            ],
+            "mapping": {
+                "description": "Secondary text.",
+                "matchList": [
+                    [
+                        "_"
+                    ]
+                ],
+                "latex": {
+                    "command": "secondarytext",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "%",
+                    "value": "Languages"
+                },
+                {
+                    "key": ":",
+                    "value": "Rhaens, Dvargs, Aquintains"
+                }
+            ],
+            "mapping": {
+                "description": "Secondary Text + Header.",
+                "matchList": [
+                    [
+                        "%"
+                    ],
+                    [
+                        ":",
+                        "--"
+                    ]
+                ],
+                "latex": {
+                    "command": "secondaryheader",
+                    "nInputs": 2
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "=",
+                    "value": "==Class Abilities=========================================="
+                }
+            ],
+            "mapping": {
+                "description": "Category",
+                "matchList": [
+                    [
+                        "="
+                    ]
+                ],
+                "latex": {
+                    "command": "category",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [
+                    "="
+                ],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "@",
+                    "value": "Studied Target "
+                },
+                {
+                    "key": "[",
+                    "value": "Ex"
+                },
+                {
+                    "key": "]",
+                    "value": ""
+                },
+                {
+                    "key": "(",
+                    "value": "2 targets / +2"
+                },
+                {
+                    "key": ")",
+                    "value": "Study opponent as a move action (or immediate action after sneak attack). Gain +2 [untyped] bonus on Bluff, Knowledge Perception, Sense Motive, Survival, Weapon Attack and Damage rolls against it. Lasts until target is dead or a new target is selected. Max 2 targets."
+                }
+            ],
+            "mapping": {
+                "description": "Special Abilities that can be used a certain nr. of times per day.",
+                "matchList": [
+                    [
+                        "@"
+                    ],
+                    [
+                        "["
+                    ],
+                    [
+                        "]"
+                    ],
+                    [
+                        "("
+                    ],
+                    [
+                        ")"
+                    ]
+                ],
+                "latex": {
+                    "command": "specialabilityfreq",
+                    "nInputs": 4
+                },
+                "includeInputs": [
+                    true,
+                    true,
+                    false,
+                    true,
+                    true
+                ],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "@",
+                    "value": "Fast Stealth "
+                },
+                {
+                    "key": "[",
+                    "value": "Ex"
+                },
+                {
+                    "key": "]",
+                    "value": "Move at full speed when using stealth."
+                }
+            ],
+            "mapping": {
+                "description": "Special Abilities that can be used a certain nr. of times per day.",
+                "matchList": [
+                    [
+                        "@"
+                    ],
+                    [
+                        "["
+                    ],
+                    [
+                        "]"
+                    ],
+                    [
+                        "("
+                    ],
+                    [
+                        ")"
+                    ]
+                ],
+                "latex": {
+                    "command": "specialabilityfreq",
+                    "nInputs": 4
+                },
+                "includeInputs": [
+                    true,
+                    true,
+                    false,
+                    true,
+                    true
+                ],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "=",
+                    "value": "==Possesions==============================================="
+                }
+            ],
+            "mapping": {
+                "description": "Category",
+                "matchList": [
+                    [
+                        "="
+                    ]
+                ],
+                "latex": {
+                    "command": "category",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [
+                    "="
+                ],
+                "isTable": false,
+                "separators": []
+            }
+        },
+        {
+            "atoms": [
+                {
+                    "key": "_",
+                    "value": "Mithril Shirt, Mwk Buckler, Cloak of Elvenkind Efficient Quiver, Boots of the Cat, Quick Runner's Shirt."
+                }
+            ],
+            "mapping": {
+                "description": "Secondary text.",
+                "matchList": [
+                    [
+                        "_"
+                    ]
+                ],
+                "latex": {
+                    "command": "secondarytext",
+                    "nInputs": 1
+                },
+                "includeInputs": [],
+                "paddingChars": [],
+                "isTable": false,
+                "separators": []
+            }
+        }
+    ]
+}

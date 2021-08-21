@@ -23,7 +23,7 @@ struct Mapping
     separators::Vector{String}
     Mapping(description, matchList, latex, includeInputs, paddingChars, isTable, separators) = new(
         isnothing(description) ? "" : description,
-        isnothing(matchList) ? String[] : matchList,
+        isnothing(matchList) ? String[] : [isa(m,String) ? [m] : m  for m in matchList],
         latex,
         isnothing(includeInputs) ? String[] : includeInputs, 
         isnothing(paddingChars) ? Bool[] : paddingChars, 
@@ -44,7 +44,7 @@ mutable struct Atom
     key::String
     value::String
 end
-
+Base.isempty(a::Atom) = isempty(a.key * a.value)
 
 mutable struct Element
     atoms::Vector{Atom}

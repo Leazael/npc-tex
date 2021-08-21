@@ -1,7 +1,10 @@
-!Name Einarr Rasmussen
-:Human Slayer 6
-:NG Medium Humanoid [Human]
+!Name ᚠEinarr Rasmussen ^ 3 and ...  
+  let's try an,
+  early concantenator (or 2)
+~Human Slayer 6
+~NG Medium Humanoid [Human]
 !Init +5; !Senses Perception +13
+ ^ Maleeknorp
 ===Defence==================================================
 !AC 19 (20), !Touch 15, !FlatFooted 14 (15)
   ~(+5 Dex, +4 Armour, [+1 Shield])
@@ -10,8 +13,8 @@
 ===Offence==================================================
 !Speed 30 ft.
 !Melee mwk Battle A×e
-> Normal     | +9/+4       | (1d8+2 / ×3)
-> Two-Handed | +8/+3       | (1d8+3 / ×3 [-1 AC])
+  > Normal     | +9/+4       | (1d8+2 / ×3)
+  > Two-Handed | +8/+3       | (1d8+3 / ×3 [-1 AC])
 !Ranged +1 Composite [+2 Str] Shortbow (70 ft.)
 > Normal                | +12/+7      | (1d6+3 / ×3)
 > Rapid Shot            | +10/+10/+5  | (1d6+3 / ×3)
@@ -30,7 +33,7 @@
   Know [Geo]* +11, Know [Nob]* +7, Perception* +13, 
   Ride +10, Sense Motive* +13, Stealth +19, 
   Survival* +11 (+14 when tracking), Swim +7
-  ~(* +2 on studied targets.)
+  _(* +2 on studied targets.)
 %Languages: Rhaens, Dvargs, Aquintains
 ===Class Abilities==========================================
 @Studied Target [Ex] (2 targets / +2) Study opponent as...
@@ -41,5 +44,5 @@
   or a new target is selected. Max 2 targets.
 @Fast Stealth [Ex] Move at full speed when using stealth.
 ===Possesions===============================================
-~Mithril Shirt, Mwk Buckler, Cloak of Elvenkind, 
+_Mithril Shirt, Mwk Buckler, Cloak of Elvenkind, 
   Efficient Quiver, Boots of the Cat, Quick Runner's Shirt.
