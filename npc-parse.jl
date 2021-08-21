@@ -106,19 +106,19 @@ function parse(io::Union{IOStream, IOBuffer}, config::NpcConfig)::Document
         if c == '\r' || c == '\n' # end of line reached
             c, buffer, possibleElements, result = parse_newline(io, c, buffer, possibleElements, result, config)
         elseif all(istrivial.(possibleElements)) && ""*c in config.commentChar # line starts with comment
-            c = jump_to_eol(io, c)
+            jump_to_eol(io, c)
         else
             for kk=1:length(possibleElements)  # cycle through all possible elements
                 elem = popfirst!(possibleElements);
                 elem, keep = parse_element(io, c, elem, buffer)
 
-                if keep 
+                if keep # if the element no longer matches the mapping, we discard it otherwise:
                     push!(possibleElements,elem)
                 end
             end
         end
     
-        if eof(io) && !isempty(possibleElements) && !all(isempty.(possibleElements[1].atoms))
+        if eof(io) && !all(istrivial.(possibleElements))
             push!(result, possibleElements[1])
         end
     end
