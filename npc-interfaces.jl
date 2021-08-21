@@ -15,15 +15,15 @@ end
 
 struct Mapping
     description::String
-    matchList::Union{Vector{Match},Nothing}
+    matchList::Union{Vector{Match}, Nothing}
     latex::LatexCommand
     includeInputs:: Vector{Bool}    
     paddingChars::Vector{String}
     isTable::Bool
     separators::Vector{String}
     Mapping(description, matchList, latex, includeInputs, paddingChars, isTable, separators) = new(
-        isnothing(description) ? "1" : description,
-        matchList, 
+        isnothing(description) ? "" : description,
+        isnothing(matchList) ? String[] : matchList,
         latex,
         isnothing(includeInputs) ? String[] : includeInputs, 
         isnothing(paddingChars) ? Bool[] : paddingChars, 
@@ -48,8 +48,9 @@ end
 
 mutable struct Element
     atoms::Vector{Atom}
-    mapping::Mapping
+    mapping::Union{Mapping, Nothing}
 end
+Element() = Element(Atom[], nothing)
 
 
 mutable struct Document
