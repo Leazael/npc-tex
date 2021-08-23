@@ -45,6 +45,7 @@ mutable struct Atom
     key::String
     value::String
 end
+Atom(s::Union{AbstractString, Char}) = Atom(string(s), "")
 istrivial(a::Atom) = isempty(a.key * a.value)
 
 function append_value!(a::Atom, s::AbstractString)
@@ -54,11 +55,13 @@ function append_value!(a::Atom, s::AbstractString)
         a.value = a.value * s
     end
 end
+append_value!(a::Atom, c::Char) = append_value!(a, string(c))
 
 function append_key!(a::Atom, s::String)
     @assert(!any([isspace(c) for c in s]))
     a.key = a.key * s
 end
+append_key!(a::Atom, c::Char) = append_key!(a, string(c))
 
 mutable struct Element
     atoms::Vector{Atom}

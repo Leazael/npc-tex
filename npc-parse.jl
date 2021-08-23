@@ -38,6 +38,10 @@ function skip_until(io::IO, f; keep=false)
     end
 end
 
+function startswithi(s1::AbstractString, s2::Union{AbstractString,Char})::Bool
+    return startswith(lowercase(s1), lowercase(s2))
+end
+
 function preparse_concatenator(io::IO, c::Char, concatenators::Vector{Concatenator})::Union{Nothing,Tuple{Concatenator,String}}
     for conc in concatenators
         if conc.match == c * peekahead(io, length(conc) - 1)
@@ -55,7 +59,7 @@ function parse_concatenator!(io::IO, candidates::Vector{Element}, concatenation:
     skip(io, length(con.match) + length(tail) - 1)
     skip_until(io, isspace; keep=false)
     
-    con.remove        ? buffer = ""           : buffer = "" * con.match
+    con.remove        ? buffer = ""           : buffer = con.match
     con.addWhitespace ? buffer = buffer * " " : nothing
 
     for kk = 1:length(candidates)
@@ -71,25 +75,32 @@ function parse_newline!(io::IO, candidates::Vector{Element}, doc::Document, conf
             push!(doc, yield_first(candidates))
         end
         deepreplace!(candidates, Element.(config.mappings))
-    skip_until(io, x -> !isspace(x); keep=false)
+        skip_until(io, x -> !isspace(x); keep=false)
     end
 end
 
 
 function parse_element!(c::Char, elem::Element)::Bool
     
-    mList, key, value, i = elem.mapping.matchList, elem.atoms[end].key, elem.atoms[end].value, length(elem.atoms)
+    atoms, cAtom, nAtoms = elem.atoms, elem.atoms[end], length(elem.atoms)
+    mList, nMatches, key = elem.mapping.matchList, length(elem.mapping.matchList), elem.atoms[end].key
 
-    if i > length(mList) # we have run out of matches, so just append it to the current value.
-        append_value!(elem.atoms[i], "" * c)
-    elseif length(mList[i][1]) == length(key) # current key is full, so look for new key or append value
-        if length(mList) > i && any([startswith(lowercase(m), lowercase("" * c)) for m in mList[i + 1] ]) # new match, 
-            push!(elem.atoms, Atom("" * c, ""))
+    if nAtoms > nMatches # we have run out of matches, so just append it to the current value.
+        append_value!(cAtom, c)
+        return true
+    end
+
+    cMatch, cMatchLength = mList[nAtoms], length(mList[nAtoms][1])
+    
+    if cMatchLength == length(key) # current key is full, so look for new key or append value
+        nextMatch = nMatches > nAtoms ? mList[nAtoms + 1] : nothing
+        if !isnothing(nextMatch) && any([startswithi(m, c) for m in nextMatch ]) # new match, 
+            push!(atoms, Atom(c))
         else
-            append_value!(elem.atoms[i], "" * c)
+            append_value!(cAtom, c)
         end
-    elseif length(mList[i][1]) > length(key) && any([startswith(lowercase(m), lowercase(key * c)) for m in mList[i] ]) # key is incomplete
-        append_key!(elem.atoms[i], "" * c)
+    elseif cMatchLength > length(key) && any([startswithi(m, key * c) for m in cMatch]) # key is incomplete
+        append_key!(cAtom, c)
     else 
         return false
     end
@@ -120,8 +131,8 @@ function parse(io::IO, config::NpcConfig)::Document
             parse_all_elements!(c, candidates)
         end
     
-            if eof(io) && !istrivial(candidates)
-        push!(document, yield_first(candidates))
+        if eof(io) && !istrivial(candidates)
+            push!(document, yield_first(candidates))
         end
     end
 
