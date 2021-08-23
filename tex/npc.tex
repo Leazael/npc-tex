@@ -8,11 +8,19 @@
 \pagestyle{empty}
 \setmainfont{Corbel}
 
-\begin{document}
+\newfontfamily\latinfont{Corbel}
+\newfontfamily\runicfont{SegoeUIHistoric}
 
+\usepackage[Runic]{ucharclasses}
+
+\setDefaultTransitions{\latinfont}{}
+\setTransitionsFor{Runic}{\runicfont}{\latinfont}
+
+\begin{document}
+  
 \begin{multicols}{2} 
 
-\input{Einarr.tex}
+\input{Einarr2.tex} 
 
 \columnbreak
 

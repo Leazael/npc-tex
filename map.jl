@@ -3,6 +3,6 @@ using JSON3
 Revise.includet("src/NPCTeX.jl");
 using .NPCTeX
 
-config = JSON3.read(read("json/npc_config.json", String), NpcConfig);
+config = read_config("json/npc_config_ext.json")
 doc = parsefile("npc/Einarr_extended.npc", config);
 write("tex/Einarr2.tex", doc, config)

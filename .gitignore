@@ -6,3 +6,7 @@ tex_files/npc.synctex.gz
 tex_files/npc.xdv
 npc.log
 npc.aux
+tex/tex_files/npc.fdb_latexmk
+tex/tex_files/npc.fls
+tex/tex_files/npc.synctex.gz
+tex/tex_files/npc.xdv

@@ -7,8 +7,8 @@
 
 \raggedright
 
-\newcommand{\divider}[1]{
-    \vspace{-0.75\baselineskip}
+\newcommand{\category}[1]{
+    \vspace{-0.65\baselineskip}
 
     \leavevmode\leaders\hrule height 0.8pt\hfill\kern0pt
     
@@ -23,8 +23,10 @@
     \vspace{-0.25\baselineskip}   
 }
 
+\newcommand{\labelcategory}[2]{\category{#1 \qquad #2}}
 \newcommand{\name}[1]{\textbf{#1}}
 \newcommand{\initsense}[2]{\textbf{Init} #1; \textbf{Senses:} #2}
+\newcommand{\alignmentage}[3]{#1 #2 \textbf{Age:} #3}
 \newcommand{\ac}[3]{\textbf{AC} #1, Touch #2, Flat-Footed #3}
 \newcommand{\vpwp}[2]{\textbf{vp} #1; \textbf{wp} #2}
 \newcommand{\vpwpdr}[3]{\textbf{vp} #1; \textbf{wp} #2 \statindent\textbf{DR} #3}
@@ -41,10 +43,11 @@
 \newcommand{\ability}[4]{\basicability{#1 [#2]}{\emph{#3} -- #4}}
 \newcommand{\continuousability}[3]{\basicability{#1 [#2]}{#3}}
 \newcommand{\listing}[2]{{\footnotesize\textbf{#1}: #2\par}}
-\newcommand{\plain}[1]{#1\par}
+
+\newcommand{\primarytext}[1]{#1\par}
 \newcommand{\indentplain}[1]{\statindent#1\par}
-\newcommand{\remark}[1]{{\footnotesize #1\par}}
-\newcommand{\indentremark}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
+\newcommand{\secondarytext}[1]{{\footnotesize #1\par}}
+\newcommand{\secondarytextindent}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
 
 \newenvironment{attackgroup}[2]
 {
