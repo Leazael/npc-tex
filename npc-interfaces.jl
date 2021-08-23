@@ -1,4 +1,4 @@
-const Match = Union{String, Vector{String}}
+const Match = Union{String,Vector{String}}
 
 struct Concatenator
     match::String 
@@ -11,20 +11,20 @@ struct LatexCommand
     command::String
     nInputs::Int64
     LatexCommand(command, nInputs) = 
-        new(command, isnothing(nInputs) ? 1 : nInputs )
+        new(command, isnothing(nInputs) ? 1 : nInputs)
 end
 
 struct Mapping
     description::String
-    matchList::Union{Vector{Match}, Nothing}
+    matchList::Union{Vector{Match},Nothing}
     latex::LatexCommand
-    includeInputs:: Vector{Bool}    
+    includeInputs::Vector{Bool}    
     paddingChars::Vector{String}
     isTable::Bool
     separators::Vector{String}
     Mapping(description, matchList, latex, includeInputs, paddingChars, isTable, separators) = new(
         isnothing(description) ? "" : description,
-        isnothing(matchList) ? String[] : [isa(m,String) ? [m] : m  for m in matchList],
+        isnothing(matchList) ? String[] : [isa(m, String) ? [m] : m  for m in matchList],
         latex,
         isnothing(includeInputs) ? String[] : includeInputs, 
         isnothing(paddingChars) ? Bool[] : paddingChars, 
@@ -60,12 +60,12 @@ function append_key!(a::Atom, s::String)
     a.key = a.key * s
 end
 
-
 mutable struct Element
     atoms::Vector{Atom}
-    mapping::Union{Mapping, Nothing}
+    mapping::Union{Mapping,Nothing}
 end
-Element() = Element(Atom[], nothing)
+Element(m::Mapping) = Element([Atom("", "")], m)
+
 istrivial(elem::Element) = all(istrivial.(elem.atoms))
 istrivial(elems::Vector{Element}) = all(istrivial.(elems))
 keys(elem::Element) = [a.key for a in elem.atoms]
@@ -77,8 +77,8 @@ function iscomplete(elem::Element)::Bool
         return false
     end
 
-    for k=1:length(keyList)
-        if isa(matchList[k],String)
+    for k = 1:length(keyList)
+        if isa(matchList[k], String)
             if lowercase(keyList[k]) != lowercase(matchList[k])
                 return false 
             end
@@ -105,3 +105,6 @@ end
 mutable struct Document
     elements::Vector{Element}
 end
+
+Document() = Document(Element[])
+Base.push!(doc::Document, elem::Element) = push!(doc.elements, elem)
