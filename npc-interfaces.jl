@@ -90,6 +90,15 @@ function iscomplete(elem::Element)::Bool
     return true
 end
 
+function yield_first(elementList::Vector{Element})::Element
+    index = findfirst(iscomplete, elementList)
+    if isnothing(index)
+        error("No complete elements found in list: ", elementList)
+    else
+        return elementList[index]
+    end
+end
+
 
 mutable struct Document
     elements::Vector{Element}

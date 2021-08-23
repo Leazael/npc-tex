@@ -67,7 +67,7 @@ function parse_newline!(io::IO, possibleElements::Vector{Element}, result::Vecto
         filter!(el -> el.mapping.isTable, possibleElements)
     else
         if !isempty(possibleElements) && !all(isempty.(possibleElements[1].atoms))
-            push!(result, possibleElements[1])
+            push!(result, yield_first(possibleElements))
         end
         deepreplace!(possibleElements, [Element([Atom("","")], m) for m in config.mappings])
         skip_until(io, x -> !isspace(x); keep = false)
@@ -126,7 +126,7 @@ function parse(io::IO, config::NpcConfig)::Document
         end
     
         if eof(io) && !all(istrivial.(possibleElements))
-            push!(result, possibleElements[1])
+            push!(result, yield_first(possibleElements))
         end
     end
 
@@ -139,4 +139,3 @@ function parsefile(path::AbstractString, config::NpcConfig)::Document
     close(io)
     return data
 end
-
