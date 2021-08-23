@@ -1,7 +1,7 @@
 using Revise
 using JSON3
 using Test
-Revise.includet("NPCTeX.jl");
+Revise.includet("src/NPCTeX.jl");
 using .NPCTeX
 
 function filify(dataIn)
@@ -11,10 +11,9 @@ function filify(dataIn)
     return dataOut
 end
 
-config = read_config("npc_config.json")
+config = read_config("json/npc_config.json");
+refData = read("json/test_data_einarr.json", String);
 
-refData = read("test_data_einarr.json", String);
-
-path = "Einarr.npc";
+path = "npc/Einarr.npc";
 doc = parsefile(path, config);
 @test (refData == filify(parsefile(path, config)))
