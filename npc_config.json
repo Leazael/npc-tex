@@ -36,30 +36,37 @@
     },
     {
       "matchList": ["!init", "!senses"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "initsense", "nInputs": 2}
     },
     {
       "matchList": ["!AC", "!touch", "!FlatFooted"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "ac", "nInputs": 3}
     },
     {
       "matchList": ["!hp"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "hp"}
     },
     {
       "matchList": ["!vp", "!wp"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "vpwp", "nInputs": 2}
     },
     {
       "matchList": ["!vp", "!wp", "!dr"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "vpwpdr", "nInputs": 3}
     },
     {
       "matchList": ["!vp", "!wp", "!dr", "!sr"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "vpwpdrsr", "nInputs": 4}
     },
     {
       "matchList": ["!fort", "!ref", "!will"],
+      "paddingChars": [",", ";", ":"],
       "latex": {"command": "saves", "nInputs": 3}
     },
     {
