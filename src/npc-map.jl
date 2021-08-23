@@ -30,7 +30,9 @@ function map_element(elem::Element, config::NpcConfig)::String
             else
                 rows = [strip(r, mping) for r in rows]
             end
-            push!(inputs, join(rows, "  \\\\  "))
+            if !isempty(rows)
+                push!(inputs, join(rows, "  \\\\  "))
+            end
         end 
     else
         inputs = [strip(a.value, mping) for a in elem.atoms]
