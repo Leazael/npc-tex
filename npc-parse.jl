@@ -42,7 +42,7 @@ function startswithi(s1::AbstractString, s2::Union{AbstractString,Char})::Bool
     return startswith(lowercase(s1), lowercase(s2))
 end
 
-function preparse_concatenator(io::IO, c::Char, concatenators::Vector{Concatenator})::Union{Nothing,Tuple{Concatenator,String}}
+function preparse_concatenator(io::IO, concatenators::Vector{Concatenator}, c::Char)::Union{Nothing,Tuple{Concatenator,String}}
     for conc in concatenators
         if conc.match == c * peekahead(io, length(conc) - 1)
             tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt=length(conc) - 1);
@@ -67,7 +67,7 @@ function parse_concatenator!(io::IO, candidates::Vector{Element}, concatenation:
     end    
 end
 
-function parse_newline!(io::IO, candidates::Vector{Element}, doc::Document, config::NpcConfig)
+function parse_newline!(io::IO, config::NpcConfig, candidates::Vector{Element}, doc::Document)
     if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
         filter!(el -> el.mapping.isTable, candidates)
     else
@@ -80,7 +80,7 @@ function parse_newline!(io::IO, candidates::Vector{Element}, doc::Document, conf
 end
 
 
-function parse_element!(c::Char, elem::Element)::Bool
+function parse_element!(elem::Element, c::Char)::Bool
     
     atoms, cAtom, nAtoms = elem.atoms, elem.atoms[end], length(elem.atoms)
     mList, nMatches, key = elem.mapping.matchList, length(elem.mapping.matchList), elem.atoms[end].key
@@ -107,9 +107,28 @@ function parse_element!(c::Char, elem::Element)::Bool
     return true
 end
 
-function parse_all_elements!(c::Char, candidates::Vector{Element})
-    filter!(elem -> parse_element!(c, elem), candidates)
+function parse_all_elements!(candidates::Vector{Element}, c::Char)
+    filter!(elem -> parse_element!(elem, c), candidates)
 end
+
+
+function parse_char!(io::IO, config::NpcConfig, candidates::Vector{Element}, document::Document, c::Char)
+    concatenation = preparse_concatenator(io, config.concatenators, c)
+    if !isnothing(concatenation)
+        parse_concatenator!(io, candidates, concatenation)
+    elseif c == '\r' || c == '\n' # end of line reached
+        parse_newline!(io, config, candidates, document)
+    elseif all(istrivial.(candidates)) && string(c) in config.commentChar # line starts with comment
+        skip_until(io, x -> x == '\n'; keep=false)
+    else
+        parse_all_elements!(candidates, c)
+    end
+
+    if eof(io) && !istrivial(candidates)
+        push!(document, yield_first(candidates))
+    end
+end
+
 
 function parse(io::IO, config::NpcConfig)::Document
     
@@ -117,23 +136,7 @@ function parse(io::IO, config::NpcConfig)::Document
     document = Document();
         
     while !eof(io)
-        c = read(io, Char)
-        
-        concatenation = preparse_concatenator(io, c, config.concatenators)
-
-        if !isnothing(concatenation)
-            parse_concatenator!(io, candidates, concatenation)
-        elseif c == '\r' || c == '\n' # end of line reached
-            parse_newline!(io, candidates, document, config)
-        elseif all(istrivial.(candidates)) && string(c) in config.commentChar # line starts with comment
-            skip_until(io, x -> x == '\n'; keep=false)
-        else
-            parse_all_elements!(c, candidates)
-        end
-    
-        if eof(io) && !istrivial(candidates)
-            push!(document, yield_first(candidates))
-        end
+        parse_char!(io, config, candidates, document, read(io, Char))
     end
 
     return document
