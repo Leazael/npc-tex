@@ -95,6 +95,13 @@
       "latex": {"command": "ac", "nInputs": 3}
     },
     {
+      "matchList": ["!hp", "=", "[", "]"],
+      "isTable": true,
+      "separators": [":", "=", "|"],
+      "includeInputs": [true, true, true, false, true],
+      "latex": {"command": "hpsavetable", "nInputs": 4}
+    },
+    {
       "matchList": ["!hp"],
       "paddingChars": [",", ";", ":"],
       "latex": {"command": "hp"}
@@ -163,7 +170,7 @@
     },
     {
       "description": "Labelled Category",
-      "matchList": ["=", "|"],
+      "matchList": ["===", "|"],
       "paddingChars": ["="],
       "latex": { "command": "labelcategory", "nInputs": 2}
     },

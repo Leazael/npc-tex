@@ -49,6 +49,8 @@
 \newcommand{\secondarytext}[1]{{\footnotesize #1\par}}
 \newcommand{\secondarytextindent}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
 
+\newcommand{\hpsavetable}[4]{{\small \begin{tabular}{@{\noindent} >{\bfseries} l r @{\quad=\quad} r r} #4 \end{tabular} \quad \begin{tabular}{l@{\noindent \enskip}l}  \textbf{hp} & #1 \\ & #3  \\ & (#2) \\  \end{tabular}}}
+
 \newenvironment{attackgroup}[2]
 {
     \textbf{#1} #2
