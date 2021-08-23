@@ -1,6 +1,16 @@
-function peekahead(io, n)
+function deepreplace!(a::AbstractVector,b::AbstractVector)
+    # this does not seem to exist?
+    while !isempty(a)
+        pop!(a)
+    end
+    for x in b 
+        push!(a,x)
+    end
+end
+
+function peekahead(io::IO, n::Int64)::String
     mark(io)
-    result = "";
+    result = ""
     while !eof(io) && length(result) < n
         result = result * read(io, Char)
     end
@@ -8,7 +18,7 @@ function peekahead(io, n)
     return result
 end
 
-function peekuntil(io, f; startAt = 0)
+function peekuntil(io::IO, f; startAt = 0)
     mark(io)
     skip(io, startAt)
     result = "" * read(io, Char)
@@ -19,7 +29,16 @@ function peekuntil(io, f; startAt = 0)
     return result
 end
 
-function starts_concatenator(io, c::Char, concatenators::Vector{Concatenator})
+function skip_until(io::IO, f; keep = false)
+    while !eof(io) && !f(peek(io, Char))
+        read(io, Char)
+    end
+    if keep
+        read(io,Char)
+    end
+end
+
+function starts_concatenator(io::IO, c::Char, concatenators::Vector{Concatenator})
     for con in concatenators
         if con.match == c * peekahead(io, length(con.match) - 1)
             tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(con.match) - 1);
@@ -31,92 +50,79 @@ function starts_concatenator(io, c::Char, concatenators::Vector{Concatenator})
     return (false, nothing, nothing)
 end
 
-function parse_concatenator(io, c::Char, buffer::String, con::Concatenator, tail::AbstractString)
+function parse_concatenator!(io::IO, possibleElements::Vector{Element}, con::Concatenator, tail::AbstractString)
     skip(io, length(con.match) + length(tail) - 1)
-    while !eof(io) && isspace(peek(io, Char))
-        c = read(io, Char)
-    end
-    if !con.remove
-        buffer = buffer * con.match;
-    end
-    if con.addWhitespace
-        buffer = buffer * " "
-    end
-    return (c, buffer)
+    skip_until(io, isspace; keep = false)
+    
+    con.remove        ? buffer = ""           : buffer = "" * con.match
+    con.addWhitespace ? buffer = buffer * " " : nothing
+
+    for kk=1:length(possibleElements)
+        append_value!(possibleElements[kk].atoms[end], buffer)
+    end    
 end
 
-function parse_newline(io, c::Char, buffer::String, possibleElements::Vector{Element}, result::Vector{Element}, config::NpcConfig)
+function parse_newline!(io::IO, possibleElements::Vector{Element}, result::Vector{Element}, config::NpcConfig)
     if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
-        possibleElements = [el for el in possibleElements if el.mapping.isTable]
-        c = ' '
+        filter!(el -> el.mapping.isTable, possibleElements)
     else
         if !isempty(possibleElements) && !all(isempty.(possibleElements[1].atoms))
             push!(result, possibleElements[1])
         end
-        possibleElements = [Element([Atom("","")], m) for m in config.mappings];
-        while !eof(io) && isspace(peek(io, Char))
-            c = read(io, Char) 
-        end
+        deepreplace!(possibleElements, [Element([Atom("","")], m) for m in config.mappings])
+        skip_until(io, x -> !isspace(x); keep = false)
     end
-    return (c, buffer, possibleElements, result)
+    return possibleElements
 end
 
-function jump_to_eol(io, c)
-    while peek(io,Char) != '\n'
-        c = read(io, Char) 
-    end
-    return c
-end
 
-function parse_element(io, c::Char, elem::Element, buffer::String)::Union{Element, Nothing}
+function parse_element!(c::Char, elem::Element)::Bool
     
     mList, key, value, i = elem.mapping.matchList, elem.atoms[end].key, elem.atoms[end].value, length(elem.atoms)
 
     if i > length(mList) # we have run out of matches, so just append it to the current value.
-        append_value!(elem.atoms[i], buffer * c)
+        append_value!(elem.atoms[i], "" * c)
     elseif length(mList[i][1]) == length(key) # current key is full, so look for new key or append value
         if length(mList) > i && any([startswith(lowercase(m), lowercase("" * c)) for m in mList[i + 1] ]) # new match, 
-            push!(elem.atoms, Atom(""*c,""))
+            push!(elem.atoms, Atom(""*c, ""))
         else
-            append_value!(elem.atoms[i], buffer * c)
+            append_value!(elem.atoms[i], "" * c)
         end
     elseif length(mList[i][1]) > length(key) && any([startswith(lowercase(m), lowercase(key * c)) for m in mList[i] ]) # key is incomplete
-        append_key!(elem.atoms[i], buffer * c)
+        append_key!(elem.atoms[i], "" * c)
     else 
-        return nothing
+        return false
     end
-    return elem
+    return true
 end
 
+function parse_all_elements!(c::Char, possibleElements::Vector{Element})
+    for kk=1:length(possibleElements)  # cycle through all possible elements
+        elem = popfirst!(possibleElements)
+        bKeep = parse_element!(c, elem)
+        if bKeep
+            push!(possibleElements,elem)
+        end
+    end
+end
 
-function parse(io::Union{IOStream, IOBuffer}, config::NpcConfig)::Document
+function parse(io::IO, config::NpcConfig)::Document
     
     possibleElements = [Element([Atom("","")], m) for m in config.mappings]; # create an empty element for each possible mapping.
     result = Element[];
         
     while !eof(io)
         c = read(io, Char)
-        buffer = ""
         
         bConcatenate, conc, tail = starts_concatenator(io, c, config.concatenators)
         if bConcatenate
-            (c, buffer) = parse_concatenator(io, c, buffer, conc, tail)
-            for kk=1:length(possibleElements)
-                append_value!(possibleElements[kk].atoms[end], buffer)
-            end
+            parse_concatenator!(io, possibleElements, conc, tail)
         elseif c == '\r' || c == '\n' # end of line reached
-            c, buffer, possibleElements, result = parse_newline(io, c, buffer, possibleElements, result, config)
+            parse_newline!(io, possibleElements, result, config)
         elseif all(istrivial.(possibleElements)) && string(c) in config.commentChar # line starts with comment
-            jump_to_eol(io, c)
+            skip_until(io, x -> x == '\n'; keep = false)
         else
-            for kk=1:length(possibleElements)  # cycle through all possible elements
-                elem = popfirst!(possibleElements);
-                elem = parse_element(io, c, elem, buffer)
-
-                if !isnothing(elem)
-                    push!(possibleElements,elem)
-                end
-            end
+            parse_all_elements!(c, possibleElements)
         end
     
         if eof(io) && !all(istrivial.(possibleElements))
@@ -128,8 +134,9 @@ function parse(io::Union{IOStream, IOBuffer}, config::NpcConfig)::Document
 end
 
 function parsefile(path::AbstractString, config::NpcConfig)::Document
-    
     io = open(path)
-    return parse(io,config)
+    data = parse(io,config)
+    close(io)
+    return data
 end
 
