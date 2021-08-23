@@ -19,25 +19,28 @@ function peekuntil(io, f; startAt = 0)
     return result
 end
 
-
-function parse_concatenator(io, c::Char, buffer::String, concatenators::Vector{Concatenator})
+function starts_concatenator(io, c::Char, concatenators::Vector{Concatenator})
     for con in concatenators
         if con.match == c * peekahead(io, length(con.match) - 1)
             tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(con.match) - 1);
             if !isempty(tail) && last(tail) == '\n'
-                skip(io, length(con.match) + length(tail))
-                c = read(io, Char)
-                while !eof(io) && isspace(c)
-                    c = read(io, Char)
-                end
-                if !con.remove
-                    buffer = buffer * con.match;
-                end
-                if con.addWhitespace
-                    buffer = buffer * " "
-                end
+                return (true, con, tail)
             end
         end
+    end
+    return (false, nothing, nothing)
+end
+
+function parse_concatenator(io, c::Char, buffer::String, con::Concatenator, tail::AbstractString)
+    skip(io, length(con.match) + length(tail) - 1)
+    while !eof(io) && isspace(peek(io, Char))
+        c = read(io, Char)
+    end
+    if !con.remove
+        buffer = buffer * con.match;
+    end
+    if con.addWhitespace
+        buffer = buffer * " "
     end
     return (c, buffer)
 end
@@ -65,28 +68,24 @@ function jump_to_eol(io, c)
     return c
 end
 
-append_key(elem::Element, c::Char)
-
-function parse_element(io, c::Char, elem::Element, buffer::String)
+function parse_element(io, c::Char, elem::Element, buffer::String)::Union{Element, Nothing}
     
     mList, key, value, i = elem.mapping.matchList, elem.atoms[end].key, elem.atoms[end].value, length(elem.atoms)
-    keep = true
 
     if i > length(mList) # we have run out of matches, so just append it to the current value.
-        append_value!(elem.atoms[i], buffer, c)
+        append_value!(elem.atoms[i], buffer * c)
     elseif length(mList[i][1]) == length(key) # current key is full, so look for new key or append value
         if length(mList) > i && any([startswith(lowercase(m), lowercase("" * c)) for m in mList[i + 1] ]) # new match, 
             push!(elem.atoms, Atom(""*c,""))
         else
-            append_value!(elem.atoms[i], buffer, c)
+            append_value!(elem.atoms[i], buffer * c)
         end
     elseif length(mList[i][1]) > length(key) && any([startswith(lowercase(m), lowercase(key * c)) for m in mList[i] ]) # key is incomplete
-        append_key!(elem.atoms[i], buffer, c)
+        append_key!(elem.atoms[i], buffer * c)
     else 
-        keep = false
+        return nothing
     end
-
-    return (elem, keep)
+    return elem
 end
 
 
@@ -99,20 +98,22 @@ function parse(io::Union{IOStream, IOBuffer}, config::NpcConfig)::Document
         c = read(io, Char)
         buffer = ""
         
-        if any([startswith(con.match, c) for con in config.concatenators])
-            (c, buffer) = parse_concatenator(io, c, buffer, config.concatenators)
-        end
-            
-        if c == '\r' || c == '\n' # end of line reached
+        bConcatenate, conc, tail = starts_concatenator(io, c, config.concatenators)
+        if bConcatenate
+            (c, buffer) = parse_concatenator(io, c, buffer, conc, tail)
+            for kk=1:length(possibleElements)
+                append_value!(possibleElements[kk].atoms[end], buffer)
+            end
+        elseif c == '\r' || c == '\n' # end of line reached
             c, buffer, possibleElements, result = parse_newline(io, c, buffer, possibleElements, result, config)
-        elseif all(istrivial.(possibleElements)) && ""*c in config.commentChar # line starts with comment
+        elseif all(istrivial.(possibleElements)) && string(c) in config.commentChar # line starts with comment
             jump_to_eol(io, c)
         else
             for kk=1:length(possibleElements)  # cycle through all possible elements
                 elem = popfirst!(possibleElements);
-                elem, keep = parse_element(io, c, elem, buffer)
+                elem = parse_element(io, c, elem, buffer)
 
-                if keep # if the element no longer matches the mapping, we discard it otherwise:
+                if !isnothing(elem)
                     push!(possibleElements,elem)
                 end
             end
