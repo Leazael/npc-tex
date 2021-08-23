@@ -5,6 +5,7 @@ struct Concatenator
     remove::Bool
     addWhitespace::Bool
 end
+Base.length(conc::Concatenator) = length(conc.match)
 
 struct LatexCommand
     command::String
@@ -44,7 +45,7 @@ mutable struct Atom
     key::String
     value::String
 end
-Base.isempty(a::Atom) = isempty(a.key * a.value)
+istrivial(a::Atom) = isempty(a.key * a.value)
 
 function append_value!(a::Atom, s::AbstractString)
     if isempty(a.value) || (isspace(last(a.value)) && isspace(first(s)))
@@ -65,7 +66,8 @@ mutable struct Element
     mapping::Union{Mapping, Nothing}
 end
 Element() = Element(Atom[], nothing)
-istrivial(elem::Element) = all(isempty.(elem.atoms))
+istrivial(elem::Element) = all(istrivial.(elem.atoms))
+istrivial(elems::Vector{Element}) = all(istrivial.(elems))
 keys(elem::Element) = [a.key for a in elem.atoms]
 
 function iscomplete(elem::Element)::Bool

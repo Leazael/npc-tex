@@ -38,19 +38,20 @@ function skip_until(io::IO, f; keep = false)
     end
 end
 
-function starts_concatenator(io::IO, c::Char, concatenators::Vector{Concatenator})
-    for con in concatenators
-        if con.match == c * peekahead(io, length(con.match) - 1)
-            tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(con.match) - 1);
+function preparse_concatenator(io::IO, c::Char, concatenators::Vector{Concatenator})::Union{Nothing, Tuple{Concatenator,String}}
+    for conc in concatenators
+        if conc.match == c * peekahead(io, length(conc) - 1)
+            tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt = length(conc) - 1);
             if !isempty(tail) && last(tail) == '\n'
-                return (true, con, tail)
+                return (conc, tail)
             end
         end
     end
-    return (false, nothing, nothing)
+    return nothing
 end
 
-function parse_concatenator!(io::IO, possibleElements::Vector{Element}, con::Concatenator, tail::AbstractString)
+function parse_concatenator!(io::IO, possibleElements::Vector{Element}, concatenation::Tuple{Concatenator,String})
+    con, tail = concatenation
     skip(io, length(con.match) + length(tail) - 1)
     skip_until(io, isspace; keep = false)
     
@@ -66,13 +67,12 @@ function parse_newline!(io::IO, possibleElements::Vector{Element}, result::Vecto
     if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
         filter!(el -> el.mapping.isTable, possibleElements)
     else
-        if !isempty(possibleElements) && !all(isempty.(possibleElements[1].atoms))
+        if !istrivial(possibleElements)
             push!(result, yield_first(possibleElements))
         end
         deepreplace!(possibleElements, [Element([Atom("","")], m) for m in config.mappings])
         skip_until(io, x -> !isspace(x); keep = false)
     end
-    return possibleElements
 end
 
 
@@ -114,9 +114,10 @@ function parse(io::IO, config::NpcConfig)::Document
     while !eof(io)
         c = read(io, Char)
         
-        bConcatenate, conc, tail = starts_concatenator(io, c, config.concatenators)
-        if bConcatenate
-            parse_concatenator!(io, possibleElements, conc, tail)
+        concatenation = preparse_concatenator(io, c, config.concatenators)
+
+        if !isnothing(concatenation)
+            parse_concatenator!(io, possibleElements, concatenation)
         elseif c == '\r' || c == '\n' # end of line reached
             parse_newline!(io, possibleElements, result, config)
         elseif all(istrivial.(possibleElements)) && string(c) in config.commentChar # line starts with comment
