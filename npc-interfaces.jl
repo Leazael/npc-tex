@@ -76,6 +76,11 @@ keys(elem::Element) = [a.key for a in elem.atoms]
 function iscomplete(elem::Element)::Bool
     keyList = keys(elem)
     matchList = elem.mapping.matchList
+
+    if isempty(matchList) && length(keyList) == 1 && isempty(keyList[1])
+        return true 
+    end
+
     if length(keyList) != length(matchList)
         return false
     end
