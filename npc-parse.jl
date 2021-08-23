@@ -8,6 +8,7 @@ function deepreplace!(a::AbstractVector, b::AbstractVector)
     end
 end
 
+
 function peekahead(io::IO, n::Int64)::String
     mark(io)
     result = ""
@@ -17,6 +18,7 @@ function peekahead(io::IO, n::Int64)::String
     reset(io)
     return result
 end
+
 
 function peekuntil(io::IO, f; startAt=0)
     mark(io)
@@ -29,6 +31,7 @@ function peekuntil(io::IO, f; startAt=0)
     return result
 end
 
+
 function skip_until(io::IO, f; keep=false)
     while !eof(io) && !f(peek(io, Char))
         read(io, Char)
@@ -38,9 +41,11 @@ function skip_until(io::IO, f; keep=false)
     end
 end
 
+
 function startswithi(s1::AbstractString, s2::Union{AbstractString,Char})::Bool
     return startswith(lowercase(s1), lowercase(s2))
 end
+
 
 function preparse_concatenator(io::IO, concatenators::Vector{Concatenator}, c::Char)::Union{Nothing,Tuple{Concatenator,String}}
     for conc in concatenators
@@ -53,6 +58,7 @@ function preparse_concatenator(io::IO, concatenators::Vector{Concatenator}, c::C
     end
     return nothing
 end
+
 
 function parse_concatenator!(io::IO, candidates::Vector{Element}, concatenation::Tuple{Concatenator,String})
     con, tail = concatenation
@@ -67,15 +73,18 @@ function parse_concatenator!(io::IO, candidates::Vector{Element}, concatenation:
     end    
 end
 
+
+is_table_row(io::IO, config::NpcConfig) = (last(peekuntil(io, !isspace)) * "" in config.tableRowChar)
+
 function parse_newline!(io::IO, config::NpcConfig, candidates::Vector{Element}, doc::Document)
-    if !eof(io) && (last(peekuntil(io, x -> !isspace(x))) * "" in config.tableRowChar)
+    if !eof(io) && is_table_row(io, config)
         filter!(el -> el.mapping.isTable, candidates)
     else
         if !istrivial(candidates)
             push!(doc, yield_first(candidates))
         end
-        deepreplace!(candidates, Element.(config.mappings))
-        skip_until(io, x -> !isspace(x); keep=false)
+        deepreplace!(candidates, Element.(config.mappings)) #replace candidates with empty new elements.
+        skip_until(io, !isspace; keep=false)
     end
 end
 
@@ -107,6 +116,7 @@ function parse_element!(elem::Element, c::Char)::Bool
     return true
 end
 
+
 function parse_all_elements!(candidates::Vector{Element}, c::Char)
     filter!(elem -> parse_element!(elem, c), candidates)
 end
@@ -119,7 +129,7 @@ function parse_char!(io::IO, config::NpcConfig, candidates::Vector{Element}, doc
     elseif c == '\r' || c == '\n' # end of line reached
         parse_newline!(io, config, candidates, document)
     elseif all(istrivial.(candidates)) && string(c) in config.commentChar # line starts with comment
-        skip_until(io, x -> x == '\n'; keep=false)
+        skip_until(io, isequal('\n'); keep=false)
     else
         parse_all_elements!(candidates, c)
     end
@@ -141,6 +151,7 @@ function parse(io::IO, config::NpcConfig)::Document
 
     return document
 end
+
 
 function parsefile(path::AbstractString, config::NpcConfig)::Document
     io = open(path)
