@@ -14,6 +14,17 @@ struct LatexCommand
         new(command, isnothing(nInputs) ? 1 : nInputs)
 end
 
+struct MappingStrict
+    description::String
+    matchList::Vector{String}
+    latex::LatexCommand
+    includeInputs::Vector{Bool}    
+    paddingChars::Vector{String}
+    isTable::Bool
+    separators::Vector{String}
+end
+
+
 struct Mapping
     description::String
     matchList::Union{Vector{Match},Nothing}
@@ -24,13 +35,50 @@ struct Mapping
     separators::Vector{String}
     Mapping(description, matchList, latex, includeInputs, paddingChars, isTable, separators) = new(
         isnothing(description) ? "" : description,
-        isnothing(matchList) ? String[] : [isa(m, String) ? [m] : m  for m in matchList],
+        matchList,
         latex,
         isnothing(includeInputs) ? String[] : includeInputs, 
         isnothing(paddingChars) ? Bool[] : paddingChars, 
         isnothing(isTable) ? false : isTable, 
         isnothing(separators) ? String[] : separators)
 end
+
+
+function restrict_matchlist(m::Mapping, ml::Vector{String})::MappingStrict
+    @assert( ( isnothing(m.matchList) && isempty(ml) ) || (length(m.matchList) == length(ml)), "Length of new matchlist does not equal length of old matchlist" )
+    if !isnothing(m.matchList)
+        for k=1:length(ml)
+            @assert(ml[k] == m.matchList[k] || ml[k] in m.matchList[k], ml[k] * " not found in current matchist: " * string(m.matchList[k]))
+        end
+    end
+    return MappingStrict(m.description, ml, m.latex, m.includeInputs, m.paddingChars, m.isTable, m.separators)    
+end
+
+function expand_and_restrict(mping::Mapping)::Vector{MappingStrict}
+    matchList = mping.matchList
+    expandedMatchList = [ String[] ]
+
+    if !isnothing(matchList)
+        for k=1:length(matchList)
+            if isa(matchList[k], String)
+                for ml in expandedMatchList
+                    push!(ml, matchList[k])
+                end
+            elseif isa(matchList[k], Vector{String})
+                newMatchList = Vector{String}[]
+                for m in matchList[k]
+                    for ml in expandedMatchList
+                        push!(newMatchList, [ml;m])
+                    end
+                end
+                expandedMatchList = newMatchList
+            end
+        end
+    end
+    
+    return [restrict_matchlist(mping, ml) for ml in expandedMatchList]
+end
+
 
 
 struct NpcConfig
