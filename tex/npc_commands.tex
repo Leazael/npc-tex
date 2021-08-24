@@ -24,32 +24,28 @@
 }
 
 \newcommand{\labelcategory}[2]{\category{#1 \qquad #2}}
-\newcommand{\name}[1]{\textbf{#1}}
-\newcommand{\initsense}[2]{\textbf{Init} #1; \textbf{Senses:} #2}
-\newcommand{\alignmentage}[3]{#1 #2 \textbf{Age:} #3}
-\newcommand{\ac}[3]{\textbf{AC} #1, Touch #2, Flat-Footed #3}
-\newcommand{\vpwp}[2]{\textbf{vp} #1; \textbf{wp} #2}
-\newcommand{\vpwpdr}[3]{\textbf{vp} #1; \textbf{wp} #2 \statindent\textbf{DR} #3}
-\newcommand{\vpwpfhdr}[4]{\textbf{vp} #1; \textbf{wp} #2 \statindent\textbf{Fast Healing} #3, \textbf{DR} #4}
-\newcommand{\fhdr}[4]{\textbf{Fast Healing} #1, \textbf{DR} #2}
-\newcommand{\saves}[3]{\textbf{Fort} #1 \textbf{Ref} #2 \textbf{Will} #3}
-\newcommand{\resistimmune}[2]{\textbf{Resist} #1; \textbf{Immune} #2}
-\newcommand{\stat}[2]{\textbf{#1} #2}
+
+\newcommand{\initsense}[2]{\textbf{Init} #1; \textbf{Senses:} #2 \par}
+\newcommand{\alignmentage}[3]{#1 #2 \textbf{Age:} #3 \par}
+\newcommand{\ac}[3]{\textbf{AC} #1, Touch #2, Flat-Footed #3 \par}
+\newcommand{\saves}[3]{\textbf{Fort} #1 \textbf{Ref} #2 \textbf{Will} #3\par}
+\newcommand{\resistimmune}[2]{\textbf{Resist} #1; \textbf{Immune} #2\par}
 \newcommand{\spellsknown}[3]{{\footnotesize\hangindent=\statindentlength\textbf{#1} (#2) -- #3 \par}}
 \newcommand{\spellsready}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1} -- #2 \par}}
 \newcommand{\abilityscores}[6]{\textbf{Str} #1, \textbf{Dex} #2, \textbf{Con} #3, \textbf{Int} #4, \textbf{Wis} #5, \textbf{Cha} #6}
-\newcommand{\babs}[3]{\textbf{Base Attack} #1; \textbf{CMB} #2; \textbf{CMD} #3}
-\newcommand{\basicability}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1}: #2\par}}
-\newcommand{\ability}[4]{\basicability{#1 [#2]}{\emph{#3} -- #4}}
-\newcommand{\continuousability}[3]{\basicability{#1 [#2]}{#3}}
-\newcommand{\listing}[2]{{\footnotesize\textbf{#1}: #2\par}}
+\newcommand{\bab}[3]{\textbf{Base Attack} #1; \textbf{CMB} #2; \textbf{CMD} #3}
+\newcommand{\speedcarry}[2]{\textbf{Speed} #1; \quad\textbf{Carrying Capacity} #2 \par}
 
-\newcommand{\primarytext}[1]{#1\par}
-\newcommand{\indentplain}[1]{\statindent#1\par}
-\newcommand{\secondarytext}[1]{{\footnotesize #1\par}}
-\newcommand{\secondarytextindent}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
+\newcommand{\primary}[1]{#1\par}
+\newcommand{\primarybold}[1]{\textbf{#1} \par}
+\newcommand{\primaryindent}[1]{\statindent#1\par}
+\newcommand{\primaryheader}[2]{\textbf{#1} #2 \par}
 
-\newcommand{\hpsavetable}[4]{{\small \begin{tabular}{@{\noindent} >{\bfseries} l r @{\quad=\quad} r r} #4 \end{tabular} \quad \begin{tabular}{l@{\noindent \enskip}l}  \textbf{hp} & #1 \\ & #3  \\ & (#2) \\  \end{tabular}}}
+\newcommand{\secondary}[1]{{\footnotesize #1\par}}
+\newcommand{\secondaryindent}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
+\newcommand{\secondaryheader}[2]{{\footnotesize \textbf{#1} #2 \par}}
+
+\newcommand{\hpsavetable}[4]{{\small \begin{tabular}{@{\noindent} >{\bfseries} l r @{\quad=\quad} r r} #4 \end{tabular} \quad \begin{tabular}{l@{\noindent \enskip}l}  \textbf{hp} & #1 \\ & #3  \\ & (#2) \\  \end{tabular}} \\ \qquad \vspace{-0.25\baselineskip}}
 
 \newenvironment{attackgroup}[2]
 {

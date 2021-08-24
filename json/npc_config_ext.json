@@ -32,7 +32,7 @@
   "mappings": [
     {
       "matchList": ["!name"],
-      "latex": {"command": "name"}
+      "latex": {"command": "primarybold"}
     },
     {
       "matchList": ["!LG", "!Age"],
@@ -127,8 +127,13 @@
       "latex": {"command": "saves", "nInputs": 3}
     },
     {
+      "matchList": ["!speed", "!carry"],
+      "paddingChars": [",", ";", ":"],
+      "latex": {"command": "speedcarry", "nInputs": 2}
+    },
+    {
       "matchList": ["!speed"],
-      "latex": {"command": "speed"}
+      "latex": {"command": "primaryheader{Speed}"}
     },
         {
       "matchList": ["!Melee"],
@@ -193,12 +198,12 @@
     {
       "description": "Secondary text.",
       "matchList": ["__"],
-      "latex": { "command": "secondarytextindent"}
+      "latex": { "command": "secondaryindent"}
     },
     {
       "description": "Secondary text.",
       "matchList": ["_"],
-      "latex": { "command": "secondarytext"}
+      "latex": { "command": "secondary"}
     },
     {
       "description": "Daily Spells and Spell-like abilities.",
@@ -225,12 +230,12 @@
     {
       "description": "Primary text",
       "matchList": [ "~" ],
-      "latex": { "command": "primarytext"}
+      "latex": { "command": "primary"}
     },
     {
       "description": "Primary text (default!)",
       "matchList": null,
-      "latex": { "command": "primarytext"}
+      "latex": { "command": "primary"}
     }
   ]
 }
