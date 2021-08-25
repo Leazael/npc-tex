@@ -4,16 +4,9 @@ using Test
 Revise.includet("src/NPCTeX.jl");
 using .NPCTeX
 
-function filify(dataIn)
-    JSON3.write("tempFile.json", dataIn);
-    dataOut = read("tempFile.json", String);
-    rm("tempFile.json");
-    return dataOut
-end
+docSettings, mappings = read_and_simplify("json/npc_config.json") 
+doc = parsefile("npc/Einarr_test.npc", docSettings, mappings);
+# JSON3.write("json/test_data_einarr.json", doc) # to save new reference data
 
-config = read_config("json/npc_config.json");
-refData = read("json/test_data_einarr.json", String);
-
-path = "npc/Einarr.npc";
-doc = parsefile(path, config);
-@test (refData == filify(parsefile(path, config)))
+docRef = JSON3.read(read("json/test_data_einarr.json", String), Document)
+@test(doc.elements == docRef.elements)

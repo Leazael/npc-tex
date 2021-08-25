@@ -10,9 +10,7 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!name"
-                    ]
+                    "!name"
                 ],
                 "latex": {
                     "command": "name",
@@ -34,9 +32,7 @@
             "mapping": {
                 "description": "Primary text",
                 "matchList": [
-                    [
-                        "~"
-                    ]
+                    "~"
                 ],
                 "latex": {
                     "command": "primarytext",
@@ -58,9 +54,7 @@
             "mapping": {
                 "description": "Primary text",
                 "matchList": [
-                    [
-                        "~"
-                    ]
+                    "~"
                 ],
                 "latex": {
                     "command": "primarytext",
@@ -86,19 +80,19 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!init"
-                    ],
-                    [
-                        "!senses"
-                    ]
+                    "!init",
+                    "!senses"
                 ],
                 "latex": {
                     "command": "initsense",
                     "nInputs": 2
                 },
                 "includeInputs": [],
-                "paddingChars": [],
+                "paddingChars": [
+                    ",",
+                    ";",
+                    ":"
+                ],
                 "isTable": false,
                 "separators": []
             }
@@ -113,9 +107,7 @@
             "mapping": {
                 "description": "Category",
                 "matchList": [
-                    [
-                        "="
-                    ]
+                    "="
                 ],
                 "latex": {
                     "command": "category",
@@ -147,22 +139,20 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!AC"
-                    ],
-                    [
-                        "!touch"
-                    ],
-                    [
-                        "!FlatFooted"
-                    ]
+                    "!AC",
+                    "!touch",
+                    "!FlatFooted"
                 ],
                 "latex": {
                     "command": "ac",
                     "nInputs": 3
                 },
                 "includeInputs": [],
-                "paddingChars": [],
+                "paddingChars": [
+                    ",",
+                    ";",
+                    ":"
+                ],
                 "isTable": false,
                 "separators": []
             }
@@ -177,9 +167,7 @@
             "mapping": {
                 "description": "Primary text",
                 "matchList": [
-                    [
-                        "~"
-                    ]
+                    "~"
                 ],
                 "latex": {
                     "command": "primarytext",
@@ -201,16 +189,18 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!hp"
-                    ]
+                    "!hp"
                 ],
                 "latex": {
                     "command": "hp",
                     "nInputs": 1
                 },
                 "includeInputs": [],
-                "paddingChars": [],
+                "paddingChars": [
+                    ",",
+                    ";",
+                    ":"
+                ],
                 "isTable": false,
                 "separators": []
             }
@@ -233,22 +223,20 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!fort"
-                    ],
-                    [
-                        "!ref"
-                    ],
-                    [
-                        "!will"
-                    ]
+                    "!fort",
+                    "!ref",
+                    "!will"
                 ],
                 "latex": {
                     "command": "saves",
                     "nInputs": 3
                 },
                 "includeInputs": [],
-                "paddingChars": [],
+                "paddingChars": [
+                    ",",
+                    ";",
+                    ":"
+                ],
                 "isTable": false,
                 "separators": []
             }
@@ -263,9 +251,7 @@
             "mapping": {
                 "description": "Category",
                 "matchList": [
-                    [
-                        "="
-                    ]
+                    "="
                 ],
                 "latex": {
                     "command": "category",
@@ -289,9 +275,7 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!speed"
-                    ]
+                    "!speed"
                 ],
                 "latex": {
                     "command": "speed",
@@ -313,9 +297,7 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!Melee"
-                    ]
+                    "!Melee"
                 ],
                 "latex": {
                     "command": "meleetable",
@@ -340,9 +322,7 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!Ranged"
-                    ]
+                    "!Ranged"
                 ],
                 "latex": {
                     "command": "rangedtable",
@@ -371,13 +351,8 @@
             "mapping": {
                 "description": "Primary Text + Header.",
                 "matchList": [
-                    [
-                        "#"
-                    ],
-                    [
-                        ":",
-                        "--"
-                    ]
+                    "#",
+                    ":"
                 ],
                 "latex": {
                     "command": "primaryheader",
@@ -399,9 +374,7 @@
             "mapping": {
                 "description": "Category",
                 "matchList": [
-                    [
-                        "="
-                    ]
+                    "="
                 ],
                 "latex": {
                     "command": "category",
@@ -445,24 +418,12 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!str"
-                    ],
-                    [
-                        "!dex"
-                    ],
-                    [
-                        "!con"
-                    ],
-                    [
-                        "!int"
-                    ],
-                    [
-                        "!wis"
-                    ],
-                    [
-                        "!cha"
-                    ]
+                    "!str",
+                    "!dex",
+                    "!con",
+                    "!int",
+                    "!wis",
+                    "!cha"
                 ],
                 "latex": {
                     "command": "abilityscores",
@@ -492,15 +453,9 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!bab"
-                    ],
-                    [
-                        "!cmb"
-                    ],
-                    [
-                        "!cmd"
-                    ]
+                    "!bab",
+                    "!cmb",
+                    "!cmd"
                 ],
                 "latex": {
                     "command": "baseattack",
@@ -522,9 +477,7 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!Feats"
-                    ]
+                    "!Feats"
                 ],
                 "latex": {
                     "command": "feats",
@@ -546,9 +499,7 @@
             "mapping": {
                 "description": "",
                 "matchList": [
-                    [
-                        "!Skills"
-                    ]
+                    "!Skills"
                 ],
                 "latex": {
                     "command": "skills",
@@ -570,9 +521,7 @@
             "mapping": {
                 "description": "Secondary text.",
                 "matchList": [
-                    [
-                        "_"
-                    ]
+                    "_"
                 ],
                 "latex": {
                     "command": "secondarytext",
@@ -598,13 +547,8 @@
             "mapping": {
                 "description": "Secondary Text + Header.",
                 "matchList": [
-                    [
-                        "%"
-                    ],
-                    [
-                        ":",
-                        "--"
-                    ]
+                    "%",
+                    ":"
                 ],
                 "latex": {
                     "command": "secondaryheader",
@@ -626,9 +570,7 @@
             "mapping": {
                 "description": "Category",
                 "matchList": [
-                    [
-                        "="
-                    ]
+                    "="
                 ],
                 "latex": {
                     "command": "category",
@@ -668,21 +610,11 @@
             "mapping": {
                 "description": "Special Abilities that can be used a certain nr. of times per day.",
                 "matchList": [
-                    [
-                        "@"
-                    ],
-                    [
-                        "["
-                    ],
-                    [
-                        "]"
-                    ],
-                    [
-                        "("
-                    ],
-                    [
-                        ")"
-                    ]
+                    "@",
+                    "[",
+                    "]",
+                    "(",
+                    ")"
                 ],
                 "latex": {
                     "command": "specialabilityfreq",
@@ -716,35 +648,17 @@
                 }
             ],
             "mapping": {
-                "description": "Special Abilities that can be used a certain nr. of times per day.",
+                "description": "Constant or at-will Special Abilities",
                 "matchList": [
-                    [
-                        "@"
-                    ],
-                    [
-                        "["
-                    ],
-                    [
-                        "]"
-                    ],
-                    [
-                        "("
-                    ],
-                    [
-                        ")"
-                    ]
+                    "@",
+                    "[",
+                    "]"
                 ],
                 "latex": {
-                    "command": "specialabilityfreq",
-                    "nInputs": 4
+                    "command": "specialability",
+                    "nInputs": 3
                 },
-                "includeInputs": [
-                    true,
-                    true,
-                    false,
-                    true,
-                    true
-                ],
+                "includeInputs": [],
                 "paddingChars": [],
                 "isTable": false,
                 "separators": []
@@ -760,9 +674,7 @@
             "mapping": {
                 "description": "Category",
                 "matchList": [
-                    [
-                        "="
-                    ]
+                    "="
                 ],
                 "latex": {
                     "command": "category",
@@ -786,9 +698,7 @@
             "mapping": {
                 "description": "Secondary text.",
                 "matchList": [
-                    [
-                        "_"
-                    ]
+                    "_"
                 ],
                 "latex": {
                     "command": "secondarytext",

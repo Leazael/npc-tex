@@ -23,7 +23,7 @@ struct MappingStrict
     isTable::Bool
     separators::Vector{String}
 end
-
+Base.:(==)(m1::MappingStrict, m2::MappingStrict)::Bool =  all([getproperty(m1,p) == getproperty(m2,p) for p in propertynames(m1)])
 
 struct Mapping
     description::String
@@ -44,6 +44,58 @@ struct Mapping
 end
 
 
+struct DocumentSettings
+    commentChar::Vector{String}
+    tableRowChar::Vector{String}
+    concatenators::Vector{Concatenator}
+end
+
+
+struct NpcConfig
+    documentSettings::DocumentSettings
+    mappings::Vector{Mapping}
+end
+
+
+mutable struct Atom
+    key::String
+    value::String
+end
+Atom(s::Union{AbstractString, Char}) = Atom(string(s), "")
+istrivial(a::Atom) = isempty(a.key * a.value)
+Base.:(==)(a1::Atom, a2::Atom) = (a1.key == a2.key) && (a1.value == a2.value)
+
+
+mutable struct Element
+    atoms::Vector{Atom}
+    mapping::MappingStrict
+end
+Element(m::MappingStrict) = Element([Atom("", "")], m)
+Base.:(==)(e1::Element, e2::Element) = (e1.atoms == e2.atoms) &&  (e1.mapping == e2.mapping)
+
+mutable struct Document
+    elements::Vector{Element}
+end
+
+
+
+function append_value!(a::Atom, s::AbstractString)
+    if isempty(a.value) || (isspace(last(a.value)) && isspace(first(s)))
+        a.value = a.value * lstrip(s)
+    else
+        a.value = a.value * s
+    end
+end
+append_value!(a::Atom, c::Char) = append_value!(a, string(c))
+
+
+function append_key!(a::Atom, s::String)
+    @assert(!any([isspace(c) for c in s]))
+    a.key = a.key * s
+end
+append_key!(a::Atom, c::Char) = append_key!(a, string(c))
+
+
 function restrict_matchlist(m::Mapping, ml::Vector{String})::MappingStrict
     @assert( ( isnothing(m.matchList) && isempty(ml) ) || (length(m.matchList) == length(ml)), "Length of new matchlist does not equal length of old matchlist" )
     if !isnothing(m.matchList)
@@ -54,7 +106,7 @@ function restrict_matchlist(m::Mapping, ml::Vector{String})::MappingStrict
     return MappingStrict(m.description, ml, m.latex, m.includeInputs, m.paddingChars, m.isTable, m.separators)    
 end
 
-function expand_and_restrict(mping::Mapping)::Vector{MappingStrict}
+function simplify(mping::Mapping)::Vector{MappingStrict}
     matchList = mping.matchList
     expandedMatchList = [ String[] ]
 
@@ -80,42 +132,17 @@ function expand_and_restrict(mping::Mapping)::Vector{MappingStrict}
 end
 
 
-
-struct NpcConfig
-    commentChar::Vector{String}
-    tableRowChar::Vector{String}
-    concatenators::Vector{Concatenator}
-    mappings::Vector{Mapping}
-end
-
-
-mutable struct Atom
-    key::String
-    value::String
-end
-Atom(s::Union{AbstractString, Char}) = Atom(string(s), "")
-istrivial(a::Atom) = isempty(a.key * a.value)
-
-function append_value!(a::Atom, s::AbstractString)
-    if isempty(a.value) || (isspace(last(a.value)) && isspace(first(s)))
-        a.value = a.value * lstrip(s)
-    else
-        a.value = a.value * s
+function simplify(mm::Vector{Mapping})::Vector{MappingStrict}
+    mmStrict = MappingStrict[]
+    for m1 in mm
+        for m2 in simplify(m1)
+            push!(mmStrict, m2)
+        end
     end
+    return mmStrict
 end
-append_value!(a::Atom, c::Char) = append_value!(a, string(c))
 
-function append_key!(a::Atom, s::String)
-    @assert(!any([isspace(c) for c in s]))
-    a.key = a.key * s
-end
-append_key!(a::Atom, c::Char) = append_key!(a, string(c))
 
-mutable struct Element
-    atoms::Vector{Atom}
-    mapping::Union{Mapping,Nothing}
-end
-Element(m::Mapping) = Element([Atom("", "")], m)
 
 istrivial(elem::Element) = all(istrivial.(elem.atoms))
 istrivial(elems::Vector{Element}) = all(istrivial.(elems))
@@ -155,11 +182,6 @@ function yield_first(elementList::Vector{Element})::Element
     else
         return elementList[index]
     end
-end
-
-
-mutable struct Document
-    elements::Vector{Element}
 end
 
 Document() = Document(Element[])
