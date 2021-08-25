@@ -4,9 +4,19 @@ using Test
 Revise.includet("src/NPCTeX.jl");
 using .NPCTeX
 
-docSettings, mappings = read_and_simplify("json/npc_config.json") 
-doc = parsefile("npc/Einarr_test.npc", docSettings, mappings);
-# JSON3.write("json/test_data_einarr.json", doc) # to save new reference data
+docSettingsRef = JSON3.read(read("json/test_data_document_settings.json", String), DocumentSettings);
+mappingsRef = JSON3.read(read("json/test_data_mappings.json", String), Vector{MappingStrict});
+docRef = JSON3.read(read("json/test_data_einarr.json", String), Document);
 
-docRef = JSON3.read(read("json/test_data_einarr.json", String), Document)
-@test(doc.elements == docRef.elements)
+path = "npc/Einarr_test.npc"
+docSettings, mappings = read_and_simplify("json/npc_config.json");
+doc = parsefile(path, docSettings, mappings);
+
+@test docSettingsRef == docSettings
+@test mappingsRef == mappings
+@test docRef == doc
+
+# JSON3.write("json/test_data_document_settings.json", docSettings) # to save new reference data
+# JSON3.write("json/test_data_mappings.json", mappings) # to save new reference data
+# JSON3.write("json/test_data_einarr.json", parsefile(path, docSettings, mappings)) # to save new reference data
+

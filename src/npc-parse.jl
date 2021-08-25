@@ -3,9 +3,7 @@ function deepreplace!(a::AbstractVector, b::AbstractVector)
     while !isempty(a)
         pop!(a)
     end
-    for x in b 
-        push!(a, x)
-    end
+    append!(a, b)
 end
 
 
@@ -47,6 +45,28 @@ function startswithi(s1::AbstractString, s2::Union{AbstractString,Char})::Bool
 end
 
 
+function iscomplete(elem::Element)::Bool
+    keyList, matchList = keys(elem), elem.mapping.matchList
+
+    if isempty(matchList)
+        return keyList == [""] 
+    end
+
+    if length(keyList) == length(matchList)
+        return lowercase.(keyList) == lowercase.(matchList)
+    end
+
+    return false
+end
+
+
+function yield_first(elementList::Vector{Element})::Element
+    index = findfirst(iscomplete, elementList)
+    @assert(!isnothing(index), "No complete elements found in list: " * string(elementList))
+    return elementList[index]
+end
+
+
 function preparse_concatenator(io::IO, concatenators::Vector{Concatenator}, c::Char)::Union{Nothing,Tuple{Concatenator,String}}
     for conc in concatenators
         if conc.match == c * peekahead(io, length(conc) - 1)
@@ -72,7 +92,6 @@ function parse_concatenator!(io::IO, candidates::Vector{Element}, concatenation:
         append_value!(candidates[kk].atoms[end], buffer)
     end    
 end
-
 
 is_table_row(io::IO, docSettings::DocumentSettings) = (last(peekuntil(io, !isspace)) * "" in docSettings.tableRowChar)
 

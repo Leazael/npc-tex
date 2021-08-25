@@ -47,15 +47,13 @@
         {
             "atoms": [
                 {
-                    "key": "~",
+                    "key": "",
                     "value": "NG Medium Humanoid [Human]"
                 }
             ],
             "mapping": {
-                "description": "Primary text",
-                "matchList": [
-                    "~"
-                ],
+                "description": "Primary text (default!)",
+                "matchList": [],
                 "latex": {
                     "command": "primarytext",
                     "nInputs": 1

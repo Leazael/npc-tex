@@ -1,0 +1,1 @@
+{"commentChar":["^"],"tableRowChar":[">"],"concatenators":[{"match":"...","remove":true,"addWhitespace":true},{"match":"…","remove":true,"addWhitespace":true},{"match":"-","remove":true,"addWhitespace":false},{"match":",","remove":false,"addWhitespace":true},{"match":";","remove":false,"addWhitespace":true}]}
