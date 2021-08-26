@@ -10,4 +10,80 @@ __(+5 Dex, +4 Armour, [+1 Shield])
  > Ref:   +10 = +5 |  +5
  > Will:   +4 = +2 |  +2
 ===ᛏ|Offence================================================
-!Speed 30 ft.; !carry 58/116/175 lbs.
+!Speed 30 ft.; !Carry 58/116/175 lbs.
+!Melee mwk Battle Axe...
+    [+6 BAB +2 Str + 1 Enh]
+ > Normal       | +9/+5   |  1d8 + 2/x3 | 
+ > Two-handed   | +9/+5   |  1d8 + 2/x3 | (−1 AC, buckler)
+!Ranged +1 Composite (+2 Str) shortbow...
+    [+6 BAB +5 Str + 1 Enh]
+ > Normal           |     +12/+7 | 1d6 + 3/x3 | 
+ > Deadly Aim       |     +10/+5 | 1d8 + 7/x3 | 
+ > Rapid Shot       | +10/+10/+5 | 1d8 + 3/x3 | 
+ > R. Shot + D. Aim |  +8/ +8/+3 | 1d8 + 7/x3 | 
+%Special Attacks: Point-blank shot (+1/+1), 
+  Sneak Attack (+2d6), 
+  Studied Target (+2 atck/dam, +2 to DCs)
+===ᚾ|Statistics=============================================
+!AbilityScores
+ > Str (+2)  14 = 15  | −1 (age)
+ > Dex (+5)  20 = 18  | −1 (age) +2 (race) + 1 (lvl)
+ > Con (+0)  10 = 11  | −1 (age)
+ > Int (+2)  15 = 14  | −1 (age)
+ > Wis (+2)  14 = 13  | −1 (age)
+ > Cha (+0)  10 =  9  | −1 (age)
+!BAB +6; !CMB +8; !CMD 23
+%Languages: Dvårgs, Rhäns, Aquitains
+===ᚦ|Feats [3 + 3b]=========================================
+|1 |Deadly Aim: Until the end of next turn: −2 on all…
+    ranged attack rolls, +4 on ranged damage rolls. 
+|1b|Alertness: +2 to perception and sense motive.
+|2b|Precise Shot: Shoot into melee without the standard…
+    −4 penalty.
+|3 |Point Blank Shot: +1 on attack and damage rolls with…
+    all ranged weapons within 30 ft.
+|5 |Rapid Shot: When making a full-attack, fire an extra…
+    arrow at your highest bonus. All attacks are made at…
+    a −2 penalty.
+|6b|Improved Precise Shot: Ranged attacks ignore the AC…
+    bonus and miss chance granted by anything less than…
+    total cover or total concealment.
+===ᚦ|Skills [9 + class skill/level]=========================
+!Skills 
+> ᛋ |Acrobatics:           +12 = 4 | +3 | +5 |
+>   |Bluff*:                +9 = 6 | +3 | +0 |
+>   |Climb:                +11 = 6 | +3 | +2 |
+> ᛋ |Craft (Fletcher):      +6 = 1 | +3 | +2 |
+> ᛋ |Heal:                  +6 = 1 | +3 | +2 |
+> ᛒ |Knowledge* (loc):      +9 = 4 | +3 | +2 |
+>   |Knowledge* (geo):     +11 = 6 | +3 | +2 |
+> ᛒ |Knowledge* (nob):      +7 = 2 | +3 | +2 |
+>   |Perception*:          +13 = 6 | +3 | +2 | +2(feat)
+> ᛗ |Profession (Courier):  +7 = 2 | +3 | +2 |
+> ᛗ |Ride:                 +10 = 2 | +3 | +5 |
+>   |Sense Motive*:        +13 = 6 | +3 | +2 | +2(feat)
+>   |Stealth:              +19 = 6 | +3 | +5 | +5(compt)
+>   |Survival*:            +11 = 6 | +3 | +2 | +3(track)
+> ᛗ |Swim:                  +7 = 2 | +3 | +2 |
+__*Studied Target (2/+2)
+~\columnbreak
+===ᛈ|Slayer Abilities=======================================
+@Studied Target [ex] {2 targets / +2} Study opponent as…
+ a move action (or immediate action after sneak attack).…
+ Gain +2 [untyped] bonus on Bluff, Knowledge, Perception, 
+ Sense Motive, Survival, Weapon Attack and Damage rolls…
+ against it. Lasts until target is dead or a new target is…
+ selected. Max 2 targets.
+@Track [ex] +3 on survival skill checks made to follow…
+ tracks.
+@Sneak Attack [ex] +2d6 on denied Dex to AC or Flank.
+===ᚻ|Slayer Talents [3]=====================================
+@Ranger Combat Style [Ex] Precise Shot (Archery)
+@Fast Stealth [Ex] Move at full speed when using stealth.
+@Ranger Combat Style [Ex] Improved Precise Shot (Archery)
+===ᛟ|Special Gear [~10k]====================================
+%+1 Composite (+2 str) Shortbow: martial, ranged, 
+  piercing; CL 3, faint evocation; 2 lbs.
+%Mwk Battleaxe: martial, one handed, slashing; 6 lbs.
+%Mithril Shirt: light armour; +4 armour bonus; 10 lbs.;...
+  +6 max dex, 0 ACP, 10\% ASF.

@@ -3,6 +3,7 @@
 \usepackage{fontspec}
 \usepackage{multicol}
 \usepackage{array}
+\usepackage{tabularx}
 
 \input{npc_commands.tex}
 
@@ -12,7 +13,7 @@
 \newfontfamily\latinfont{Corbel}
 \newfontfamily\runicfont{SegoeUIHistoric}
 
-\usepackage[Runic]{ucharclasses}
+\usepackage[Runic]{ucharclasses}  
 
 \setDefaultTransitions{\latinfont}{}
 \setTransitionsFor{Runic}{\runicfont}{\latinfont}
@@ -20,7 +21,7 @@
 \begin{document}
   
 \begin{multicols}{2} 
-
+   
 \input{Einarr2.tex}
 
 \columnbreak

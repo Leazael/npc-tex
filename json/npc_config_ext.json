@@ -129,7 +129,7 @@
       "latex": {"command": "saves", "nInputs": 3}
     },
     {
-      "matchList": ["!speed", "!carry"],
+      "matchList": ["!speed", ["!CarryingCapacity", "!carry"]],
       "paddingChars": [",", ";", ":"],
       "latex": {"command": "speedcarry", "nInputs": 2}
     },
@@ -150,14 +150,20 @@
     {
       "matchList": ["!Melee"],
       "isTable": true,
-      "separators": ["|", "|"],
-      "latex": {"command": "meleetable", "nInputs": 2}
+      "separators": ["|", "|", "|"],
+      "latex": {"command": "attacktable{Melee}", "nInputs": 2}
     },
     {
       "matchList": ["!Ranged"],
       "isTable": true,
-      "separators": ["|", "|"],
-      "latex": {"command": "rangedtable", "nInputs": 2}
+      "separators": ["|", "|", "|"],
+      "latex": {"command": "attacktable{Ranged}", "nInputs": 2}
+    },
+    {
+      "matchList": [["!abilityscores", "!abilities"]],
+      "isTable": true,
+      "separators": ["(", ")", "=", "|"],
+      "latex": {"command": "abilityscoretable", "nInputs": 2}
     },
     {
       "matchList": ["!str", "!dex", "!con", "!int", "!wis", "!cha"],
@@ -165,11 +171,29 @@
     },
     {
       "matchList": ["!bab", "!cmb", "!cmd"],
-      "latex": {"command": "baseattack", "nInputs": 3}
+      "paddingChars": [",", ";"],
+      "latex": {"command": "babcmbcmd", "nInputs": 3}
+    },
+    {
+      "matchList": ["!Feats"],
+      "isTable": true,
+      "separators": ["|", ":"],
+      "latex": {"command": "feattable", "nInputs": 2}
+    },
+    {
+      "description": "used for displaying feats, Einarr style",
+      "matchList": ["|", "|", ":"],
+      "latex": {"command": "quasitable", "nInputs": 3}
     },
     {
       "matchList": ["!Feats"],
       "latex": {"command": "feats"}
+    },
+    {
+      "matchList": ["!Skills"],
+      "isTable": true,
+      "separators": ["|", ":", "=", "|", "|", "|"],
+      "latex": {"command": "skilltable", "nInputs": 2}
     },
     {
       "matchList": ["!Skills"],
@@ -194,6 +218,11 @@
     },
     {
       "description": "Secondary Text + Header.",
+      "matchList": ["%%", [":","--"]],
+      "latex": { "command": "secondaryindentheader", "nInputs": 2}
+    },
+    {
+      "description": "Secondary Text + Header.",
       "matchList": ["%", [":","--"]],
       "latex": { "command": "secondaryheader", "nInputs": 2}
     },
@@ -211,16 +240,16 @@
       "description": "Daily Spells and Spell-like abilities.",
       "matchList": ["$", ["[","("], ["]",")"], [":", "--"]],
       "includeInputs": [true, true, false, true],
-      "latex": { "command": "dailyspells", "nInputs": 3}
+      "latex": { "command": "spelllistmod", "nInputs": 3}
     },
     {
       "description": "Prepared/at-will spells and spell-like abilities.",
       "matchList": ["$", [":", "--"]],
-      "latex": { "command": "dailyspells", "nInputs": 2}
+      "latex": { "command": "spelllist", "nInputs": 2}
     },
     {
       "description": "Special Abilities that can be used a certain nr. of times per day.",
-      "matchList": ["@", "[", "]", "(", ")"],
+      "matchList": ["@", "[", "]", "{", "}"],
       "includeInputs": [true, true, false, true, true],
       "latex": { "command": "specialabilityfreq", "nInputs": 4}
     },

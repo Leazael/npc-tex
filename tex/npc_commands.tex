@@ -5,8 +5,6 @@
 \def\statindentlength{0.66cm}
 \def\statindent{\hskip\statindentlength}
 
-\raggedright
-
 \newcommand{\category}[1]{
     \vspace{-0.65\baselineskip}
 
@@ -30,28 +28,40 @@
 \newcommand{\ac}[3]{\textbf{AC} #1, Touch #2, Flat-Footed #3 \par}
 \newcommand{\saves}[3]{\textbf{Fort} #1 \textbf{Ref} #2 \textbf{Will} #3\par}
 \newcommand{\resistimmune}[2]{\textbf{Resist} #1; \textbf{Immune} #2\par}
-\newcommand{\spellsknown}[3]{{\footnotesize\hangindent=\statindentlength\textbf{#1} (#2) -- #3 \par}}
-\newcommand{\spellsready}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1} -- #2 \par}}
+\newcommand{\spelllistmod}[3]{{\footnotesize\hangindent=\statindentlength\textbf{#1} (#2) -- #3 \par}}
+\newcommand{\spelllist}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1} -- #2 \par}}
 \newcommand{\abilityscores}[6]{\textbf{Str} #1, \textbf{Dex} #2, \textbf{Con} #3, \textbf{Int} #4, \textbf{Wis} #5, \textbf{Cha} #6}
-\newcommand{\bab}[3]{\textbf{Base Attack} #1; \textbf{CMB} #2; \textbf{CMD} #3}
+\newcommand{\babcmbcmd}[3]{\textbf{Base Attack} #1; \textbf{CMB} #2; \textbf{CMD} #3}
 \newcommand{\speedcarry}[2]{\textbf{Speed} #1; \quad\textbf{Carrying Capacity} #2 \par}
 
 \newcommand{\primary}[1]{#1\par}
 \newcommand{\primarybold}[1]{\textbf{#1} \par}
 \newcommand{\primaryindent}[1]{\statindent#1\par}
-\newcommand{\primaryheader}[2]{\textbf{#1} #2 \par}
+\newcommand{\primaryheader}[2]{{\hangindent=\statindentlength\textbf{#1} #2 \par}}
 
 \newcommand{\secondary}[1]{{\footnotesize #1\par}}
+\newcommand{\secondaryindentheader}[2]{{\footnotesize\hangindent=\statindentlength\statindent\textbf{#1} #2\par}}
 \newcommand{\secondaryindent}[1]{{\footnotesize\hangindent=\statindentlength\statindent#1\par}}
-\newcommand{\secondaryheader}[2]{{\footnotesize \textbf{#1} #2 \par}}
+\newcommand{\secondaryheader}[2]{{\footnotesize\textbf{#1} #2 \par}}
 
 \newcommand{\hpsavetable}[4]{{\small \begin{tabular}{@{\noindent} >{\bfseries} l r @{\quad=\quad} r r} #4 \end{tabular} \quad \begin{tabular}{l@{\noindent \enskip}l}  \textbf{hp} & #1 \\ & #3  \\ & (#2) \\  \end{tabular}} \\ \qquad \vspace{-0.25\baselineskip}}
+\newcommand{\attacktable}[3]{{\small \begin{attackgroup}{#1}{#2} #3 \end{attackgroup} \par}} 
+
+\newcommand{\abilityscoretable}[2]{{\vspace{0.25\baselineskip}}\par{\small \begin{tabular}{@{\noindent} >{\bfseries}l @{\quad(}r @{)\quad}r @{\enskip=\enskip}r l}  #2 \end{tabular} \par}}
+
+\newcommand{\feattable}[2]{{\vspace{0.25\baselineskip}}\par{\footnotesize \begin{tabular}{@{\noindent}p{0mm} >{\bfseries}p{15mm} p{61mm}} #2 \end{tabular} \par}}
+\newcommand{\quasitable}[3]{{\footnotesize\hangindent=\statindentlength\parbox{\statindentlength}{#1}\noindent\textbf{#2} #3 \par}}
+
+\newcommand{\skilltable}[2]{{\vspace{0.25\baselineskip}}\par{\footnotesize\begin{tabular}{@{\noindent}  c >{\bfseries}l r @{\enskip=\enskip} rrrr}  & \normalfont{\emph{Skill}}  & & \emph{rnk} & \emph{cs}& \emph{abl} & \emph{misc}\\#2 \end{tabular} \par}}
+
+\newcommand{\specialability}[3]{\secondaryheader{#1 [#2]}{#3}}
+\newcommand{\specialabilityfreq}[4]{\secondaryheader{#1 [#2]}{(#3) #4 } }
 
 \newenvironment{attackgroup}[2]
 {
     \textbf{#1} #2
     
-    \begin{tabular}{@{\statindent}l@{\hskip 12pt}r@{\hskip 12pt}l}
+    \begin{tabular}{@{\statindent}l@{\hskip 12pt}r@{\hskip 12pt}l@{\hskip 12pt}l}
 }
 {
     \end{tabular}

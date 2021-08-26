@@ -1,8 +1,8 @@
-Base.strip(s::String, mping::Mapping) = "" * strip(s, [[first(s[1]) for s in mping.paddingChars]; ' '])
+Base.strip(s::String, mping::MappingStrict) = "" * strip(s, [[first(s[1]) for s in mping.paddingChars]; ' '])
 enbracket(s::String) = "{" * s * "}"
 enbracket(ss::Vector{String}) = join(enbracket.(ss))
 
-function separate_cols(str::String, joinChar::String, mping::Mapping)
+function separate_cols(str::String, joinChar::String, mping::MappingStrict)
     cc = copy(mping.separators)
     ss = [str];
 
@@ -14,10 +14,10 @@ function separate_cols(str::String, joinChar::String, mping::Mapping)
     join([strip(s, mping) for s in ss], joinChar)
 end
 
-function map_element(elem::Element, config::NpcConfig)::String
+function map_element(elem::Element, docSettings::DocumentSettings)::String
     mping = elem.mapping
     latex = mping.latex
-    trc = [first(c) for c in config.tableRowChar]
+    trc = [first(c) for c in docSettings.tableRowChar]
     if mping.isTable
         inputs = String[]
         for a in elem.atoms
@@ -46,10 +46,10 @@ function map_element(elem::Element, config::NpcConfig)::String
     return "\\" * latex.command * enbracket(inputs)
 end
 
-function write(path::String, doc::Document, config::NpcConfig)
+function write(path::String, doc::Document, docSettings::DocumentSettings)
     io = open(path, "w");
     for el in doc.elements
-        println(io, map_element(el, config))
+        println(io, map_element(el, docSettings))
         println(io)
     end
     close(io)
