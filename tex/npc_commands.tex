@@ -21,7 +21,24 @@
     \vspace{-0.25\baselineskip}   
 }
 
-\newcommand{\labelcategory}[2]{\category{#1 \qquad #2}}
+\newcommand{\categorybreak}[1]{
+    \columnbreak
+
+    \leavevmode\leaders\hrule height 0.8pt\hfill\kern0pt
+    
+    \vspace{-0.25\baselineskip}
+    
+    \textbf{#1}
+    
+    \vspace{-0.75\baselineskip}
+    
+    \leavevmode\leaders\hrule height 0.8pt\hfill\kern0pt
+    
+    \vspace{-0.25\baselineskip}   
+}
+
+\newcommand{\labelcategory}[2]{\category{\parbox{\statindentlength}{#1}#2}}
+\newcommand{\labelcategorybreak}[2]{\categorybreak{\parbox{\statindentlength}{#1}#2}}
 
 \newcommand{\initsense}[2]{\textbf{Init} #1; \textbf{Senses:} #2 \par}
 \newcommand{\alignmentage}[3]{#1 #2 \textbf{Age:} #3 \par}
@@ -52,10 +69,14 @@
 \newcommand{\feattable}[2]{{\vspace{0.25\baselineskip}}\par{\footnotesize \begin{tabular}{@{\noindent}p{0mm} >{\bfseries}p{15mm} p{61mm}} #2 \end{tabular} \par}}
 \newcommand{\quasitable}[3]{{\footnotesize\hangindent=\statindentlength\parbox{\statindentlength}{#1}\noindent\textbf{#2} #3 \par}}
 
-\newcommand{\skilltable}[2]{{\vspace{0.25\baselineskip}}\par{\footnotesize\begin{tabular}{@{\noindent}  c >{\bfseries}l r @{\enskip=\enskip} rrrr}  & \normalfont{\emph{Skill}}  & & \emph{rnk} & \emph{cs}& \emph{abl} & \emph{misc}\\#2 \end{tabular} \par}}
+\newcommand{\skilltable}[2]{{\vspace{0.25\baselineskip}}\par{\footnotesize\begin{tabular}{@{\noindent} c >{\bfseries}l r @{\enskip=\enskip} rrrr}  & \normalfont{\emph{Skill}}  & & \emph{rnk} & \emph{cs}& \emph{abl} & \emph{misc}\\#2 \end{tabular} \par}}
 
 \newcommand{\specialability}[3]{\secondaryheader{#1 [#2]}{#3}}
 \newcommand{\specialabilityfreq}[4]{\secondaryheader{#1 [#2]}{(#3) #4 } }
+
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand{\invtable}[2]{{\vspace{0.25\baselineskip}}\par{\footnotesize\begin{tabular}{@{\noindent} p{0.60\columnwidth} R{0.17\columnwidth} R{0.12\columnwidth}} \textbf{#1} & \emph{cost} & \emph{weight} \\#2 \end{tabular} \par}}
+
 
 \newenvironment{attackgroup}[2]
 {

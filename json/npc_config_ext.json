@@ -200,16 +200,34 @@
       "latex": {"command": "skills"}
     },
     {
+      "matchList": ["!Inventory"],
+      "isTable": true,
+      "separators": ["|", "|"],
+      "latex": {"command": "invtable", "nInputs": 2}
+    },
+    {
+      "description": "Labelled pagebreak Category",
+      "matchList": [["||=", "╠═"], "|"],
+      "paddingChars": ["=","═"],
+      "latex": { "command": "labelcategorybreak", "nInputs": 2}
+    },
+    {
       "description": "Labelled Category",
-      "matchList": ["===", "|"],
-      "paddingChars": ["="],
+      "matchList": [["=","═"], "|"],
+      "paddingChars": ["=","═"],
       "latex": { "command": "labelcategory", "nInputs": 2}
     },
     {
       "description": "Category",
-      "matchList": ["="],
-      "paddingChars": ["="],
+      "matchList": [["=","═"]],
+      "paddingChars": ["=","═"],
       "latex": { "command": "category" }
+    },
+    {
+      "description": "Category Break",
+      "matchList": [["||=", "╠═"]],
+      "paddingChars": ["=","═"],
+      "latex": { "command": "categorybreak" }
     },
     {
       "description": "Primary Text + Header.",
