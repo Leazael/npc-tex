@@ -277,6 +277,12 @@
       "latex": { "command": "specialability", "nInputs": 3}
     },
     {
+      "description": "Empty Lines",
+      "matchList": [ "~~" ],
+      "includeInputs": [false],
+      "latex": { "command": "primary{\\quad}", "nInputs": 0}
+    },
+    {
       "description": "Primary text",
       "matchList": [ "~" ],
       "latex": { "command": "primary"}
