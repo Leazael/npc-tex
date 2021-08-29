@@ -40,21 +40,20 @@
 \newcommand{\labelcategory}[2]{\category{\parbox{\statindentlength}{#1}#2}}
 \newcommand{\labelcategorybreak}[2]{\categorybreak{\parbox{\statindentlength}{#1}#2}}
 
-\newcommand{\initsense}[2]{\textbf{Init} #1; \textbf{Senses:} #2 \par}
 \newcommand{\alignmentage}[3]{#1 #2 \textbf{Age:} #3 \par}
 \newcommand{\ac}[3]{\textbf{AC} #1, Touch #2, Flat-Footed #3 \par}
-\newcommand{\saves}[3]{\textbf{Fort} #1 \textbf{Ref} #2 \textbf{Will} #3\par}
-\newcommand{\resistimmune}[2]{\textbf{Resist} #1; \textbf{Immune} #2\par}
 \newcommand{\spelllistmod}[3]{{\footnotesize\hangindent=\statindentlength\textbf{#1} (#2) -- #3 \par}}
 \newcommand{\spelllist}[2]{{\footnotesize\hangindent=\statindentlength\textbf{#1} -- #2 \par}}
+
 \newcommand{\abilityscores}[6]{\textbf{Str} #1, \textbf{Dex} #2, \textbf{Con} #3, \textbf{Int} #4, \textbf{Wis} #5, \textbf{Cha} #6}
-\newcommand{\babcmbcmd}[3]{\textbf{Base Attack} #1; \textbf{CMB} #2; \textbf{CMD} #3}
-\newcommand{\speedcarry}[2]{\textbf{Speed} #1; \quad\textbf{Carrying Capacity} #2 \par}
 
 \newcommand{\primary}[1]{#1\par}
 \newcommand{\primarybold}[1]{\textbf{#1} \par}
 \newcommand{\primaryindent}[1]{\statindent#1\par}
 \newcommand{\primaryheader}[2]{{\hangindent=\statindentlength\textbf{#1} #2 \par}}
+
+\newcommand{\doublebold}[4]{\textbf{#1} #3; \textbf{#2} #4 \par}
+\newcommand{\triplebold}[6]{\textbf{#1} #4; \textbf{#2} #5; \textbf{#3} #6 \par}
 
 \newcommand{\secondary}[1]{{\footnotesize #1\par}}
 \newcommand{\secondaryindentheader}[2]{{\footnotesize\hangindent=\statindentlength\statindent\textbf{#1} #2\par}}

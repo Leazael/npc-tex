@@ -42,11 +42,11 @@ function map_element(elem::Element, docSettings::DocumentSettings)::String
         inputs = inputs[mping.includeInputs]
     end
 
-    @assert(length(inputs) == latex.nInputs)
+    @assert(length(inputs) == latex.nInputs, "Element cannot be mapped: " * string(elem) )
     return "\\" * latex.command * enbracket(inputs)
 end
 
-function write(path::String, doc::Document, docSettings::DocumentSettings)
+function write_file(path::String, doc::Document, docSettings::DocumentSettings)
     io = open(path, "w");
     for el in doc.elements
         println(io, map_element(el, docSettings))

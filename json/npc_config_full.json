@@ -1,0 +1,307 @@
+{
+    "documentSettings":
+    {
+      "commentChar":  [ "^" ],
+      "tableRowChar": [ ">" ],
+      "concatenators": [
+        {
+          "match": "...",
+          "remove": true,
+          "addWhitespace": true
+        },
+        {
+          "match": "…",
+          "remove": true,
+          "addWhitespace": true
+        },
+        {
+          "match": "-",
+          "remove": true,
+          "addWhitespace": false
+        },
+        {
+          "match": ",",
+          "remove": false,
+          "addWhitespace": true
+        },
+        {
+          "match": ";",
+          "remove": false,
+          "addWhitespace": true
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "matchList": ["!name"],
+        "latex": {"command": "primarybold"}
+      },
+      {
+        "matchList": ["!LG", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{LG}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!NG", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{NG}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!CG", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{CG}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!LN", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{LN}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!N", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{N}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!TN", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{N}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!CN", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{CN}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!LE", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{LE}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!NE", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{NE}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!CE", "!Age"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "alignmentage{CE}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!init", "!senses"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "doublebold{Init}{Senses}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!AC", "!touch", "!FlatFooted"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "ac", "nInputs": 3}
+      },
+      {
+        "matchList": ["!hp", "=", "[", "]"],
+        "isTable": true,
+        "separators": [":", "=", "|"],
+        "includeInputs": [true, true, true, false, true],
+        "latex": {"command": "hpsavetable", "nInputs": 4}
+      },
+      {
+        "matchList": ["!hp"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "hp"}
+      },
+      {
+        "matchList": ["!vp", "!wp", "!dr"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "triplebold{vp}{wp}{DR}", "nInputs": 3}
+      },
+      {
+        "matchList": ["!vp", "!wp"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "doublebold{vp}{wp}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!fort", "!ref", "!will"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "triplebold{Fort}{Ref}{Will}", "nInputs": 3}
+      },
+      {
+        "matchList": ["!FastHealing", "!DR"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "doublebold{Fast Healing}{DR}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!Resist"],
+        "latex": {"command": "secondaryheader{Resist}"}
+      },
+      {
+        "matchList": ["!Immune"],
+        "latex": {"command": "secondaryheader{Immune}"}
+      },
+      {
+        "matchList": ["!speed", ["!CarryingCapacity", "!carry"]],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "doublebold{Speed}{Carrying Capacity}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!speed"],
+        "latex": {"command": "primaryheader{Speed}"}
+      },
+          {
+        "matchList": ["!Melee"],
+        "isTable": false,
+        "latex": {"command": "primaryheader{Melee}"}
+      },
+      {
+        "matchList": ["!Ranged"],
+        "isTable": false,
+        "latex": {"command": "primaryheader{Ranged}"}
+      },
+      {
+        "matchList": ["!Melee"],
+        "isTable": true,
+        "separators": ["|", "|", "|"],
+        "latex": {"command": "attacktable{Melee}", "nInputs": 2}
+      },
+      {
+        "matchList": ["!Ranged"],
+        "isTable": true,
+        "separators": ["|", "|", "|"],
+        "latex": {"command": "attacktable{Ranged}", "nInputs": 2}
+      },
+      {
+        "matchList": [["!abilityscores", "!abilities"]],
+        "isTable": true,
+        "separators": ["(", ")", "=", "|"],
+        "latex": {"command": "abilityscoretable", "nInputs": 2}
+      },
+      {
+        "matchList": ["!str", "!dex", "!con", "!int", "!wis", "!cha"],
+        "paddingChars": [",",";",":"],
+        "latex": {"command": "abilityscores", "nInputs": 6}
+      },
+      {
+        "matchList": ["!bab", "!cmb", "!cmd"],
+        "paddingChars": [",", ";"],
+        "latex": {"command": "triplebold{Base Attack}{CMB}{CMD}", "nInputs": 3}
+      },
+      {
+        "matchList": ["!Feats"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "secondaryheader{Feats}"}
+      },
+      {
+        "matchList": ["!Feats"],
+        "isTable": true,
+        "separators": ["|", ":"],
+        "latex": {"command": "feattable", "nInputs": 2}
+      },
+      {
+        "description": "used for displaying feats, Einarr style",
+        "matchList": ["|", "|", ":"],
+        "latex": {"command": "quasitable", "nInputs": 3}
+      },
+      {
+        "matchList": ["!Skills"],
+        "paddingChars": [",", ";", ":"],
+        "latex": {"command": "secondaryheader{Skills}"}
+      },
+      {
+        "matchList": ["!Skills"],
+        "isTable": true,
+        "separators": ["|", ":", "=", "|", "|", "|"],
+        "latex": {"command": "skilltable", "nInputs": 2}
+      },
+      {
+        "matchList": ["!Inventory"],
+        "isTable": true,
+        "separators": ["|", "|"],
+        "latex": {"command": "invtable", "nInputs": 2}
+      },
+      {
+        "description": "Labelled pagebreak Category",
+        "matchList": [["||=", "╠═"], "|"],
+        "paddingChars": ["=","═"],
+        "latex": { "command": "labelcategorybreak", "nInputs": 2}
+      },
+      {
+        "description": "Labelled Category",
+        "matchList": [["=","═"], "|"],
+        "paddingChars": ["=","═"],
+        "latex": { "command": "labelcategory", "nInputs": 2}
+      },
+      {
+        "description": "Category",
+        "matchList": [["=","═"]],
+        "paddingChars": ["=","═"],
+        "latex": { "command": "category" }
+      },
+      {
+        "description": "Category Break",
+        "matchList": [["||=", "╠═"]],
+        "paddingChars": ["=","═"],
+        "latex": { "command": "categorybreak" }
+      },
+      {
+        "description": "Primary Text + Header.",
+        "matchList": ["#", [":","--"]],
+        "latex": { "command": "primaryheader", "nInputs": 2}
+      },
+      {
+        "description": "Secondary Text + Header.",
+        "matchList": ["%%", [":","--"]],
+        "latex": { "command": "secondaryindentheader", "nInputs": 2}
+      },
+      {
+        "description": "Secondary Text + Header.",
+        "matchList": ["%", [":","--"]],
+        "latex": { "command": "secondaryheader", "nInputs": 2}
+      },
+      {
+        "description": "Secondary text.",
+        "matchList": ["__"],
+        "latex": { "command": "secondaryindent"}
+      },
+      {
+        "description": "Secondary text.",
+        "matchList": ["_"],
+        "latex": { "command": "secondary"}
+      },
+      {
+        "description": "Daily Spells and Spell-like abilities.",
+        "matchList": ["$", ["[","("], ["]",")"], [":", "--"]],
+        "includeInputs": [true, true, false, true],
+        "latex": { "command": "spelllistmod", "nInputs": 3}
+      },
+      {
+        "description": "Prepared/at-will spells and spell-like abilities.",
+        "matchList": ["$", [":", "--"]],
+        "latex": { "command": "spelllist", "nInputs": 2}
+      },
+      {
+        "description": "Special Abilities that can be used a certain nr. of times per day.",
+        "matchList": ["@", "[", "]", "{", "}"],
+        "includeInputs": [true, true, false, true, true],
+        "latex": { "command": "specialabilityfreq", "nInputs": 4}
+      },
+      {
+        "description": "Constant or at-will Special Abilities",
+        "matchList": ["@", "[", "]"],
+        "latex": { "command": "specialability", "nInputs": 3}
+      },
+      {
+        "description": "Empty Lines",
+        "matchList": [ "~~" ],
+        "includeInputs": [false],
+        "latex": { "command": "primary{\\quad}", "nInputs": 0}
+      },
+      {
+        "description": "Primary text",
+        "matchList": [ "~" ],
+        "latex": { "command": "primary"}
+      },
+      {
+        "description": "Primary text (default!)",
+        "matchList": null,
+        "latex": { "command": "primary"}
+      }
+    ]
+  }
