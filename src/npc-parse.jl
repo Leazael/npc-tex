@@ -7,8 +7,9 @@ function deepreplace!(a::AbstractVector, b::AbstractVector)
 end
 
 
-function peekahead(io::IO, n::Int64)::String
+function peekahead(io::IO, n::Int64; startAt=0)::String
     mark(io)
+    skip(io, startAt)
     result = ""
     while !eof(io) && length(result) < n
         result = result * read(io, Char)
@@ -67,12 +68,24 @@ function yield_first(elementList::Vector{Element})::Element
 end
 
 
-function preparse_concatenator(io::IO, concatenators::Vector{Concatenator}, c::Char)::Union{Nothing,Tuple{Concatenator,String}}
+function preparse_concatenator(io::IO, concatenators::Vector{Concatenator}, commentChar::Vector{String} , c::Char)::Union{Nothing,Tuple{Concatenator,String}}
     for conc in concatenators
         if conc.match == c * peekahead(io, length(conc) - 1)
             tail = peekuntil(io, x -> x == '\n' || !isspace(x); startAt=length(conc) - 1);
-            if !isempty(tail) && last(tail) == '\n'
-                return (conc, tail)
+            
+            if !isempty(tail) 
+                
+                if last(tail) == '\n'
+                    return (conc, tail)
+                end
+
+                for comm in commentChar
+                    commTail = peekahead(io, length(comm) - 1; startAt = length(tail) + length(conc) - 1);
+                    if tail[end] * commTail == comm
+                        tail = peekuntil(io, x -> x == '\n'; startAt=length(conc) - 1)
+                        return (conc, tail)
+                    end
+                end
             end
         end
     end
@@ -142,12 +155,13 @@ end
 
 
 function parse_char!(io::IO, config::NpcConfig, candidates::Vector{Element}, document::Document, c::Char)
-    concatenation = preparse_concatenator(io, config.documentSettings.concatenators, c)
+    concatenation = preparse_concatenator(io, config.documentSettings.concatenators, config.documentSettings.commentChar, c)
+
     if !isnothing(concatenation)
         parse_concatenator!(io, candidates, concatenation)
     elseif c == '\r' || c == '\n' # end of line reached
         parse_newline!(io, config, candidates, document)
-    elseif all(istrivial.(candidates)) && string(c) in config.documentSettings.commentChar # line starts with comment
+    elseif any([ c*peekahead(io, length(cc)-1) == cc for cc in config.documentSettings.commentChar]) #start of a comment
         skip_until(io, isequal('\n'); keep=false)
     else
         parse_all_elements!(candidates, c)

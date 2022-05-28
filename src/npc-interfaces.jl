@@ -7,12 +7,14 @@ struct Concatenator
 end
 Base.length(conc::Concatenator) = length(conc.match)
 
+
 struct LatexCommand
     command::String
     nInputs::Int64
     LatexCommand(command, nInputs) = 
         new(command, isnothing(nInputs) ? 1 : nInputs)
 end
+
 
 struct MappingStrict
     description::String
@@ -45,17 +47,18 @@ end
 
 
 struct DocumentSettings
-    macroChar::Vector{String}
     commentChar::Vector{String}
     tableRowChar::Vector{String}
     concatenators::Vector{Concatenator}
 end
 Base.:(==)(obj1::DocumentSettings, obj2::DocumentSettings)::Bool =  all([getproperty(obj1,p) == getproperty(obj2,p) for p in propertynames(obj1)])
 
+
 struct NpcConfigJSON
     documentSettings::DocumentSettings
     mappings::Vector{Mapping}
 end
+
 
 struct NpcConfig
     documentSettings::DocumentSettings
@@ -82,7 +85,7 @@ Base.:(==)(e1::Element, e2::Element)::Bool = (e1.atoms == e2.atoms) &&  (e1.mapp
 mutable struct Document
     elements::Vector{Element}
 end
-Base.:(==)(d1::Document, d2::Document)::Bool = d1.elements == d2.elements
+Base.:(==)(d1::Document, d2::Document)::Bool = (d1.elements == d2.elements)
 
 
 function append_value!(a::Atom, s::AbstractString)
@@ -137,6 +140,7 @@ function simplify(mm::Vector{Mapping})::Vector{MappingStrict}
     end
     return mmStrict
 end
+
 
 istrivial(a::Atom) = isempty(a.key * a.value)
 istrivial(elem::Element) = all(istrivial.(elem.atoms))

@@ -1,7 +1,6 @@
 { "documentSettings":
   {
-    "macroChar": [ "$" ],
-    "commentChar":  [ "^" ],
+    "commentChar":  [ "//" ],
     "tableRowChar": [ ">" ],
     "concatenators": [
       {

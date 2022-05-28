@@ -4,7 +4,7 @@
 ~Human Slayer 6
 NG Medium Humanoid [Human]
 !Init +5; !Senses Perception +13
- ^ Maleeknorp
+ // Maleeknorp
 ===Defence==================================================
 !AC 19 (20), !Touch 15, !FlatFooted 14 (15)
   ~(+5 Dex, +4 Armour, [+1 Shield])

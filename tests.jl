@@ -18,4 +18,3 @@ doc = parsefile(path, config);
 # JSON3.write("json/test_data_document_settings.json", config.documentSettings) # to save new reference data
 # JSON3.write("json/test_data_mappings.json", config.mappings) # to save new reference data
 # JSON3.write("json/test_data_einarr.json", parsefile(path, docSettings, mappings)) # to save new reference data
-
