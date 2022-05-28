@@ -54,3 +54,5 @@ function write_file(path::String, doc::Document, docSettings::DocumentSettings)
     end
     close(io)
 end
+
+write_file(path::String, doc::Document, config::NpcConfig) = write_file(path, doc, config.documentSettings)

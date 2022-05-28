@@ -13,17 +13,19 @@
 
 \newfontfamily\latinfont{Corbel}
 \newfontfamily\runicfont{SegoeUIHistoric}
+\newfontfamily\musicfont{SegoeUISymbol}
 
-\usepackage[Runic]{ucharclasses}  
+\usepackage[Runic,MusicalSymbols]{ucharclasses}  
  
 \setDefaultTransitions{\latinfont}{}
 \setTransitionsFor{Runic}{\runicfont}{\latinfont}
+\setTransitionsFor{MusicalSymbols}{\musicfont}{\latinfont}
 
 \begin{document}
   
 \begin{multicols}{2} 
    
-\input{Einarr2.tex}
+\input{Ludo.tex}
 
 
 \end{multicols}

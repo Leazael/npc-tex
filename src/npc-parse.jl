@@ -95,14 +95,14 @@ end
 
 is_table_row(io::IO, docSettings::DocumentSettings) = (last(peekuntil(io, !isspace)) * "" in docSettings.tableRowChar)
 
-function parse_newline!(io::IO, docSettings::DocumentSettings, mappings::Vector{MappingStrict}, candidates::Vector{Element}, doc::Document)
-    if !eof(io) && is_table_row(io, docSettings)
+function parse_newline!(io::IO, config::NpcConfig, candidates::Vector{Element}, doc::Document)
+    if !eof(io) && is_table_row(io, config.documentSettings)
         filter!(el -> el.mapping.isTable, candidates)
     else
         if !istrivial(candidates)
             push!(doc, yield_first(candidates))
         end
-        deepreplace!(candidates, Element.(mappings)) #replace candidates with empty new elements.
+        deepreplace!(candidates, Element.(config.mappings)) #replace candidates with empty new elements.
         skip_until(io, !isspace; keep=false)
     end
 end
@@ -141,13 +141,13 @@ function parse_all_elements!(candidates::Vector{Element}, c::Char)
 end
 
 
-function parse_char!(io::IO, docSettings::DocumentSettings, mappings::Vector{MappingStrict}, candidates::Vector{Element}, document::Document, c::Char)
-    concatenation = preparse_concatenator(io, docSettings.concatenators, c)
+function parse_char!(io::IO, config::NpcConfig, candidates::Vector{Element}, document::Document, c::Char)
+    concatenation = preparse_concatenator(io, config.documentSettings.concatenators, c)
     if !isnothing(concatenation)
         parse_concatenator!(io, candidates, concatenation)
     elseif c == '\r' || c == '\n' # end of line reached
-        parse_newline!(io, docSettings, mappings, candidates, document)
-    elseif all(istrivial.(candidates)) && string(c) in docSettings.commentChar # line starts with comment
+        parse_newline!(io, config, candidates, document)
+    elseif all(istrivial.(candidates)) && string(c) in config.documentSettings.commentChar # line starts with comment
         skip_until(io, isequal('\n'); keep=false)
     else
         parse_all_elements!(candidates, c)
@@ -159,22 +159,22 @@ function parse_char!(io::IO, docSettings::DocumentSettings, mappings::Vector{Map
 end
 
 
-function parse(io::IO, docSettings::DocumentSettings, mappings::Vector{MappingStrict})::Document
+function parse(io::IO, config::NpcConfig)::Document
     
-    candidates = Element.(mappings) # create an empty element for each possible mapping.
+    candidates = Element.(config.mappings) # create an empty element for each possible mapping.
     document = Document();
         
     while !eof(io)
-        parse_char!(io, docSettings, mappings, candidates, document, read(io, Char))
+        parse_char!(io, config, candidates, document, read(io, Char))
     end
 
     return document
 end
 
 
-function parsefile(path::AbstractString, docSettings::DocumentSettings, mappings::Vector{MappingStrict})::Document
+function parsefile(path::AbstractString, config::NpcConfig)::Document
     io = open(path)
-    data = parse(io, docSettings, mappings)
+    data = parse(io, config)
     close(io)
     return data
 end

@@ -51,9 +51,14 @@ struct DocumentSettings
 end
 Base.:(==)(obj1::DocumentSettings, obj2::DocumentSettings)::Bool =  all([getproperty(obj1,p) == getproperty(obj2,p) for p in propertynames(obj1)])
 
-struct NpcConfig
+struct NpcConfigJSON
     documentSettings::DocumentSettings
     mappings::Vector{Mapping}
+end
+
+struct NpcConfig
+    documentSettings::DocumentSettings
+    mappings::Vector{MappingStrict}
 end
 
 
