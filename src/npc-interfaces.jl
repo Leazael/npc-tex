@@ -45,6 +45,7 @@ end
 
 
 struct DocumentSettings
+    macroChar::Vector{String}
     commentChar::Vector{String}
     tableRowChar::Vector{String}
     concatenators::Vector{Concatenator}

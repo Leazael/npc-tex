@@ -1,6 +1,4 @@
-using Revise
-using JSON3
-Revise.includet("src/NPCTeX.jl");
+include("src/NPCTeX.jl");
 using .NPCTeX
 
 config = NpcConfig("json/npc_config_full.json")

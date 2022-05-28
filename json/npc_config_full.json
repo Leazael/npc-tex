@@ -1,6 +1,7 @@
 {
     "documentSettings":
     {
+      "macroChar": [ "$" ],
       "commentChar":  [ "^" ],
       "tableRowChar": [ ">" ],
       "concatenators": [
@@ -267,13 +268,13 @@
       },
       {
         "description": "Daily Spells and Spell-like abilities.",
-        "matchList": ["$", ["[","("], ["]",")"], [":", "--"]],
+        "matchList": ["!Spell", ["[","("], ["]",")"], [":", "--"]],
         "includeInputs": [true, true, false, true],
         "latex": { "command": "spelllistmod", "nInputs": 3}
       },
       {
         "description": "Prepared/at-will spells and spell-like abilities.",
-        "matchList": ["$", [":", "--"]],
+        "matchList": ["!Spell", [":", "--"]],
         "latex": { "command": "spelllist", "nInputs": 2}
       },
       {
