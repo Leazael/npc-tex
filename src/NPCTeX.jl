@@ -1,7 +1,7 @@
 module NPCTeX
 
 using JSON3
-export NpcConfig, Document, Mapping, MappingStrict, DocumentSettings, LatexCommand, Concatenator, Element, Atom, Document, parsefile, write_file
+export NpcConfig, Document, Mapping, MappingStrict, DocumentSettings, LatexCommand, Concatenator, Element, Atom, Document, parsefile, write_file, parse_to_file
 
 include("npc-interfaces.jl")
 include("npc-parse.jl")
