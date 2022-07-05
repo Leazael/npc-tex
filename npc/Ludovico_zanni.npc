@@ -1,4 +1,4 @@
-!Name Ludovico Zanni (Level 1)
+!Name 𝄞 Ludovico Zanni (Level 1)
 Male halfling Bard (Instrumentalist/Cacophist) 1
 !NG Small Humanoid (Halfling), !Age 61
 !Init +2; !Senses Perception +5
@@ -30,22 +30,33 @@ __(+2 Dex, +4 Armour, +1 Size, [+2 dodge])
  > Int (+3)  16 = 15  | +1 (age)
  > Wis (−1)   8 =  9  | +1 (age)
  > Cha (+4)  19 = 16  | +1 (age) +2 (race)
-!BAB +0; !CMB −2; !CMD 10
-%Languages: Common, Halfling, Varisian, Hallitm, ???
+!BAB +0; !CMB −2; !CMD 10 [12]
+%Languages: Common, Halfling, Varisian, Hallitm, Goblin
 %Religion: Brigh, Shelyn
 %Origin: Ustalav (Karcau)
 
 ===𝄢|Traits=================================================
 
-__Local Ties (Know [eng] +1), Skymetal Smith (+2 Will)
+%Local Ties: +1 trait bonus on Knowledge [Engineering], 
+ and you are treated as if you possessed the Technologist…
+ feat for the purposes of resolving checks associated with…
+ that skill.
 %Artisan: +2 trait bonus on Craft [Woodworking]
 %Halfling Luck: +1 racial bonus on all saving throws.
 %Fearless:+2 racial bonus on all saves vs. fear.
-%Shadowplay: +1 CL on spells with the darkness, light, 
- or shadow descriptor. (Replaces weapon familiarity.)
 %Keen Senses: +2 racial bonus on Perception checks.
-%Creepy: No Size Penalty vs. larger humanoids.…
+%Shadowplay: +1 CL on spells with the Darkness, Light, 
+ or Shadow descriptor. (Replaces weapon familiarity.)
+%Creepy: No Size penalty on intimidate vs. larger humanoids…
  (Replaces sure footed).
+
+===𝄢|Spells=================================================
+_Concentration +5 (+2 after bardic peformance)
+_+1 CL on spells with Darkness, Light or Shadow descriptior.
+
+!Spell 1st (2/day) -- Unseen Servant, Silent Image
+!Spell Cantrips (∞/day) -- Detect Magic, Mending,
+  Prestidigitation, Summon instrument
 
 ===𝄢|Feats [1 + 1b]=========================================
 
@@ -60,81 +71,120 @@ __Local Ties (Know [eng] +1), Skymetal Smith (+2 Will)
 ===𝄢|Skills [9 + favoured class/level]======================
 
 !Skills 
-> 𝅘𝅥𝅮 |Appraise:               +8 = 1 | +3 | +3 | +1 (class)
-> 𝅘𝅥𝅮 |Craft [Woodworking]*:  +10 = 1 | +3 | +4 | +2 (Trait)
-> 𝅘𝅥𝅮 |Diplomacy:              +8 = 1 | +3 | +4 |
-> 𝅘𝅥𝅮 |Knowledge* (arc):       +8 = 1 | +3 | +3 | +1 (class)
-> 𝅘𝅥𝅮 |Knowledge* (eng):       +8 = 1 | +3 | +3 | +1 (class)
->   |Knowledge* (loc):       +4 = 0 |    | +3 | +1 (class)
-> 𝅘𝅥𝅮 |Knowledge* (nob):       +8 = 1 | +3 | +3 | +1 (class)
->   |Linguistics:            +4 = 0 |    | +3 | +1 (class)
-> 𝅘𝅥𝅮 |Perception:             +5 = 1 | +3 | −1 | +2 (race)
-> 𝅘𝅥𝅮 |Perform (String):       +8 = 1 | +3 | +4 |
-> 𝅘𝅥𝅮 |Perform (Wind):         +8 = 1 | +3 | +4 |
-> 𝅘𝅥𝅮 |Sense Motive:           +3 = 1 | +3 | −1 |
+> 𝅘𝅥𝅮 |Appraise:               +8  = 1 | +3 | +3 | +1 (class)
+>   |Bluff:                  +4  =   |    | +4 | 
+> 𝅘𝅥𝅮 |Craft [Woodworking]*:  +10  = 1 | +3 | +4 | +2 (Trait)
+> 𝅘𝅥𝅮 |Diplomacy:              +8  = 1 | +3 | +4 | 
+> 𝅘𝅥𝅮 |Intimidate:             +8  = 1 | +3 | +4 |  
+>   |Knowledge (arc) †:      +4  =   |    | +3 | +1 (class)
+> 𝅘𝅥𝅮 |Knowledge (eng) ‡:      +8  = 1 | +3 | +3 | +1 (class)
+>   |Knowledge (loc):        +4  =   |    | +3 | +1 (class)
+> 𝅘𝅥𝅮 |Knowledge (nob) †:      +8  = 1 | +3 | +3 | +1 (class)
+>   |Linguistics† :          +4  =   |    | +3 | +1 (class)
+> 𝅘𝅥𝅮 |Perception:             +5  = 1 | +3 | −1 | +2 (race)
+> 𝅘𝅥𝅮 |Perform (String):       +8  = 1 | +3 | +4 | 
+> 𝅘𝅥𝅮 |Sense Motive:           +3  = 1 | +3 | −1 | 
+> 𝅘𝅥𝅮 |Use Magic Device:       +8  = 1 | +3 | +4 | 
 __*Use Cha instead of Int
+__†May use untrained
+__‡Use as if possessing the Technologist feat.
 
 ||=𝄢|Bard Abilities=========================================
 
 @Musical Artificer [Ex] Add ½ level (min. 1) to appraise, 
  knowledge (arc), knowledge (eng), knowledge (loc), 
  knowledge (nob) and linguistics checks, and may use these…
- skills untrained. Use their Cha instead of Int bonus on…
+ skills untrained. Use Cha instead of Int bonus on…
  all craft skills related to making, using, repairing,
  or tuning musical instruments.
-@Intrument Dependant [ex] Can only use bardic performance…
- by playing an instrument. Can use spells with somatic… 
+@Intrument Dependant [ex] Can use spells with somatic… 
  components with a hand that is holding a (part of a)…
- musical instrument. 
+ musical instrument. Must use instrument for bardic… 
+ performances with audible components.
 @Subtle Performance [ex] Observers do not automatically…
  recognize bardic performances as anything other than…
  ordinary performance. Those specifically looking for…
  abnormal effects must succeed at a DC 14 Sense Motive…
  check to detect their performances.
 @Stalwart Musician [ex] Do not provoke attacks of…
- opportunity for using the “Perform” skill. As longs as…
- they are maintaining a bardic performance and while…
- using both hands to wield their instrument:…
- +2 dodge bonus to AC.
+ opportunity for using the “Perform” skill. On spending…
+ a round of bardic performance, +2 dodge bonus to AC…
+ and +2 Concentration until the end of next turn.
 
 =𝄢|Bardic performances [14 rounds/day]======================
 
-_A bard can use bardic performance a number of times per…
- day equal to: 2 + Cha + 2 × level. Extra performance…
- increases this number by 6. 
+_Can be used 8 + 2×level + Cha rounds per day…
+ (incl. extra performance).
 _Starting a bardic performance is a standard action and… 
- maintained as a free scation. It cannot be disturbed but…
+ maintained as a free action. It cannot be disturbed but…
  ends immediately if the bard is killed, paralyzed, 
  stunned, unconscious or otherwise prevented from taking a…
- free action. A bard cannot have more than one bardic performance in…
- effect at one time.
-_All instrumentalist's bardic performances rely on… 
- audible components only meaning targets must be able to…
- hear the bard. A deaf bard as a 20\% to fail such a…
- performance. Deaf creatures are immune to performances…
- with audible components. 
-
+ free action. A bard cannot have more than one bardic…
+ performance in effect at one time. A deaf bard has a 20\%…
+ chance to fail an audible performance. A blind bard has a… 
+ 50\% chance to fail a visual performance.
+_All instrumentalist's bardic performances must be…
+ accompanied by an instrument, even if they soleley rely…
+ on visual components.
+ 
 @Countersong [Su] Each round make a Perform (keyboard, 
  percussion, wind, string) check, any creature within… 
  30 ft. by a sonic or language-dependent magical attack… 
  may use the perform result in place of their saving… 
- throw. Any creatyre already under the affect of such an… 
- attack gains anotehr saving throw against the effect each…
- round it hears the counterson, but it must use the bards… 
- result for the save.
+ throw. Any creature already under the affect of such an… 
+ attack gains another saving throw against the effect each…
+ round it hears the countersong, but it must use the bards… 
+ result for the save.…
+ (Relies on audible components.)
 @Fascinate [Su] Creatures within 90 feet, able to hear, see,
  (and be seen by the bard), and capable of paying attention…
  become fascinated. DC 14 Will negats and renders creature…
  immune to the performance for 24 hours. Fascinate is an…
- enchantment (compulsion), mind-affecting ability.
+ enchantment (compulsion), mind-affecting ability.…
+ (Relies on audible and visible components.)
 @Inspire Courage [Su] Targets able to perciesve the bards…
  performance receive a a +1 competence bonus on attack and…
  weapon damage rolls, and a +1 morale bonus on saves vs. …
  charm and fear effects. Inspire courage is a mind-
- affecting ability.
-@Cacophonous Chord [Sp] On starting this performance as… 
- a standard action, or as a standard action while… 
- maintaining the performance, create a 10 ft. radius burst…
- at close range (25 ft.), dealing 1d6 sonic damage…
- (Fort halfs.). This performance is an evocation (sonic)…
- effect and can affect deafened creatures.
+ affecting ability.…
+ (Relies on audible or visible components.)
+
+=𝄢|Dissonant performance====================================
+
+_Dissonant performance is a type of bardic performance.…
+ For the duration of the performance, invoke a dissonance…
+ as a standard action. Alternatively, when starting…
+ the performance as a standard action, spend an…
+ additional round of bardic performance to immediately…
+ invoke a dissonance. 
+ 
+_Dissonant performance and dissonants rely on audible…
+ components, but still affect deaf creatures. Only targets…
+ within the effect of a silence are immune.
+
+@Cacophonous Chord [Sp] As a standard action, spend 1…  
+ round of bardic performance to create a 10 ft. radius… 
+ burst at close range (25 ft.), dealing 1d6 sonic damage… 
+ (DC 14 Fort halfves). This is an evocation (sonic) effect.
+ 
+=𝄢|Inventory================================================
+
+!Inventory On Person                    
+> Coins                               |    22 gp | 
+> Studded Leather Armor               |    25 gp |  10 lbs. 
+> Rapier                              |    20 gp |   1 lbs.
+> Sling + 10 bullets                  |          |  2½ lbs.
+> Violin + Case                       |     5 gp |   1 lbs.
+> mwk Artisan’s tools                 |     5 gp |  2½ lbs.
+
+!Inventory Backpack
+> Shaving kit                         |    15 gp |   ½ lbs. 
+> Backpack + Bedroll                  |     2 gp |  3½ lbs.
+> Waterskin                           |          |   1 lbs.
+> Flint and Steel                     |     1 gp |
+> Ink, pen and Journal                |    10 gp |   ½ lbs. 
+> Mess Kit                            | 
+
+
+
+
