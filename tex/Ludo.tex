@@ -10,7 +10,7 @@
 
 \ac{17 [19]}{13 [15]}{15}
 
-\secondaryindent{(+2 Dex, +4 Armour, +1 Size, [+2 dodge])}
+\secondaryindent{(+2 Dex, +3 Armour, +1 Size, [+2 dodge])}
 
 \hpsavetable{9}{1d8 + 1}{8}{Fort  &  +2  &  +1  &  +1 luck  \\  Ref  &  +5  &  +4  &  +1 luck  \\  Will  &  +2  &  +1  &  +1 luck}
 
@@ -18,7 +18,7 @@
 
 \labelcategory{𝄢}{Offence}
 
-\doublebold{Speed}{Carrying Capacity}{20 ft.}{20/40/60 lbs.}
+\doublebold{Speed}{Carrying Capacity}{20 ft.}{20/40/60 lb.}
 
 \primaryheader{Melee}{Rapier +0 (1d4 − 1, 18−20/×2)}
 
@@ -40,7 +40,7 @@
 
 \labelcategory{𝄢}{Traits}
 
-\secondaryheader{Local Ties}{+1 trait bonus on Knowledge [Engineering], and you are treated as if you possessed the Technologist feat for the purposes of resolving checks associated with that skill.}
+\secondaryheader{Local Ties}{+1 trait bonus on Knowledge [Engineering], and treated as if possessing the Technologist feat for it.}
 
 \secondaryheader{Artisan}{+2 trait bonus on Craft [Woodworking]}
 
@@ -66,7 +66,7 @@
 
 \labelcategory{𝄢}{Feats [1 + 1b]}
 
-\quasitable{1}{Extra performance}{use bardic performance for 6 additional rounds/day.}
+\quasitable{1}{Extra performance}{+6 rounds/day bardic performance.}
 
 \quasitable{1b}{Spell Song}{As swift action, use 1 round of bardic performance to hide spellcasting (Perception or Sense Motive vs. Perform). As Move action, use one round of bardic performance to maintain concentration. Maintained spell ends when performance ends.}
 
@@ -80,41 +80,53 @@
 
 \secondaryindent{‡Use as if possessing the Technologist feat.}
 
+\secondaryheader{Armour Check Penalty}{−1 (Studded Leather)}
+
 \labelcategorybreak{𝄢}{Bard Abilities}
 
-\specialability{Musical Artificer}{Ex}{Add ½ level (min. 1) to appraise, knowledge (arc), knowledge (eng), knowledge (loc), knowledge (nob) and linguistics checks, and may use these skills untrained. Use Cha instead of Int bonus on all craft skills related to making, using, repairing, or tuning musical instruments.}
+\specialability{Musical Artificer}{Ex}{+1 to appraise, knowledge (arc, eng, loc, nob) and linguistics checks, and may use these skills untrained. Use Cha instead of Int on craft skills.}
 
-\specialability{Intrument Dependant}{ex}{Can use spells with somatic components with a hand that is holding a (part of a) musical instrument. Must use instrument for bardic performances with audible components.}
+\specialability{Intrument Dependant}{ex}{Can use spells with somatic components with a hand that is holding an instrument.}
 
 \specialability{Subtle Performance}{ex}{Observers do not automatically recognize bardic performances as anything other than ordinary performance. Those specifically looking for abnormal effects must succeed at a DC 14 Sense Motive check to detect their performances.}
 
-\specialability{Stalwart Musician}{ex}{Do not provoke attacks of opportunity for using the “Perform” skill. On spending a round of bardic performance, +2 dodge bonus to AC and +2 Concentration until the end of next turn.}
+\specialability{Stalwart Musician}{ex}{Do not provoke attacks of opportunity for using the “Perform” skill. While maintaining a bardic performance, +2 dodge bonus to AC and +2 on Concentration checks.}
 
 \labelcategory{𝄢}{Bardic performances [14 rounds/day]}
 
-\secondary{Can be used 8 + 2×level + Cha rounds per day (incl. extra performance).}
-
-\secondary{Starting a bardic performance is a standard action and maintained as a free action. It cannot be disturbed but ends immediately if the bard is killed, paralyzed, stunned, unconscious or otherwise prevented from taking a free action. A bard cannot have more than one bardic performance in effect at one time. A deaf bard has a 20\% chance to fail an audible performance. A blind bard has a 50\% chance to fail a visual performance.}
+\secondary{BP is started as a standard cation and maintained as a free action. It cannot be disturbed but ends immediately if the bard is prevented from taking a free action. A bard cannot have more than one BP in effect at one time. A deaf/deaf bard has a 20\%/50\% chance to fail their peformance.}
 
 \secondary{All instrumentalist's bardic performances must be accompanied by an instrument, even if they soleley rely on visual components.}
 
-\specialability{Countersong}{Su}{Each round make a Perform (keyboard, percussion, wind, string) check, any creature within 30 ft. by a sonic or language-dependent magical attack may use the perform result in place of their saving throw. Any creature already under the affect of such an attack gains another saving throw against the effect each round it hears the countersong, but it must use the bards result for the save. (Relies on audible components.)}
+\specialability{Countersong}{Su}{Each round make a Perform (keyboard, percussion, wind, string) check, any creature within 30 ft. affected by a sonic or language-dependent magical attack may use the perform result in place of their saving throw. Creature already affected gain a new saving throw each round, but must use the bards result for the save. (Relies on audible components.)}
 
-\specialability{Fascinate}{Su}{Creatures within 90 feet, able to hear, see, (and be seen by the bard), and capable of paying attention become fascinated. DC 14 Will negats and renders creature immune to the performance for 24 hours. Fascinate is an enchantment (compulsion), mind-affecting ability. (Relies on audible and visible components.)}
+\specialability{Fascinate}{Su}{Creatures within 90 ft., able to hear, see, and be seen by the bard, and capable of paying attention become fascinated. DC 14 Will negates and renders creature immune to the performance for 24 hours. Fascinate is an enchantment (compulsion), mind-affecting ability. (Relies on audible and visible components.)}
 
-\specialability{Inspire Courage}{Su}{Targets able to perciesve the bards performance receive a a +1 competence bonus on attack and weapon damage rolls, and a +1 morale bonus on saves vs. charm and fear effects. Inspire courage is a mind affecting ability. (Relies on audible or visible components.)}
+\specialability{Inspire Courage}{Su}{Targets able to percieve the bard's performance receive a a +1 competence bonus on attack and weapon damage rolls, and a +1 morale bonus on saves vs. charm and fear effects. Inspire courage is a mind affecting ability. (Relies on audible or visible components.)}
 
 \labelcategory{𝄢}{Dissonant performance}
 
-\secondary{Dissonant performance is a type of bardic performance. For the duration of the performance, invoke a dissonance as a standard action. Alternatively, when starting the performance as a standard action, spend an additional round of bardic performance to immediately invoke a dissonance.}
-
-\secondary{Dissonant performance and dissonants rely on audible components, but still affect deaf creatures. Only targets within the effect of a silence are immune.}
+\secondary{For the duration of the performance, invoke a dissonance as a standard action. May invoke a dissonance on starting the performance by spending an extra round of bardic performance.}
 
 \specialability{Cacophonous Chord}{Sp}{As a standard action, spend 1 round of bardic performance to create a 10 ft. radius burst at close range (25 ft.), dealing 1d6 sonic damage (DC 14 Fort halfves). This is an evocation (sonic) effect.}
 
 \labelcategory{𝄢}{Inventory}
 
-\invtable{On Person}{Coins  &  22 gp  &    \\  Studded Leather Armor  &  25 gp  &  10 lbs.  \\  Rapier  &  20 gp  &  1 lbs.  \\  Sling + 10 bullets  &    &  2½ lbs.  \\  Violin + Case  &  5 gp  &  1 lbs.  \\  mwk Artisan’s tools  &  5 gp  &  2½ lbs.}
+\invtable{On Person}{Studded Leather Armor  &  25 gp  &  10 lb.  \\  Rapier  &  20 gp  &  1 lb.  \\  Sling + 10 bullets  &    &  2½ lb.  \\  Violin + Case  &  5 gp  &  1 lb.  \\  Artisan’s tools  &  5 gp  &  2½ lb.}
 
-\invtable{Backpack}{Shaving kit  &  15 gp  &  ½ lbs.  \\  Backpack + Bedroll  &  2 gp  &  3½ lbs.  \\  Waterskin  &    &  1 lbs.  \\  Flint and Steel  &  1 gp  \\  Ink, pen and Journal  &  10 gp  &  ½ lbs.}
+\invtable{Backpack}{Shaving kit  &  15 gp  &  ½ lb.  \\  Backpack + Bedroll  &  2 gp  &  3½ lb.  \\  Waterskin  &    &  1 lb.  \\  Flint and Steel  &  1 gp  \\  Ink, pen and Journal  &  10 gp  &  ½ lb.  \\  Mess Kit  &    &  ½ lb.}
+
+\secondary{Purse: 22 gp.}
+
+\labelcategory{𝄢}{Inventory}
+
+\secondaryheader{Uiterlijk}{Een bijzonder lange halfling met een hoog voorhoofd, fronzende borstelige wenkbrouwen, en diepe grijze ogen. Zijn halflange peper-en-zout haar hangt rommelig tot boven zijn schouders. Hij is goed geschoren, maar draagt zijn bakkenbaarden lang. Zijn blik is streng, en een beetje drijgend. Desondanks lacht hij vaak en graag, tenmensite, zolang hij op zijn gemak is.}
+
+\secondaryheader{Uitrusting}{Draagt doorgaans een net wit overhemd met, zorgvuldig geknoopte das, en gilet, onder een lange donkerblauwe jas. Zijn hoog-gehakte schoenen zijn goed gepoetst. Doorgaans heeft hij een vioolkist op zijn rug}
+
+\primary{gebonden. Zijn lederen pantser, wanneer hij het draagt, is net te groot voor hem, en zijn hel drijgt over zijn ogen te zakken.}
+
+\secondaryheader{Geur}{Ludovico ruikt naar rozenwater, vers hout, en}
+
+\primary{terpentijn.}
 

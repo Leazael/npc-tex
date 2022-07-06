@@ -6,7 +6,7 @@ Male halfling Bard (Instrumentalist/Cacophist) 1
 ===𝄢|Defence================================================
 
 !AC 17 [19], !Touch 13 [15], !FlatFooted 15
-__(+2 Dex, +4 Armour, +1 Size, [+2 dodge])
+__(+2 Dex, +3 Armour, +1 Size, [+2 dodge])
 !hp 9 = 1d8 + 1 [8]
  > Fort:   +2 = +1 | +1 luck
  > Ref:    +5 = +4 | +1 luck
@@ -16,7 +16,7 @@ __(+2 Dex, +4 Armour, +1 Size, [+2 dodge])
 
 ===𝄢|Offence================================================
 
-!Speed 20 ft.; !Carry 20/40/60 lbs.
+!Speed 20 ft.; !Carry 20/40/60 lb.
 !Melee Rapier +0 (1d4 − 1, 18−20/×2)
 !Ranged Sling +3 (1d3 − 1)
 %Special Attacks: Cacophonous Chord (1d6, DC 14 Fort halves)
@@ -31,16 +31,15 @@ __(+2 Dex, +4 Armour, +1 Size, [+2 dodge])
  > Wis (−1)   8 =  9  | +1 (age)
  > Cha (+4)  19 = 16  | +1 (age) +2 (race)
 !BAB +0; !CMB −2; !CMD 10 [12]
-%Languages: Common, Halfling, Varisian, Hallitm, Goblin
+%Languages: Common, Halfling, Goblin, Varisian, Hallitim
 %Religion: Brigh, Shelyn
 %Origin: Ustalav (Karcau)
 
 ===𝄢|Traits=================================================
 
 %Local Ties: +1 trait bonus on Knowledge [Engineering], 
- and you are treated as if you possessed the Technologist…
- feat for the purposes of resolving checks associated with…
- that skill.
+ and treated as if possessing the Technologist feat for…
+ it.
 %Artisan: +2 trait bonus on Craft [Woodworking]
 %Halfling Luck: +1 racial bonus on all saving throws.
 %Fearless:+2 racial bonus on all saves vs. fear.
@@ -60,8 +59,7 @@ _+1 CL on spells with Darkness, Light or Shadow descriptior.
 
 ===𝄢|Feats [1 + 1b]=========================================
 
-|1 |Extra performance: use bardic performance for 6…
-    additional rounds/day.
+|1 |Extra performance: +6 rounds/day bardic performance.
 |1b|Spell Song: As swift action, use 1 round of bardic…
     performance to hide spellcasting (Perception or Sense… 
     Motive vs. Perform). As Move action, use one round of…
@@ -89,60 +87,54 @@ __*Use Cha instead of Int
 __†May use untrained
 __‡Use as if possessing the Technologist feat.
 
+%Armour Check Penalty: −1 (Studded Leather)
+
 ||=𝄢|Bard Abilities=========================================
 
-@Musical Artificer [Ex] Add ½ level (min. 1) to appraise, 
- knowledge (arc), knowledge (eng), knowledge (loc), 
- knowledge (nob) and linguistics checks, and may use these…
- skills untrained. Use Cha instead of Int bonus on…
- all craft skills related to making, using, repairing,
- or tuning musical instruments.
+@Musical Artificer [Ex] +1 to appraise, knowledge (arc, eng,
+ loc, nob) and linguistics checks, and may use these skills…
+ untrained. Use Cha instead of Int on craft skills.
 @Intrument Dependant [ex] Can use spells with somatic… 
- components with a hand that is holding a (part of a)…
- musical instrument. Must use instrument for bardic… 
- performances with audible components.
+ components with a hand that is holding an instrument.
 @Subtle Performance [ex] Observers do not automatically…
  recognize bardic performances as anything other than…
  ordinary performance. Those specifically looking for…
  abnormal effects must succeed at a DC 14 Sense Motive…
  check to detect their performances.
 @Stalwart Musician [ex] Do not provoke attacks of…
- opportunity for using the “Perform” skill. On spending…
- a round of bardic performance, +2 dodge bonus to AC…
- and +2 Concentration until the end of next turn.
+ opportunity for using the “Perform” skill. While…
+ maintaining a bardic performance, +2 dodge bonus to AC…
+ and +2 on Concentration checks.
 
 =𝄢|Bardic performances [14 rounds/day]======================
+//Can be used 8 + 2×level + Cha rounds per day…
+//(incl. extra performance).
+//DC 10 + 1/2 level + Cha
 
-_Can be used 8 + 2×level + Cha rounds per day…
- (incl. extra performance).
-_Starting a bardic performance is a standard action and… 
- maintained as a free action. It cannot be disturbed but…
- ends immediately if the bard is killed, paralyzed, 
- stunned, unconscious or otherwise prevented from taking a…
- free action. A bard cannot have more than one bardic…
- performance in effect at one time. A deaf bard has a 20\%…
- chance to fail an audible performance. A blind bard has a… 
- 50\% chance to fail a visual performance.
+_BP is started as a standard cation and maintained as a…
+ free action. It cannot be disturbed but ends immediately…
+ if the bard is prevented from taking a free action.…
+ A bard cannot have more than one BP in effect at one time.…
+ A deaf/deaf bard has a 20\%/50\% chance to fail…
+ their peformance.
 _All instrumentalist's bardic performances must be…
  accompanied by an instrument, even if they soleley rely…
  on visual components.
  
 @Countersong [Su] Each round make a Perform (keyboard, 
  percussion, wind, string) check, any creature within… 
- 30 ft. by a sonic or language-dependent magical attack… 
- may use the perform result in place of their saving… 
- throw. Any creature already under the affect of such an… 
- attack gains another saving throw against the effect each…
- round it hears the countersong, but it must use the bards… 
- result for the save.…
+ 30 ft. affected by a sonic or language-dependent magical…
+ attack may use the perform result in place of their saving… 
+ throw. Creature already affected gain a new saving throw…
+ each round, but must use the bards result for the save.…
  (Relies on audible components.)
-@Fascinate [Su] Creatures within 90 feet, able to hear, see,
- (and be seen by the bard), and capable of paying attention…
- become fascinated. DC 14 Will negats and renders creature…
+@Fascinate [Su] Creatures within 90 ft., able to hear, see,
+ and be seen by the bard, and capable of paying attention…
+ become fascinated. DC 14 Will negates and renders creature…
  immune to the performance for 24 hours. Fascinate is an…
  enchantment (compulsion), mind-affecting ability.…
  (Relies on audible and visible components.)
-@Inspire Courage [Su] Targets able to perciesve the bards…
+@Inspire Courage [Su] Targets able to percieve the bard's…
  performance receive a a +1 competence bonus on attack and…
  weapon damage rolls, and a +1 morale bonus on saves vs. …
  charm and fear effects. Inspire courage is a mind-
@@ -151,17 +143,11 @@ _All instrumentalist's bardic performances must be…
 
 =𝄢|Dissonant performance====================================
 
-_Dissonant performance is a type of bardic performance.…
- For the duration of the performance, invoke a dissonance…
- as a standard action. Alternatively, when starting…
- the performance as a standard action, spend an…
- additional round of bardic performance to immediately…
- invoke a dissonance. 
+_For the duration of the performance, invoke a dissonance…
+ as a standard action. May invoke a dissonance on starting…
+ the performance by spending an extra round of bardic…
+ performance.
  
-_Dissonant performance and dissonants rely on audible…
- components, but still affect deaf creatures. Only targets…
- within the effect of a silence are immune.
-
 @Cacophonous Chord [Sp] As a standard action, spend 1…  
  round of bardic performance to create a 10 ft. radius… 
  burst at close range (25 ft.), dealing 1d6 sonic damage… 
@@ -170,21 +156,36 @@ _Dissonant performance and dissonants rely on audible…
 =𝄢|Inventory================================================
 
 !Inventory On Person                    
-> Coins                               |    22 gp | 
-> Studded Leather Armor               |    25 gp |  10 lbs. 
-> Rapier                              |    20 gp |   1 lbs.
-> Sling + 10 bullets                  |          |  2½ lbs.
-> Violin + Case                       |     5 gp |   1 lbs.
-> mwk Artisan’s tools                 |     5 gp |  2½ lbs.
+> Studded Leather Armor               |    25 gp |  10 lb. 
+> Rapier                              |    20 gp |   1 lb.
+> Sling + 10 bullets                  |          |  2½ lb.
+> Violin + Case                       |     5 gp |   1 lb.
+> Artisan’s tools                     |     5 gp |  2½ lb.
 
 !Inventory Backpack
-> Shaving kit                         |    15 gp |   ½ lbs. 
-> Backpack + Bedroll                  |     2 gp |  3½ lbs.
-> Waterskin                           |          |   1 lbs.
+> Shaving kit                         |    15 gp |   ½ lb. 
+> Backpack + Bedroll                  |     2 gp |  3½ lb.
+> Waterskin                           |          |   1 lb.
 > Flint and Steel                     |     1 gp |
-> Ink, pen and Journal                |    10 gp |   ½ lbs. 
-> Mess Kit                            | 
+> Ink, pen and Journal                |    10 gp |   ½ lb. 
+> Mess Kit                            |          |   ½ lb. 
+_Purse: 22 gp.
 
+=𝄢|Inventory================================================
 
-
-
+%Uiterlijk: Een bijzonder lange halfling met een hoog… 
+ voorhoofd, fronzende borstelige wenkbrouwen, en diepe…
+ grijze ogen. Zijn halflange peper-en-zout haar hangt…
+ rommelig tot boven zijn schouders. Hij is goed geschoren,
+ maar draagt zijn bakkenbaarden lang. Zijn blik is streng,
+ en een beetje drijgend. Desondanks lacht hij vaak en graag,
+ tenmensite, zolang hij op zijn gemak is.
+%Uitrusting: Draagt doorgaans een net wit overhemd met,
+ zorgvuldig geknoopte das, en gilet, onder een lange…
+ donkerblauwe jas. Zijn hoog-gehakte schoenen zijn goed… 
+ gepoetst. Doorgaans heeft hij een vioolkist op zijn rug 
+ gebonden. Zijn lederen pantser, wanneer hij het draagt,
+ is net te groot voor hem, en zijn hel drijgt over zijn…
+ ogen te zakken.
+%Geur: Ludovico ruikt naar rozenwater, vers hout, en 
+ terpentijn.
