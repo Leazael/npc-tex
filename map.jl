@@ -9,6 +9,6 @@ include("src/NPCTeX.jl");
 using .NPCTeX
 
 config = NpcConfig("json/npc_config_full.json");
-doc = parsefile("npc/Ludovico_zanni.npc", config);
+doc = parsefile("npc/Ludovico_zanni_lvl_01.npc", config);
 write_file("tex/Ludo.tex", doc, config)
 
