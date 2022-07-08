@@ -8,9 +8,9 @@ Male halfling Bard (Instrumentalist/Cacophist) 1
 !AC 16 [18], !Touch 12 [14], !FlatFooted 14
 __(+2 Dex, +3 Armour, +1 Size, [+2 dodge])
 !hp 9 = 1d8 + 1 [8]
- > Fort:   +2 = +1 | +1 luck
- > Ref:    +5 = +4 | +1 luck
- > Will:   +2 = +1 | +1 luck
+ > Fort:   +2 = +0 | +1 Con | +1 luck 
+ > Ref:    +5 = +2 | +2 Dex | +1 luck 
+ > Will:   +2 = +2 | −1 Wis | +1 luck 
 %Special Defenses: +2 (racial) vs. fear effects,
  +2 dodge to AC for the duration of bardic performances.
 
