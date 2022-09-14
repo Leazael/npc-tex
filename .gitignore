@@ -1,13 +1,5 @@
-tex_files/npc.aux
-tex_files/npc.fdb_latexmk
-tex_files/npc.fls
-tex_files/npc.log
-tex_files/npc.synctex.gz
-tex_files/npc.xdv
+tex_file/*
 npc.log
 npc.aux
-tex/tex_files/npc.fdb_latexmk
-tex/tex_files/npc.fls
-tex/tex_files/npc.synctex.gz
-tex/tex_files/npc.xdv
-tex/tex_files/npc.synctex(busy)
+tex/tex_files/*
+!tex/tex_files/npc.pdf
