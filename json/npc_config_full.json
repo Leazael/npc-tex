@@ -99,7 +99,7 @@
       {
         "matchList": ["!hp", "=", "[", "]"],
         "isTable": true,
-        "separators": [":", "=", "|"],
+        "separators": [":", "=", "|", "|"],
         "includeInputs": [true, true, true, false, true],
         "latex": {"command": "hpsavetable", "nInputs": 4}
       },

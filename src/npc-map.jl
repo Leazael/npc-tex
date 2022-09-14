@@ -1,4 +1,4 @@
-Base.strip(s::String, mping::MappingStrict) = "" * strip(s, [[first(s[1]) for s in mping.paddingChars]; ' '])
+Base.strip(s::AbstractString, mping::MappingStrict) = "" * strip(s, [[first(s[1]) for s in mping.paddingChars]; ' '])
 enbracket(s::String) = "{" * s * "}"
 enbracket(ss::Vector{String}) = join(enbracket.(ss))
 
@@ -7,9 +7,7 @@ function separate_cols(str::String, joinChar::String, mping::MappingStrict)
     ss = [str];
 
     while !isempty(cc)
-        c = popfirst!(cc)
-        rr = findfirst(c, ss[end])
-        ss = [ss[1:end-1]; ss[end][1:rr[1]-1]; ss[end][rr[end]+1:end]]
+        ss = [ss[1:end-1]; split(ss[end], popfirst!(cc); limit=2, keepempty = false)]
     end
     join([strip(s, mping) for s in ss], joinChar)
 end
@@ -55,4 +53,8 @@ function write_file(path::String, doc::Document, docSettings::DocumentSettings)
     close(io)
 end
 
-write_file(path::String, doc::Document, config::NpcConfig) = write_file(path, doc, config.documentSettings)
+write_file(path::AbstractString, doc::Document, config::NpcConfig) = write_file(path, doc, config.documentSettings)
+
+parse_to_file(pathIn::AbstractString, pathOut::AbstractString, config::NpcConfig) = write_file(pathOut, parsefile(pathIn, config), config)
+parse_to_file(pathIn::AbstractString, pathOut::AbstractString, pathConfig::AbstractString) = parse_to_file(pathIn, pathOut, NpcConfig(pathConfig))
+
